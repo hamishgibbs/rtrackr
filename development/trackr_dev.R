@@ -2,7 +2,7 @@
 df <- data.frame(a = c('a', 'b', 'c'), b = c(1, 2, 3))
 
 #setup a new trackr
-t <- new_trackr(df)
+t <- new_trackr(df, timepoint_message = 'Start')
 
 #make some change to the data 
 t <- t %>% mutate(b = b + 1)
@@ -31,8 +31,6 @@ t <- t %>% group_by(a)
 
 t <- trackr_summarise(t, n = n())
 
-t
-
 t %>% pull(1) %>% length()
 
 #output needs to remain grouped - 
@@ -43,5 +41,10 @@ t %>% pull(1) %>% length()
 t <- t %>% mutate(n = n**runif(3))
 
 t <- trackr_timepoint(t, timepoint_message = 'Further Processing')
+
+trackr_network('~/Documents/Personal/trackr/trackr_dir')
+
+
+
 
 

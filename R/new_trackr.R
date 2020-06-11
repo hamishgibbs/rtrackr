@@ -12,7 +12,7 @@
 #' @examples
 
 
-new_trackr <- function(dataframe, trackr_dir = '~/Documents/Personal/trackr/trackr_dir'){
+new_trackr <- function(dataframe, trackr_dir = '~/Documents/Personal/trackr/trackr_dir', timepoint_message = NULL){
   if (!is.data.frame(dataframe)) stop("dataframe must be a data.frame")
   
   hash_string <- trackr_hash(dataframe)
@@ -23,7 +23,7 @@ new_trackr <- function(dataframe, trackr_dir = '~/Documents/Personal/trackr/trac
   
   file_hash <- get_file_hash(hash_string)
   #write reference file here - could be a function
-  write_new_trackr_file(hash_string, file_hash, trackr_dir)
+  write_new_trackr_file(hash_string, file_hash, timepoint_message, trackr_dir)
   
   #trackr_id is file_hash + '_' + record_hash
   dataframe <- dataframe %>% dplyr::mutate(trackr_id = paste0(file_hash, '_', hash_string$hash))
@@ -32,7 +32,7 @@ new_trackr <- function(dataframe, trackr_dir = '~/Documents/Personal/trackr/trac
   
 }
 
-write_new_trackr_file <- function(hash_string, file_hash, trackr_dir){
+write_new_trackr_file <- function(hash_string, file_hash, timepoint_message, trackr_dir){
   if (!is.data.frame(hash_string)) stop("hash_string must be a data.frame")
   
   tstamp <- as.numeric(Sys.time())
@@ -42,11 +42,11 @@ write_new_trackr_file <- function(hash_string, file_hash, trackr_dir){
     
     hash <- hash_string$hash[i]
     
-    hashes[[i]] = list(type = 'root', hash = hash)
+    hashes[[i]] = list(type = 'root', hash = hash, parent_hash = 'None')
     
   }
   
-  hashes = list(parent_file = 'None', timestamp = tstamp, trackr_ids = hashes)
+  hashes = list(parent_file = 'None', timestamp = tstamp, timepoint_message = timepoint_message, trackr_ids = hashes)
   trackr_fn <- paste0(trackr_dir, '/', file_hash, '.json')
   trackr_json <- jsonlite::toJSON(hashes)
   write(trackr_json, file = trackr_fn)
@@ -187,10 +187,10 @@ trackr_summarise <- function(dataframe, ...){
 
 #combine_trackr function
 
-#code_cov - public - travis - and documentation "how it works"
+#code_cov - public - travis - badges - and documentation "how it works"
 
 #trackr_summary(trackr_path) 
 #on docs site - website to upload and parse a trackr summary file - network graph & search function
 
-
+#warn about existing files in trackr directory
 
