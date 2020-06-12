@@ -1,6 +1,6 @@
 #' trackr_timepoint
 #' 
-#' @description Log a data processing timepoint and write a trackr file log changes
+#' @description Log a data processing timepoint
 #'
 #' @param dataframe data.frame, data to be logged
 #' @param trackr_dir path, path of trackr log files
