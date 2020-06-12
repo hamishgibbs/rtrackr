@@ -17,6 +17,8 @@ Imports:
     tidyr,
     magrittr,
     digest,
-    dplyr
+    dplyr,
+    jsonlite,
+    networkD3
 Suggests: 
     testthat
