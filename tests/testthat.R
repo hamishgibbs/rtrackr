@@ -1,4 +1,4 @@
 library(testthat)
-library(trackr)
+library(rtrackr)
 
-test_check("trackr")
+test_check("rtrackr")
