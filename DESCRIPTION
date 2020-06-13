@@ -19,8 +19,9 @@ Imports:
     digest,
     dplyr,
     jsonlite,
-    networkD3,
     stringr
 Suggests: 
     testthat,
     covr
+Enhances:
+    networkD3

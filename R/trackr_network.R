@@ -4,9 +4,9 @@
 #'
 #' @param trackr_dir path, path to a directory of trackr log files
 #' @param ... arguments passed to networkD3::simpleNetwork
+#' 
 #'
 #' @importFrom dplyr as_tibble mutate rename select filter pull
-#' @importFrom networkD3 simpleNetwork
 #' 
 #' @return networkD3 network graph
 #' @export
@@ -32,6 +32,10 @@ trackr_network <- function(trackr_dir, ...){
   his$src <- src
   his$target <- target
   
-  networkD3::simpleNetwork(his, ...)
-  
+  if (requireNamespace("networkD3", quietly=TRUE)) {
+    networkD3::simpleNetwork(his, ...)
+  }else{
+    stop('Package "networkD3" is required for trackr_network')
+  }
+
 }
