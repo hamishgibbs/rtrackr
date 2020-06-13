@@ -8,8 +8,11 @@
 # @return data.frame hash string with parent_file_hash removed from trackr_old_hash
 
 remove_parent_file_hash <-  function(hash_string, parent_file_hash){
-  hash_string <- hash_string %>% 
-    dplyr::mutate(trackr_old_hash = gsub(paste0(!!parent_file_hash, '_'), '', trackr_old_hash))
+  
+  for(pfh in parent_file_hash){
+    hash_string <- hash_string %>% 
+      dplyr::mutate(trackr_old_hash = gsub(paste0(!!pfh, '_'), '', trackr_old_hash))
+  }
   
   return(hash_string)
 }

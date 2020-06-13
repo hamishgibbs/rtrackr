@@ -6,8 +6,9 @@
 \usage{
 trackr_timepoint(
   dataframe,
-  trackr_dir = "~/Documents/Personal/trackr_dev/trackr_dir",
-  timepoint_message = NULL
+  trackr_dir = NULL,
+  timepoint_message = NULL,
+  log_data = FALSE
 )
 }
 \arguments{
@@ -16,10 +17,12 @@ trackr_timepoint(
 \item{trackr_dir}{path, path of trackr log files}
 
 \item{timepoint_message}{optional character, message to identify timepoint - similar to a git commit message}
+
+\item{log_data}{optional boolean, output a dataset log}
 }
 \value{
 data.frame with updated trackr_id column
 }
 \description{
-Log a data processing timepoint and write a trackr file log changes
+Log a data processing timepoint
 }

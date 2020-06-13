@@ -1,3 +1,7 @@
+<!-- badges: start -->
+ [![Codecov test coverage](https://codecov.io/gh/hamishgibbs/trackr/branch/master/graph/badge.svg)](https://codecov.io/gh/hamishgibbs/trackr?branch=master)
+ <!-- badges: end -->
+
 # rtrackr
 End-to-end data change tracking.
 

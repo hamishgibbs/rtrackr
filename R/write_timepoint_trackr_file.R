@@ -7,6 +7,7 @@
 # @param timepoint_message optional character, message to identify timepoint - similar to a git commit message
 #
 # @importFrom jsonlite toJSON
+# @importFrom stringr str_split
 
 write_timepoint_trackr_file <- function(hash_string, parent_file_hash, file_hash, trackr_dir, timepoint_message){
   if (!is.data.frame(hash_string)) stop("hash_string must be a data.frame")
@@ -28,6 +29,6 @@ write_timepoint_trackr_file <- function(hash_string, parent_file_hash, file_hash
   trackr_json <- jsonlite::toJSON(hashes)
   write(trackr_json, file = trackr_fn)
   
-  print(paste0('Successfully written trackr file ', tail(str_split(trackr_fn, '/')[[1]], 1)))
+  print(paste0('Successfully written trackr file ', tail(stringr::str_split(trackr_fn, '/')[[1]], 1)))
   
 }

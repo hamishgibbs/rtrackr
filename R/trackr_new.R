@@ -5,13 +5,17 @@
 #' @param dataframe data.frame, data to be added to trackr
 #' @param trackr_dir path, path to store log files
 #' @param timepoint_message optional character, message to identify timepoint - similar to a git commit message
+#' @param log_data optional boolean, output a dataset log
 #'
 #' @importFrom dplyr mutate
 #' 
 #' @return data.frame with added trackr_id column
 #' @export
 
-trackr_new <- function(dataframe, trackr_dir = '~/Documents/Personal/trackr_dev/trackr_dir', timepoint_message = NULL){
+trackr_new <- function(dataframe, trackr_dir = NULL, timepoint_message = NULL, log_data = FALSE){
+  
+  if (is.null(trackr_dir)){stop('No trackr_dir specified. Please specify where to store trackr log files.')}
+  
   if (!is.data.frame(dataframe)) stop("dataframe must be a data.frame")
   
   hash_string <- trackr_hash(dataframe)
@@ -20,9 +24,13 @@ trackr_new <- function(dataframe, trackr_dir = '~/Documents/Personal/trackr_dev/
     stop('Duplicate rows detected. Unable to create unique record ids.')
   }
   
-  file_hash <- get_file_hash(hash_string)
+  file_hash <- get_new_file_hash(hash_string)
   #write reference file here - could be a function
   write_new_trackr_file(hash_string, file_hash, timepoint_message, trackr_dir)
+  
+  if(log_data){
+    write_data_log(dataframe, trackr_dir, file_hash)
+  }
   
   #trackr_id is file_hash + '_' + record_hash
   dataframe <- dataframe %>% dplyr::mutate(trackr_id = paste0(file_hash, '_', hash_string$hash))

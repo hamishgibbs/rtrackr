@@ -9,13 +9,13 @@
 #' 
 #' @return A summarised dataframe
 #' @export
-#' @importFrom dplyr summarise left_join
+#' @importFrom dplyr summarise left_join groups
 
 trackr_summarise <- function(dataframe, ...){
   
   if (!is.data.frame(dataframe)) stop("dataframe must be a data.frame")
   
-  if (is.null(groups(dataframe))){stop("dataframe must be grouped")}
+  if (is.null(dplyr::groups(dataframe))){stop("dataframe must be grouped")}
   
   group_id_assigned <- dataframe %>% dplyr::summarise(trackr_id = paste(trackr_id, collapse = ', '))
   
@@ -23,7 +23,8 @@ trackr_summarise <- function(dataframe, ...){
   
   #After summarising, reattach collapsed trackr_ids
   dataframe <- dataframe %>% 
-    dplyr::left_join(group_id_assigned, by = lapply(groups(t), deparse) %>% unlist())
+    dplyr::left_join(group_id_assigned, by = lapply(dplyr::groups(dataframe), deparse) %>% unlist())
   
   return(dataframe)
+  
 }
