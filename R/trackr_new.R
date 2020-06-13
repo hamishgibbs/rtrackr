@@ -63,3 +63,15 @@ trackr_new <- function(dataframe, trackr_dir = NULL, timepoint_message = NULL, l
 
 # error when tryign to save update in a dir without a root file
 
+#write convenience tests for development to ensure that ids remain chained together etc. 
+#test when trackr_dir is not supplied
+
+#unit tests - test for each built in error case, test for in and out columns, test for data type input and outputs
+#everythign tested - simple tests
+#unittests are not integration tests
+#write lots of test_thats in one test-x.R file -  quick tests for each test case - not one mega test
+#detailed docs
+#site deployment
+#record querying options
+
+

@@ -9,7 +9,7 @@
 get_file_hash <- function(hash_string){
   if (!is.data.frame(hash_string)) stop("hash_string must be a data.frame")
   
-  file_hash <- digest::sha1(paste(hash_string$hash, collapse = ''))
+  file_hash <- digest::sha1(paste0(hash_string$hash, collapse = ''))
   
   return(file_hash)
   
