@@ -1,5 +1,5 @@
 <!-- badges: start -->
- [![Codecov test coverage](https://codecov.io/gh/hamishgibbs/trackr/branch/master/graph/badge.svg)](https://codecov.io/gh/hamishgibbs/trackr?branch=master)
+ [![Codecov test coverage](https://codecov.io/gh/hamishgibbs/rtrackr/branch/master/graph/badge.svg)](https://codecov.io/gh/hamishgibbs/rtrackr?branch=master)
  [![Build Status](https://travis-ci.com/hamishgibbs/rtrackr.svg?branch=master)](https://travis-ci.com/hamishgibbs/rtrackr)
 <!-- badges: end -->
 
