@@ -1,6 +1,6 @@
 write_data_log <- function(dataframe, trackr_dir, file_hash){
   
-  trackr_fn <- paste0(trackr_dir, '/', file_hash, 'dl.json')
+  trackr_fn <- paste0(trackr_dir, '/', file_hash, '_dl.json')
   
   trackr_json <- jsonlite::toJSON(dataframe)
   

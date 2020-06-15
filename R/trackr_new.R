@@ -24,7 +24,8 @@ trackr_new <- function(dataframe, trackr_dir = NULL, timepoint_message = NULL, l
     stop('Duplicate rows detected. Unable to create unique record ids.')
   }
   
-  file_hash <- get_new_file_hash(hash_string)
+  file_hash <- get_file_hash(hash_string)
+  
   #write reference file here - could be a function
   write_new_trackr_file(hash_string, file_hash, timepoint_message, trackr_dir)
   

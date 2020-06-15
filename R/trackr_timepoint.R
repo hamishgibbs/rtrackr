@@ -24,6 +24,8 @@ trackr_timepoint <- function(dataframe, trackr_dir = NULL, timepoint_message = N
   
   if (!'trackr_id' %in% colnames(dataframe)){stop('dataframe does not contain a "trackr_id" column')}
   
+  n_records <- dataframe %>% dplyr::pull(1) %>% length
+  
   #check for duplicate trackr ids - from a summarise operation
   if(sum(stringr::str_detect(dataframe$trackr_id, ', ')) > 0){
     dataframe <- dataframe %>% tidyr::separate_rows(trackr_id, sep = ', ')
@@ -43,6 +45,9 @@ trackr_timepoint <- function(dataframe, trackr_dir = NULL, timepoint_message = N
   #get the previous log file with file_hash
   trackr_parent_fn <- paste0(trackr_dir, '/', parent_file_hash, '.json')
   
+  #if unix timestamp now is <1 second different from parent file - wait a second
+  if(as.numeric(Sys.time()) - get_parent_file_timestamp(trackr_parent_fn) < 1){Sys.sleep(1)}
+  
   #json_data <- jsonlite::fromJSON(trackr_parent_fn)
   #could check recursively for all history in trackr_dir
   if(all(!sapply(trackr_parent_fn, file.exists))){
@@ -57,15 +62,22 @@ trackr_timepoint <- function(dataframe, trackr_dir = NULL, timepoint_message = N
     write_data_log(dataframe, trackr_dir, file_hash)
   }
   
-  #trackr_id is file_hash + '_' + record_hash
+  #trackr_id is file_hash + '_' + record_hash - need to retain unaltered version of records that have not changed and rbind changed records to it. 
   dataframe <- dataframe %>% dplyr::mutate(trackr_id = paste0(file_hash, '_', hash_string$hash))
   
   #for records that have been summarised - the opposite of the separate_rows operation
   dataframe <- dplyr::distinct(dataframe)
   
+  if(dataframe %>% dplyr::pull(1) %>% length() != n_records){
+    stop('Output is not the same length as input. Exiting.')
+  }
+  
   return(dataframe)
   
   
 }
+
+
+
 
 

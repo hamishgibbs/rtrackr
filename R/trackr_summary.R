@@ -11,7 +11,15 @@
 #' @export
 
 trackr_summary <- function(trackr_dir){
+  dl_files <- list.files(path = trackr_dir, pattern = '_dl.json', full.names = T)
+  
+  if(lapply(lapply(str_split(dl_files, '/'), tail, n = 1), nchar) %>% unlist() %>% unique() != 48){
+    stop('Misidentifying data log files suspected. Exiting.')
+  }
+  
   files <- list.files(path = trackr_dir, pattern = '.json', full.names = T)
+  
+  files <- files[!files %in% dl_files]
   
   trackr_history <- lapply(files, jsonlite::fromJSON)
   
@@ -19,14 +27,13 @@ trackr_summary <- function(trackr_dir){
   
   trackr_ids <- do.call(dplyr::bind_rows, lapply(trackr_history, `[[`, 'trackr_ids'))
   
-  
   metadata <- metadata %>% dplyr::select(-trackr_ids.type, -trackr_ids.hash, -trackr_ids.parent_hash)
   
   df <- cbind(metadata, trackr_ids)
   
   df <- df %>% dplyr::mutate_at(c('type', 'hash', 'parent_hash'), unlist)
   
-  df <- df %>% dplyr::mutate(timestamp = as.Date(as.POSIXct(timestamp, origin="1970-01-01")))
+  df <- df %>% dplyr::mutate(timestamp = timestamp)
   
   return(df)
   
