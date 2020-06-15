@@ -7,10 +7,10 @@
 trackr_summary(trackr_dir)
 }
 \arguments{
-\item{trackr_dir}{path, path to a directory of trackr log files}
+\item{trackr_dir}{A string, path to trackr log files.}
 }
 \value{
-data.frame summary of trackr log files
+A data.frame, a summary of all trackr log files stored in the trackr_dir.
 }
 \description{
 Create a summary data.frame from a directory of trackr log files

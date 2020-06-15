@@ -1,20 +1,20 @@
 #' trackr_timepoint
 #' 
-#' @description Log a data processing timepoint
+#' @description Log a timepoint in the data processing chain.
 #'
-#' @param dataframe data.frame, data to be logged
-#' @param trackr_dir path, path of trackr log files
-#' @param timepoint_message optional character, message to identify timepoint - similar to a git commit message
-#' @param log_data optional boolean, output a dataset log
+#' @param dataframe A data.frame, the data to be logged.
+#' @param trackr_dir A string, path to store trackr log files.
+#' @param timepoint_message A string (optional), a message to identify the timepoint - similar to a git commit message.
+#' @param log_data A boolean (optional), output a full dataset log with each trackr file. Default is "TRUE"
 #' 
 #' @importFrom dplyr mutate rename pull distinct
 #' @importFrom tidyr separate_rows
 #' @importFrom stringr str_detect
 #' 
-#' @return data.frame with updated trackr_id column
+#' @return A data.frame with an updated trackr_id column. Trackr log and data log files are written into the trackr_dir.
 #' @export
 
-trackr_timepoint <- function(dataframe, trackr_dir = NULL, timepoint_message = NULL, log_data = FALSE){
+trackr_timepoint <- function(dataframe, trackr_dir = NULL, timepoint_message = NULL, log_data = TRUE){
   
   if (is.null(trackr_dir)){stop('No trackr_dir specified. Please specify where to store trackr log files.')}
   

@@ -1,14 +1,14 @@
 #' verify_data_log
 #' 
-#' @description Log a data processing timepoint
+#' @description Verify a data log file. The data log file is the hash of all row hashes.
 #'
-#' @param log_file character path to log file
+#' @param log_file A string, the path to a log file
 #'
 #' @importFrom dplyr rename
 #' @importFrom jsonlite fromJSON
 #' @importFrom stringr str_split
 #' 
-#' @return boolean, log file validated (Y/N)
+#' @return A boolean, whether the log file has been validated successfully (TRUE/FALSE)
 #' @export
 
 verify_data_log <- function(log_file){

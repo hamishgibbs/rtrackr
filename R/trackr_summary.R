@@ -2,12 +2,12 @@
 #' 
 #' @description Create a summary data.frame from a directory of trackr log files
 #'
-#' @param trackr_dir path, path to a directory of trackr log files
+#' @param trackr_dir A string, path to trackr log files.
 #'
 #' @importFrom dplyr bind_rows as_tibble select mutate_at mutate
 #' @importFrom jsonlite fromJSON
 #' 
-#' @return data.frame summary of trackr log files
+#' @return A data.frame, a summary of all trackr log files stored in the trackr_dir.
 #' @export
 
 trackr_summary <- function(trackr_dir){

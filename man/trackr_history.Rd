@@ -7,15 +7,18 @@
 trackr_history(trackr_id, trackr_dir, return_records = "all")
 }
 \arguments{
-\item{trackr_id}{string trackr_id used as starting point for extracting lineage}
+\item{trackr_id}{A string, the trackr_id used as a starting point for extracting the record lineage.}
 
-\item{trackr_dir}{path, path of trackr log files}
+\item{trackr_dir}{A string, path to trackr log files.}
 
-\item{return_records}{optional character, require that all log files have a corresponding data log or return any available logged records, default all}
+\item{return_records}{A string (optional), whether to require data log files for all processing steps "all", or any that are available "any".}
 }
 \value{
-list of dataframes with all parent records
+A list with the parent parent records for a given trackr_id.
 }
 \description{
-Get the parent rows of a trackr_id
+Get the parent records of a trackr_id.
+}
+\seealso{
+trackr_lineage
 }

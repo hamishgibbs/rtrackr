@@ -7,11 +7,11 @@
 verify_data_log(log_file)
 }
 \arguments{
-\item{log_file}{character path to log file}
+\item{log_file}{A string, the path to a log file}
 }
 \value{
-boolean, log file validated (Y/N)
+A boolean, whether the log file has been validated successfully (TRUE/FALSE)
 }
 \description{
-Log a data processing timepoint
+Verify a data log file. The data log file is the hash of all row hashes.
 }

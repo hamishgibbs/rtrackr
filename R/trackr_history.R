@@ -1,14 +1,16 @@
 #' trackr_history
 #' 
-#' @description Get the parent rows of a trackr_id
+#' @description Get the parent records of a trackr_id.
+#' 
+#' @seealso trackr_lineage
 #'
-#' @param trackr_id string trackr_id used as starting point for extracting lineage
-#' @param trackr_dir path, path of trackr log files
-#' @param return_records optional character, require that all log files have a corresponding data log or return any available logged records, default all
+#' @param trackr_id A string, the trackr_id used as a starting point for extracting the record lineage.
+#' @param trackr_dir A string, path to trackr log files.
+#' @param return_records A string (optional), whether to require data log files for all processing steps "all", or any that are available "any".
 #' 
-#' @importFrom dplyr mutate filter pull slice
+#' @importFrom dplyr mutate filter pull
 #' 
-#' @return list of dataframes with all parent records
+#' @return A list with the parent parent records for a given trackr_id.
 #' @export
 
 trackr_history <- function(trackr_id, trackr_dir, return_records='all'){
@@ -66,7 +68,9 @@ trackr_history <- function(trackr_id, trackr_dir, return_records='all'){
   
   dl <- dl %>% dplyr::filter(trackr_id == prev_trackr_id)
   
-  record_history[[i]] = dl
+  record <- jsonlite::fromJSON(gsub('_dl', '', root_fn))
+  
+  record_history[[i]] = list(timepoint_message = record$timepoint_message, timestamp = record$timestamp, data = dl)
   
   return(record_history)
   

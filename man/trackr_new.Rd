@@ -8,21 +8,21 @@ trackr_new(
   dataframe,
   trackr_dir = NULL,
   timepoint_message = NULL,
-  log_data = FALSE
+  log_data = TRUE
 )
 }
 \arguments{
-\item{dataframe}{data.frame, data to be added to trackr}
+\item{dataframe}{A data.frame, the dataset to be logged}
 
-\item{trackr_dir}{path, path to store log files}
+\item{trackr_dir}{A string, path to store trackr log files.}
 
-\item{timepoint_message}{optional character, message to identify timepoint - similar to a git commit message}
+\item{timepoint_message}{A string (optional), a message to identify the timepoint - similar to a git commit message.}
 
-\item{log_data}{optional boolean, output a dataset log}
+\item{log_data}{A boolean (optional), output a full dataset log with each trackr file. Default is "TRUE"}
 }
 \value{
-data.frame with added trackr_id column
+A data.frame with a trackr_id column added. Trackr log and data log files are written into the trackr_dir.
 }
 \description{
-create a new tracker file, the starting point of a tracking history
+Create a new tracker file, the starting point of a data log history.
 }
