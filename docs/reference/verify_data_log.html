@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>trackr_timepoint — trackr_timepoint • rtrackr</title>
+<title>verify_data_log — verify_data_log • rtrackr</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="trackr_timepoint — trackr_timepoint" />
+<meta property="og:title" content="verify_data_log — verify_data_log" />
 <meta property="og:description" content="Log a data processing timepoint" />
 
 
@@ -103,46 +103,29 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>trackr_timepoint</h1>
+    <h1>verify_data_log</h1>
     
-    <div class="hidden name"><code>trackr_timepoint.Rd</code></div>
+    <div class="hidden name"><code>verify_data_log.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Log a data processing timepoint</p>
     </div>
 
-    <pre class="usage"><span class='fu'>trackr_timepoint</span>(
-  <span class='no'>dataframe</span>,
-  <span class='kw'>trackr_dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>timepoint_message</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>log_data</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>verify_data_log</span>(<span class='no'>log_file</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>dataframe</th>
-      <td><p>data.frame, data to be logged</p></td>
-    </tr>
-    <tr>
-      <th>trackr_dir</th>
-      <td><p>path, path of trackr log files</p></td>
-    </tr>
-    <tr>
-      <th>timepoint_message</th>
-      <td><p>optional character, message to identify timepoint - similar to a git commit message</p></td>
-    </tr>
-    <tr>
-      <th>log_data</th>
-      <td><p>optional boolean, output a dataset log</p></td>
+      <th>log_file</th>
+      <td><p>character path to log file</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>data.frame with updated trackr_id column</p>
+    <p>boolean, log file validated (Y/N)</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

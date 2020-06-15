@@ -1,4 +1,4 @@
-#' trackr_record_lineage
+#' trackr_lineage
 #' 
 #' @description Get the lineage of a trackr_id
 #'
@@ -11,9 +11,9 @@
 #' @return data.frame or list with lineage for one trackr_id
 #' @export
 
-trackr_record_lineage <- function(trackr_id, trackr_dir, return_class = "data.frame"){
+trackr_lineage <- function(trackr_id, trackr_dir, return_class = "data.frame"){
   if(!return_class %in% c('data.frame', 'list')){stop('Unknown return class. Accepts "data.frame", "list".')}
-  if(length(trackr_id) > 1){stop('trackr_record_lineage only accepts one trackr id.')}
+  if(length(trackr_id) > 1){stop('trackr_lineage only accepts one trackr id.')}
   
   #accept a trackr id - not a hash - string parent file hash from trackr_id
   #altering data structure to play with extract_parent_file_hash
@@ -33,19 +33,28 @@ trackr_record_lineage <- function(trackr_id, trackr_dir, return_class = "data.fr
   }
   
   #favor the most recent record
-  tar_time <- trackr_sum %>% dplyr::filter(hash %in% target_hash) %>% dplyr::pull(timestamp) %>% max()
-  new_hash <- trackr_sum %>% dplyr::filter(hash == target_hash & timestamp == tar_time) %>% dplyr::pull(parent_hash)
-  
   record_lineage <- list()
-  timepoint <- 1
+  
+  record_lineage[[1]] = list(n = 1, hash = target_hash, timestamp = Inf, timepoint_message = "Target record", parent_file = paste0(parent_file_hash, '.json'))
+  
+  tar_time <- trackr_sum %>% dplyr::filter(hash %in% target_hash) %>% dplyr::pull(timestamp) %>% max()
+  sum_f <- trackr_sum %>% dplyr::filter(hash == target_hash & timestamp == tar_time)
+  new_hash <- sum_f %>% dplyr::pull(parent_hash)
+  timepoint_message <- sum_f %>% dplyr::pull(timepoint_message) %>% unique()
+  parent_file <- sum_f %>% dplyr::pull(parent_file) %>% unique()
+  record_lineage[[2]] = list(n = 2, hash = new_hash, timestamp = tar_time, timepoint_message = timepoint_message, parent_file = parent_file)
+  
+  
+  timepoint <- 3
   while (new_hash[1] != 'None') {
     
     sum_f <- trackr_sum %>% dplyr::filter(hash %in% new_hash & timestamp < tar_time) %>% dplyr::filter(timestamp == max(timestamp))
     tar_time <- sum_f %>% dplyr::pull(timestamp) %>% max()
     new_hash <- sum_f %>% dplyr::pull(parent_hash) %>% unique()
     timepoint_message <- sum_f %>% dplyr::pull(timepoint_message) %>% unique()
+    parent_file <- sum_f %>% dplyr::pull(parent_file) %>% unique()
     
-    record_lineage[[timepoint]] = list(hash = new_hash, timestamp = tar_time, timepoint_message = timepoint_message)
+    record_lineage[[timepoint]] = list(n = timepoint, hash = new_hash, timestamp = tar_time, timepoint_message = timepoint_message, parent_file = parent_file)
     timepoint <- timepoint + 1
   }
   

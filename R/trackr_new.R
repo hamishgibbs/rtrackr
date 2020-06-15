@@ -18,6 +18,8 @@ trackr_new <- function(dataframe, trackr_dir = NULL, timepoint_message = NULL, l
   
   if (!is.data.frame(dataframe)) stop("dataframe must be a data.frame")
   
+  if('trackr_id' %in% colnames(dataframe)){stop('trackr_id column is already present. See trackr_timepoint().')}
+  
   hash_string <- trackr_hash(dataframe)
   
   if(!c(hash_string$hash %>% unique() %>% length()) == c(hash_string$hash %>% length())){
@@ -29,12 +31,12 @@ trackr_new <- function(dataframe, trackr_dir = NULL, timepoint_message = NULL, l
   #write reference file here - could be a function
   write_new_trackr_file(hash_string, file_hash, timepoint_message, trackr_dir)
   
+  #trackr_id is file_hash + '_' + record_hash
+  dataframe <- dataframe %>% dplyr::mutate(trackr_id = paste0(file_hash, '_', hash_string$hash))
+  
   if(log_data){
     write_data_log(dataframe, trackr_dir, file_hash)
   }
-  
-  #trackr_id is file_hash + '_' + record_hash
-  dataframe <- dataframe %>% dplyr::mutate(trackr_id = paste0(file_hash, '_', hash_string$hash))
   
   return(dataframe)
   

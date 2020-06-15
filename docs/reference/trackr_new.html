@@ -114,8 +114,9 @@
 
     <pre class="usage"><span class='fu'>trackr_new</span>(
   <span class='no'>dataframe</span>,
-  <span class='kw'>trackr_dir</span> <span class='kw'>=</span> <span class='st'>"~/Documents/Personal/trackr_dev/trackr_dir"</span>,
-  <span class='kw'>timepoint_message</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>trackr_dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>timepoint_message</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>log_data</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -132,6 +133,10 @@
     <tr>
       <th>timepoint_message</th>
       <td><p>optional character, message to identify timepoint - similar to a git commit message</p></td>
+    </tr>
+    <tr>
+      <th>log_data</th>
+      <td><p>optional boolean, output a dataset log</p></td>
     </tr>
     </table>
 

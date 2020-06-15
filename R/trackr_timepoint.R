@@ -69,7 +69,7 @@ trackr_timepoint <- function(dataframe, trackr_dir = NULL, timepoint_message = N
   dataframe <- dplyr::distinct(dataframe)
   
   if(dataframe %>% dplyr::pull(1) %>% length() != n_records){
-    stop('Output is not the same length as input. Exiting.')
+    stop('Output is not the same length as input.')
   }
   
   return(dataframe)
