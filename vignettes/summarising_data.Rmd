@@ -1,0 +1,10 @@
+---
+title: "Summarising data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteIndexEntry{Summarising data}
+  %\usepackage[UTF-8]{rtrackr}
+---
+
+### Overview

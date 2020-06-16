@@ -19,10 +19,11 @@ Imports:
     digest,
     dplyr,
     jsonlite,
-    stringr
+    stringr,
+    knitr
 Suggests: 
     testthat,
     covr
 Enhances:
     networkD3
-VignetteBuilder: utils
+VignetteBuilder: knitr

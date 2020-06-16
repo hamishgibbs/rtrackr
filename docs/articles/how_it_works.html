@@ -56,6 +56,9 @@
 <li>
       <a href="../articles/how_it_works.html">How it works</a>
     </li>
+    <li>
+      <a href="../articles/summarising_data.html">Summarising data</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -82,7 +85,36 @@
 
     
     
-<p>Hashes</p>
+<div id="overview" class="section level3">
+<h3 class="hasAnchor">
+<a href="#overview" class="anchor"></a>Overview</h3>
+<p><code>rtrackr</code> provides a way to track changes to individual records during program execution in R. <code>rtrackr</code> relies on the <code><a href="../reference/trackr_new.html">trackr_new()</a></code> and <code><a href="../reference/trackr_timepoint.html">trackr_timepoint()</a></code> functions to initiate dataset tracking and log important points in the data processing chain. The package was developed primarily for datasets with large quantities of textual data, and for datasets that are being shared between different users, some of whom may make unpredictable changes to a dataset.</p>
+<p><strong>Please Note:</strong></p>
+<p><code>rtrackr</code> relies on the <code>trackr_id</code> column to identify a record and its lineage. If this column is deleted or altered - it is not possible to continue tracking records using <code>rtrackr</code>. For more details on the special case of summarising data with <code>rtrackr</code> see <a href="https://hamishgibbs.github.io/rtrackr/articles/summarising_data.html">Summarising data</a>.</p>
+<p><code>rtrackr</code> relies on the <code>sha1</code> hash function exported from <code><a href="https://rdrr.io/pkg/digest/man/sha1.html">digest::sha1</a></code>. <code>sha1</code> has been chosen because of the relatively short hashes that it produces, reducing the file size of log files. Using <code>sha1</code> increases the (unlikely) probability of a hash collision. Please see more information on the <code>sha1</code> hash function <a href="https://en.wikipedia.org/wiki/SHA-1">here</a>.</p>
+</div>
+<div id="the-trackr_id-column" class="section level3">
+<h3 class="hasAnchor">
+<a href="#the-trackr_id-column" class="anchor"></a>The trackr_id column</h3>
+<p>The <code>trackr_id</code> column is an id field that uniquely identifies each record in a dataset. It is not possible to log a processing step with <code><a href="../reference/trackr_timepoint.html">trackr_timepoint()</a></code> if there are identical records in a dataset. The <code>trackr_id</code> field has two components, separated by an underscore <code>"_"</code>.</p>
+<p>The first component of a <code>trackr_id</code> is the hash of a the parent log file, used to identify the log file where a parent’s record is stored. The parent file hash is defined as the hash of the timepoint timestamp (a UNIX timestamp) + collapsed row hashes (see below).</p>
+<p>The second component of a trackr_id is the row hash of each individual record. The row hash is the hash of a string made up of all values in a row, separated by an empty string <code>""</code>. Considering a dataframe of one row with values <code>a = "a"</code> and <code>b = 1</code>, the row hash would be computed as <code><a href="https://rdrr.io/pkg/digest/man/sha1.html">digest::sha1("a1")</a></code>, or <code>4751028c3d830cf93f7d1e64d5e4d58c9d01ee32</code>.</p>
+<p>The file hash of this dataframe at UNIX time <code>1592300508</code> would therefore be <code><a href="https://rdrr.io/pkg/digest/man/sha1.html">digest::sha1("1592300508a1")</a></code>, or <code>566f5d1c67d708801092ded906f6180d5ae40c0a</code>.</p>
+<p>For a datafram with two rows, <code>a = "a"</code>, <code>b = 1</code> and <code>a = "b"</code>, <code>b = 2</code>, recorded at UNIX time <code>1592300508</code>, the file hash would be <code><a href="https://rdrr.io/pkg/digest/man/sha1.html">digest::sha1("1592300508a1b2")</a></code>, or <code>8101ce0e209af8bd1d636729a6b77ff7bb124957</code>.</p>
+</div>
+<div id="validating-a-trackr-data-log" class="section level3">
+<h3 class="hasAnchor">
+<a href="#validating-a-trackr-data-log" class="anchor"></a>Validating a trackr data log</h3>
+<p><code><a href="../reference/trackr_new.html">trackr_new()</a></code> and <code><a href="../reference/trackr_timepoint.html">trackr_timepoint()</a></code> both provide the option to write a data log along with a standard trackr log file with the argument <code>log_data = TRUE</code>. This is recommended, as it provides a full hisotry of all timepoints in a data processing history, but may not be practical for very large datasets.</p>
+<p>Any data logs that have been saved using <code>log_data = TRUE</code> can be validated by re-computing the file hash of the logged data using the timestamp stored in the corresponding trackr log file. <code>rtrackr</code> provides the <code>validate_data_log()</code> function to validate a trackr data log automatically.</p>
+</div>
+<div id="other-considerations" class="section level3">
+<h3 class="hasAnchor">
+<a href="#other-considerations" class="anchor"></a>Other considerations</h3>
+<p>A primary motivation for the development of this package is the case of data files that are processed in R and shared with users who further alter the data manually (for human data cleaning, manual updates, or record validation). It is important to consider the effect of manual record processing on log data produced by <code>rtrackr</code>.</p>
+<p>There are two primary cases of manual data alteration that are important to <code>rtrackr</code>. The first case is the duplication of records (one record becoming &gt;1 record), with some change to one or all of the duplicated records. <code>rtrackr</code> can handle this case without any further consideration. When logging a new timepoint, the duplicated records with be recorded with new row hashes, but identical parent records in the preceding log file.</p>
+<p>The second case is summarising data (combining &gt;1 record into a single record), which risks losing information added to a data file by <code>rtrackr</code>. To retain a full data history - the <code>trackr_id</code>s of all summarised records must be stored in the trackr_id column (separated by “,”). This is the same operation performed automatically by <code><a href="../reference/trackr_summarise.html">trackr_summarise()</a></code>. If multiple records are combined into one but only one trackr_id is retained, some components of the data processing history will be lost. Others, like the identfication of a root record with <code><a href="../reference/trackr_root.html">trackr_root()</a></code> will work as expected.</p>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

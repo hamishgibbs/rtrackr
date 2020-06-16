@@ -16,3 +16,7 @@ Install the development version of this package with:
 ``` r
 remotes::install_github("hamishgibbs/rtrackr")
 ```
+
+## Development
+
+This package is in the early stages of development. Comments and contributions are welcome. To record a problem with the package, please [create an issue](https://github.com/hamishgibbs/rtrackr/issues/new) on [Github](https://github.com/hamishgibbs/rtrackr). 

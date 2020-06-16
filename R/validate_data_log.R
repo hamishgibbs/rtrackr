@@ -1,6 +1,6 @@
-#' verify_data_log
+#' validate_data_log
 #' 
-#' @description Verify a data log file. The data log file is the hash of all row hashes.
+#' @description Validate a data log file. The data log file is the hash of all row hashes.
 #'
 #' @param log_file A string, the path to a log file
 #'
@@ -11,7 +11,7 @@
 #' @return A boolean, whether the log file has been validated successfully (TRUE/FALSE)
 #' @export
 
-verify_data_log <- function(log_file){
+validate_data_log <- function(log_file){
   
   if(!file.exists(log_file)){
     stop('Log file not found.')
