@@ -4,8 +4,16 @@
 <!-- badges: end -->
 
 # rtrackr
-End-to-end data change tracking in r.
+End-to-end data change tracking for R.
 
 Generate a full history of dataset changes for individual records in a dataset.
 
 Currently compatible with **long** format data.
+
+## Installation
+
+Install the development version of this package with:
+
+``` r
+remotes::install_github("hamishgibbs/rtrackr")
+```
