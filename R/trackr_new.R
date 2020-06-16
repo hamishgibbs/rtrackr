@@ -26,10 +26,12 @@ trackr_new <- function(dataframe, trackr_dir = NULL, timepoint_message = NULL, l
     stop('Duplicate rows detected. Unable to create unique record ids.')
   }
   
-  file_hash <- get_file_hash(hash_string)
+  tstamp <- as.numeric(Sys.time())
+  
+  file_hash <- get_file_hash(dataframe, tstamp)
   
   #write reference file here - could be a function
-  write_new_trackr_file(hash_string, file_hash, timepoint_message, trackr_dir)
+  write_new_trackr_file(hash_string, file_hash, timepoint_message, trackr_dir, tstamp)
   
   #trackr_id is file_hash + '_' + record_hash
   dataframe <- dataframe %>% dplyr::mutate(trackr_id = paste0(file_hash, '_', hash_string$hash))

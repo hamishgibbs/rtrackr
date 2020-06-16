@@ -25,3 +25,4 @@ Suggests:
     covr
 Enhances:
     networkD3
+VignetteBuilder: utils

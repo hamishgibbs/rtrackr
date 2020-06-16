@@ -28,10 +28,12 @@ trackr_timepoint <- function(dataframe, trackr_dir = NULL, timepoint_message = N
   
   #check for duplicate trackr ids - from a summarise operation
   if(sum(stringr::str_detect(dataframe$trackr_id, ', ')) > 0){
-    dataframe <- dataframe %>% tidyr::separate_rows(trackr_id, sep = ', ')
+    input_dataframe <- dataframe %>% tidyr::separate_rows(trackr_id, sep = ', ')
+  }else{
+    input_dataframe <- dataframe
   }
   
-  hash_string <- trackr_hash(dataframe %>% dplyr::rename(trackr_old_hash = trackr_id))
+  hash_string <- trackr_hash(input_dataframe %>% dplyr::rename(trackr_old_hash = trackr_id))
   
   parent_file_hash <- extract_parent_file_hash(hash_string)
   
@@ -54,16 +56,18 @@ trackr_timepoint <- function(dataframe, trackr_dir = NULL, timepoint_message = N
     stop('Parent trackr file not found in trackr_dir. Exiting.')
   }
   
-  file_hash <- get_file_hash(hash_string)
+  tstamp <- as.numeric(Sys.time())
   
-  write_timepoint_trackr_file(hash_string, parent_file_hash, file_hash, trackr_dir, timepoint_message)
+  file_hash <- get_file_hash(dataframe, tstamp)
+  
+  write_timepoint_trackr_file(hash_string, parent_file_hash, file_hash, trackr_dir, timepoint_message, tstamp)
   
   if(log_data){
     write_data_log(dataframe, trackr_dir, file_hash)
   }
   
   #trackr_id is file_hash + '_' + record_hash - need to retain unaltered version of records that have not changed and rbind changed records to it. 
-  dataframe <- dataframe %>% dplyr::mutate(trackr_id = paste0(file_hash, '_', hash_string$hash))
+  dataframe <- dataframe %>% dplyr::mutate(trackr_id = paste0(file_hash, '_', unique(hash_string$hash)))
   
   #for records that have been summarised - the opposite of the separate_rows operation
   dataframe <- dplyr::distinct(dataframe)

@@ -9,10 +9,9 @@
 # @importFrom jsonlite toJSON
 # @importFrom stringr str_split
 
-write_timepoint_trackr_file <- function(hash_string, parent_file_hash, file_hash, trackr_dir, timepoint_message){
+write_timepoint_trackr_file <- function(hash_string, parent_file_hash, file_hash, trackr_dir, timepoint_message, tstamp){
   if (!is.data.frame(hash_string)) stop("hash_string must be a data.frame")
   
-  tstamp <- as.numeric(Sys.time())
   hashes <- list()
   
   #can't have duplicate list indices

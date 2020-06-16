@@ -8,10 +8,9 @@
 # @importFrom jsonlite toJSON
 # @importFrom stringr str_split
 
-write_new_trackr_file <- function(hash_string, file_hash, timepoint_message, trackr_dir){
+write_new_trackr_file <- function(hash_string, file_hash, timepoint_message, trackr_dir, tstamp){
   if (!is.data.frame(hash_string)) stop("hash_string must be a data.frame")
   
-  tstamp <- as.numeric(Sys.time())
   hashes <- list()
   
   for(i in 1:length(hash_string %>% pull(hash))){
