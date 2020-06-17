@@ -20,10 +20,9 @@ Imports:
     dplyr,
     jsonlite,
     stringr,
-    knitr
+    knitr,
 Suggests: 
     testthat,
     covr
 Enhances:
     networkD3
-VignetteBuilder: knitr

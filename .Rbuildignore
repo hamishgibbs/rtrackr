@@ -3,3 +3,5 @@
 ^docs$
 ^pkgdown$
 ^codecov\.yml$
+^\.travis\.yml$
+^vignettes$

@@ -93,8 +93,7 @@ trackr_lineage(target_id, trackr_dir)
 
 For a more intelligible way to represent the lineage of a trackr_id, use [`trackr_network()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_network.html) to create an interactive network of the dataset history. 
 
-```{r eval=FALSE}
-print(paste0(trackr_dir, '/', target_id, '_lineage.json'))
+```{r}
 lineage_fn <- paste0(trackr_dir, '/', target_id, '_lineage.json')
 
 trackr_network(lineage_fn)

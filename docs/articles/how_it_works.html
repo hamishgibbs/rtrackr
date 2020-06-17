@@ -117,7 +117,7 @@
 <p>A primary motivation for the development of this package is the case of data files that are processed in R and shared with users who further alter the data manually (for human data cleaning, manual updates, or record validation). It is important to consider the effect of manual record processing on log data produced by <code>rtrackr</code>.</p>
 <p>There are two primary cases of manual data alteration that are important to <code>rtrackr</code>. The first case is the duplication of records (one record becoming &gt;1 record), with some change to one or all of the duplicated records. <code>rtrackr</code> can handle this case without any further consideration. When logging a new timepoint, the duplicated records with be recorded with new row hashes, but identical parent records in the preceding log file.</p>
 <p>The second case is summarising data (combining &gt;1 record into a single record), which risks losing information added to a data file by <code>rtrackr</code>. To retain a full data history - the <code>trackr_id</code>s of all summarised records must be stored in the trackr_id column (separated by “,”). This is the same operation performed automatically by <code><a href="../reference/trackr_summarise.html">trackr_summarise()</a></code>. If multiple records are combined into one but only one trackr_id is retained, some components of the data processing history will be lost. Others, like the identfication of a root record with <code>trackr_root()</code> will work as expected.</p>
-<p><em>Article by Hamish Gibbs 2020-06-17 17:37:23.</em></p>
+<p><em>Article by Hamish Gibbs 2020-06-17 21:34:29.</em></p>
 </div>
   </div>
 
