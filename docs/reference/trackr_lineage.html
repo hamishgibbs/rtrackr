@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="trackr_lineage — trackr_lineage" />
-<meta property="og:description" content="Get the lineage (parent hashes) of a trackr_id." />
+<meta property="og:description" content="Get the lineage (parent trackr_ids) of a trackr_id and store it in the trackr_dir." />
 
 
 
@@ -95,6 +95,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/getting_started.html">Getting started</a>
+    </li>
+    <li>
       <a href="../articles/how_it_works.html">How it works</a>
     </li>
     <li>
@@ -124,10 +127,10 @@
     </div>
 
     <div class="ref-description">
-    <p>Get the lineage (parent hashes) of a trackr_id.</p>
+    <p>Get the lineage (parent trackr_ids) of a trackr_id and store it in the trackr_dir.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>trackr_lineage</span>(<span class='no'>trackr_id</span>, <span class='no'>trackr_dir</span>, <span class='kw'>return_class</span> <span class='kw'>=</span> <span class='st'>"data.frame"</span>)</pre>
+    <pre class="usage"><span class='fu'>trackr_lineage</span>(<span class='no'>trackr_id</span>, <span class='no'>trackr_dir</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -140,18 +143,8 @@
       <th>trackr_dir</th>
       <td><p>A string, path to trackr log files.</p></td>
     </tr>
-    <tr>
-      <th>return_class</th>
-      <td><p>A string (optional), format of output data, a "data.frame" or "list". Default is "data.frame".</p></td>
-    </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A data.frame or list with the lineage (parent hashes) of all parent records for a given trackr_id.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>trackr_history</p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -1,0 +1,113 @@
+---
+title: "Getting started"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteIndexEntry{Getting started}
+  %\usepackage[UTF-8]{rtrackr}
+---
+
+```{r echo=F, results="hide"}
+suppressPackageStartupMessages({
+  library(kableExtra)
+  #devtools::install("~/Documents/Personal/rtrackr")
+  library(rtrackr)
+  library(networkD3)
+})
+```
+
+### Installation
+
+`rtrackr` is currently available through [GitHub](https://github.com/hamishgibbs/rtrackr). To install the development version use:
+
+```{r eval=FALSE}
+remotes::install_github("hamishgibbs/rtrackr")
+```
+
+### Logging a new dataset
+
+Dataset tracking starts with the [`trackr_new()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_new.html) function. Load a new dataset into R and use `trackr_new()` to record each record in the dataset. Here, we create a simple dataframe as an example.
+
+```{r}
+df <- data.frame(a = c('a', 'b', 'c'), b = c(1, 2, 3))
+```
+```{r, echo = F}
+kable(df) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+
+[`trackr_new()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_new.html) adds a `trackr_id` column to the dataframe, the starting point for all data logging with `rtrackr`. Be sure to specify where `rtrackr` log files should be stored with `trackr_dir = ` (you will see an error if you do not). 
+
+```{r echo = F}
+#dir.create('~/Documents/trackr_dir')
+```
+```{r}
+trackr_dir <- '~/Documents/trackr_dir'
+df <- trackr_new(df, trackr_dir = trackr_dir)
+```
+```{r, echo = F}
+kable(df) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+
+You should see an output similar to what is printed above "Successfully written ...". These messages tell us that the dataset has been successfully logged and that two log files have been written. One file (the trackr file) records the lineage of each row in the dataset. The other file (with the suffix "_dl") is the data log - a record of the dataset at this point in time. 
+
+### Defining timepoints
+
+`rtrackr` is designed to record dataset changes throughout the processing chain, allowing for a full history of important changes to each record. a `timepoint` defines a certain time in the processing chain, and is similar to a `commit` in `git`. You can record a `timepoint` with [`trackr_timepoint()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_timepoint.html) 
+
+First, we will make some change to the logged dataset. 
+
+```{r}
+df <- df %>% dplyr::mutate(b = b + 1)
+```
+```{r, echo = F}
+kable(df) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+
+Then, we will log this change as a new `timepoint`.
+
+```{r}
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'First processing step')
+```
+```{r, echo = F}
+kable(df) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+
+You should see the same success messages as you did for [`trackr_new()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_new.html) above. Notice the argument `timepoint_message`, which gives an optional, plain text record of this timepoint, similar to a commit message in `git`.
+
+Congratulations! Using `rtrackr` should be as easy as tracking a new dataset and logging subsequent processing timepoints. For the special case of summarizing multiple records into one, see [Summarising data](https://hamishgibbs.github.io/rtrackr/articles/summarising_data.html).
+
+*Please note: `rtrackr` uses the current UNIX timestamp (in seconds) to define a `trackr_id`. Logging multiple timepoints in the same second is not permitted, and `trackr_timepoint` will wait until the following second to write a new trackr log file. This means that repeated calls to `trackr_timepoint` may delay code execution. For more information, see [how it works](https://hamishgibbs.github.io/rtrackr/articles/how_it_works.html).*
+
+### Querying record history
+
+Now that we have logged a dataset and a processing timepoint, we can query the history of a record in our most recent version of the dataset. Use [`trackr_lineage()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_lineage.html) to get all parent records of a given trackr_id. 
+
+```{r}
+target_id <- df$trackr_id[1]
+trackr_lineage(target_id, trackr_dir)
+```
+
+For a more intelligible way to represent the lineage of a trackr_id, use [`trackr_network()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_network.html) to create an interactive network of the dataset history. 
+
+```{r eval=FALSE}
+print(paste0(trackr_dir, '/', target_id, '_lineage.json'))
+lineage_fn <- paste0(trackr_dir, '/', target_id, '_lineage.json')
+
+trackr_network(lineage_fn)
+```
+
+### Other resources
+
+After creating, recording, and querying the history of changes to a dataset, use [`clean_trackr_dir()`](https://hamishgibbs.github.io/rtrackr/reference/clean_trackr_dir.html) to remove all log files. 
+
+```{r}
+clean_trackr_dir(trackr_dir)
+```
+
+**Warning:** `clean_trackr_dir` is a simple wrapper function that will delete any `.json` files in the `trackr_dir`. Use caution when mixing trackr log files with other files. The best practice is to create a separate directory for all trackr log files. 
+
+*Article by Hamish Gibbs `r Sys.time()`.*

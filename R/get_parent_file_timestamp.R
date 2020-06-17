@@ -1,3 +1,8 @@
 get_parent_file_timestamp <- function(parent_file){
-  return(jsonlite::fromJSON(parent_file)$timestamp)
+  
+  tstamps <- lapply(parent_file, jsonlite::fromJSON)
+  
+  tstamp <- lapply(tstamps, `[[`, 'timestamp') %>% unlist() %>% max()
+  
+  return(tstamp)
 }

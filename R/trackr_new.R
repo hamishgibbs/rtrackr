@@ -13,6 +13,7 @@
 #' @export
 
 trackr_new <- function(dataframe, trackr_dir = NULL, timepoint_message = NULL, log_data = TRUE){
+  #suppress success
   
   if (is.null(trackr_dir)){stop('No trackr_dir specified. Please specify where to store trackr log files.')}
   

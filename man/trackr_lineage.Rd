@@ -4,21 +4,13 @@
 \alias{trackr_lineage}
 \title{trackr_lineage}
 \usage{
-trackr_lineage(trackr_id, trackr_dir, return_class = "data.frame")
+trackr_lineage(trackr_id, trackr_dir)
 }
 \arguments{
 \item{trackr_id}{A string, the trackr_id used as a starting point for extracting the record lineage.}
 
 \item{trackr_dir}{A string, path to trackr log files.}
-
-\item{return_class}{A string (optional), format of output data, a "data.frame" or "list". Default is "data.frame".}
-}
-\value{
-A data.frame or list with the lineage (parent hashes) of all parent records for a given trackr_id.
 }
 \description{
-Get the lineage (parent hashes) of a trackr_id.
-}
-\seealso{
-trackr_history
+Get the lineage (parent trackr_ids) of a trackr_id and store it in the trackr_dir.
 }

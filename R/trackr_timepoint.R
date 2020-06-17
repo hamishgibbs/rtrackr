@@ -46,7 +46,7 @@ trackr_timepoint <- function(dataframe, trackr_dir = NULL, timepoint_message = N
   
   #get the previous log file with file_hash
   trackr_parent_fn <- paste0(trackr_dir, '/', parent_file_hash, '.json')
-  
+
   #if unix timestamp now is <1 second different from parent file - wait a second
   if(as.numeric(Sys.time()) - get_parent_file_timestamp(trackr_parent_fn) < 1){Sys.sleep(1)}
   
@@ -60,7 +60,7 @@ trackr_timepoint <- function(dataframe, trackr_dir = NULL, timepoint_message = N
   
   file_hash <- get_file_hash(dataframe, tstamp)
   
-  write_timepoint_trackr_file(hash_string, parent_file_hash, file_hash, trackr_dir, timepoint_message, tstamp)
+  write_timepoint_trackr_file(hash_string, input_dataframe, parent_file_hash, file_hash, trackr_dir, timepoint_message, tstamp)
   
   if(log_data){
     write_data_log(dataframe, trackr_dir, file_hash)

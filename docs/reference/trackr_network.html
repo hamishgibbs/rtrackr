@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="trackr_network — trackr_network" />
-<meta property="og:description" content="Create a simple network plot from a collectino of trackr log files. Requires networkD3." />
+<meta property="og:description" content="Create a simple network plot for a given trackr_lineage file. Requires networkD3." />
 
 
 
@@ -95,6 +95,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/getting_started.html">Getting started</a>
+    </li>
+    <li>
       <a href="../articles/how_it_works.html">How it works</a>
     </li>
     <li>
@@ -124,17 +127,17 @@
     </div>
 
     <div class="ref-description">
-    <p>Create a simple network plot from a collectino of trackr log files. Requires networkD3.</p>
+    <p>Create a simple network plot for a given trackr_lineage file. Requires networkD3.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>trackr_network</span>(<span class='no'>trackr_dir</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>trackr_network</span>(<span class='no'>lineage_file</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>trackr_dir</th>
-      <td><p>path, path to a directory of trackr log files</p></td>
+      <th>lineage_file</th>
+      <td><p>path, path to lineage file for a certain trackr_id</p></td>
     </tr>
     <tr>
       <th>...</th>

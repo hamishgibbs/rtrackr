@@ -4,10 +4,10 @@
 \alias{trackr_network}
 \title{trackr_network}
 \usage{
-trackr_network(trackr_dir, ...)
+trackr_network(lineage_file, ...)
 }
 \arguments{
-\item{trackr_dir}{path, path to a directory of trackr log files}
+\item{lineage_file}{path, path to lineage file for a certain trackr_id}
 
 \item{...}{arguments passed to networkD3::simpleNetwork}
 }
@@ -15,5 +15,5 @@ trackr_network(trackr_dir, ...)
 networkD3 network graph
 }
 \description{
-Create a simple network plot from a collectino of trackr log files. Requires networkD3.
+Create a simple network plot for a given trackr_lineage file. Requires networkD3.
 }

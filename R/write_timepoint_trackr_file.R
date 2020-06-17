@@ -9,7 +9,7 @@
 # @importFrom jsonlite toJSON
 # @importFrom stringr str_split
 
-write_timepoint_trackr_file <- function(hash_string, parent_file_hash, file_hash, trackr_dir, timepoint_message, tstamp){
+write_timepoint_trackr_file <- function(hash_string, input_dataframe, parent_file_hash, file_hash, trackr_dir, timepoint_message, tstamp){
   if (!is.data.frame(hash_string)) stop("hash_string must be a data.frame")
   
   hashes <- list()
@@ -17,9 +17,9 @@ write_timepoint_trackr_file <- function(hash_string, parent_file_hash, file_hash
   #can't have duplicate list indices
   for(i in 1:length(hash_string %>% pull(hash))){
     hash <- hash_string$hash[i]
-    trackr_old_hash <- hash_string$trackr_old_hash[i]
+    trackr_old_id <- input_dataframe$trackr_id[i]
     
-    hashes[[i]] = list(type = 'node', hash = hash, parent_hash = trackr_old_hash)
+    hashes[[i]] = list(type = 'node', id = paste0(file_hash, '_', hash), parent_id = trackr_old_id)
     
   }
   

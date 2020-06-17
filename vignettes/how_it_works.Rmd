@@ -40,3 +40,5 @@ A primary motivation for the development of this package is the case of data fil
 There are two primary cases of manual data alteration that are important to `rtrackr`. The first case is the duplication of records (one record becoming >1 record), with some change to one or all of the duplicated records. `rtrackr` can handle this case without any further consideration. When logging a new timepoint, the duplicated records with be recorded with new row hashes, but identical parent records in the preceding log file. 
 
 The second case is summarising data (combining >1 record into a single record), which risks losing information added to a data file by `rtrackr`. To retain a full data history - the `trackr_id`s of all summarised records must be stored in the trackr_id column (separated by ", "). This is the same operation performed automatically by `trackr_summarise()`. If multiple records are combined into one but only one trackr_id is retained, some components of the data processing history will be lost. Others, like the identfication of a root record with `trackr_root()` will work as expected. 
+
+*Article by Hamish Gibbs `r Sys.time()`.*

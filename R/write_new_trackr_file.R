@@ -17,7 +17,7 @@ write_new_trackr_file <- function(hash_string, file_hash, timepoint_message, tra
     
     hash <- hash_string$hash[i]
     
-    hashes[[i]] = list(type = 'root', hash = hash, parent_hash = 'None')
+    hashes[[i]] = list(type = 'root', id = paste0(file_hash, '_', hash), parent_hash = 'None')
     
   }
   
