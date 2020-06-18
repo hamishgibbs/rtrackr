@@ -4,10 +4,12 @@
 \alias{trackr_network}
 \title{trackr_network}
 \usage{
-trackr_network(lineage_file, ...)
+trackr_network(lineage_file, truncate_hashes = FALSE, ...)
 }
 \arguments{
 \item{lineage_file}{path, path to lineage file for a certain trackr_id}
+
+\item{truncate_hashes}{A boolean, whether to shorten hashes for display.}
 
 \item{...}{arguments passed to networkD3::simpleNetwork}
 }

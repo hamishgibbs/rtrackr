@@ -4,14 +4,14 @@
 \alias{trackr_history}
 \title{trackr_history}
 \usage{
-trackr_history(trackr_id, trackr_dir, return_records = "all")
+trackr_history(lineage_file, trackr_dir, return_records = "all")
 }
 \arguments{
-\item{trackr_id}{A string, the trackr_id used as a starting point for extracting the record lineage.}
+\item{lineage_file}{A file path, path to lineage file for a certain trackr_id}
 
-\item{trackr_dir}{A string, path to trackr log files.}
+\item{trackr_dir}{A string, path to store trackr log files.}
 
-\item{return_records}{A string (optional), whether to require data log files for all processing steps "all", or any that are available "any".}
+\item{return_records}{A string, return "any" available logged records or require data logs for "all" timepoints.}
 }
 \value{
 A list with the parent parent records for a given trackr_id.
