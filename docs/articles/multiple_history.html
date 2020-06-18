@@ -97,8 +97,8 @@
 <div id="setting-up" class="section level3">
 <h3 class="hasAnchor">
 <a href="#setting-up" class="anchor"></a>Setting up</h3>
-<p>Below is an example of a more complicated workflow, starting from a multiple input files, to be used as an example of a full <code>rtrackr</code> workflow.</p>
-<p>We will define and log simple dataframes for this example. For more information, please see <a href="https://hamishgibbs.github.io/rtrackr/articles/getting_started.html">Getting started</a>.</p>
+<p>Below is an example of a more complicated workflow, starting from multiple input files, to be used as an example of a full <code>rtrackr</code> workflow.</p>
+<p>We will define and log simple dataframes for this example. For more information, please see <a href="https://hamishgibbs.github.io/rtrackr/articles/getting_started.html">getting started</a> and <a href="https://hamishgibbs.github.io/rtrackr/articles/summarising_data.html">summarising data</a>.</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="no">trackr_dir</span> <span class="kw">&lt;-</span> <span class="st">'~/Documents/Personal/trackr_dev/trackr_dir'</span>
 
 <span class="no">df1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">a</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>), <span class="kw">b</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>))
@@ -175,12 +175,8 @@ c
 </td>
 </tr>
 </tbody>
-</table></details><div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">df1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_new.html">trackr_new</a></span>(<span class="no">df1</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Start'</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written trackr file fe87c353abe59056e058f47797c7f8a7e37fbed4.json"
-## [1] "Successfully written trackr data log fe87c353abe59056e058f47797c7f8a7e37fbed4_dl.json"</code></pre>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">df2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_new.html">trackr_new</a></span>(<span class="no">df2</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Start'</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written trackr file 0d3e63948df3eaa2525656a1357e31cbfb614264.json"
-## [1] "Successfully written trackr data log 0d3e63948df3eaa2525656a1357e31cbfb614264_dl.json"</code></pre>
+</table></details><div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">df1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_new.html">trackr_new</a></span>(<span class="no">df1</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Start'</span>, <span class="kw">suppress_success</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="no">df2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_new.html">trackr_new</a></span>(<span class="no">df2</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Start'</span>, <span class="kw">suppress_success</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <details><summary>Details 1</summary><strong>df1</strong>
 <table class="table table table-striped table-hover table-condensed">
 <thead><tr>
@@ -203,7 +199,7 @@ a
 1
 </td>
 <td style="text-align:left;">
-fe87c353abe59056e058f47797c7f8a7e37fbed4_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32
+e5a89a6a8e25959fd0b8ccbb2669ab9edd8b6749_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32
 </td>
 </tr>
 <tr>
@@ -214,7 +210,7 @@ b
 2
 </td>
 <td style="text-align:left;">
-fe87c353abe59056e058f47797c7f8a7e37fbed4_d6543aeb67806714fa9e9567dc5c46b2106ae843
+e5a89a6a8e25959fd0b8ccbb2669ab9edd8b6749_d6543aeb67806714fa9e9567dc5c46b2106ae843
 </td>
 </tr>
 <tr>
@@ -225,7 +221,7 @@ c
 3
 </td>
 <td style="text-align:left;">
-fe87c353abe59056e058f47797c7f8a7e37fbed4_acecf5a5dfb445683737c2f7f135b18c5eaee1a7
+e5a89a6a8e25959fd0b8ccbb2669ab9edd8b6749_acecf5a5dfb445683737c2f7f135b18c5eaee1a7
 </td>
 </tr>
 </tbody>
@@ -251,7 +247,7 @@ a
 4
 </td>
 <td style="text-align:left;">
-0d3e63948df3eaa2525656a1357e31cbfb614264_47ed5196677a528d0267158fa4aecf92372cb285
+6393ebbf745113e556705a606089382f1a0d4b93_47ed5196677a528d0267158fa4aecf92372cb285
 </td>
 </tr>
 <tr>
@@ -262,7 +258,7 @@ b
 5
 </td>
 <td style="text-align:left;">
-0d3e63948df3eaa2525656a1357e31cbfb614264_b845cb31be54e58d8719cbb88ea27d51f1a2df1c
+6393ebbf745113e556705a606089382f1a0d4b93_b845cb31be54e58d8719cbb88ea27d51f1a2df1c
 </td>
 </tr>
 <tr>
@@ -273,7 +269,7 @@ c
 6
 </td>
 <td style="text-align:left;">
-0d3e63948df3eaa2525656a1357e31cbfb614264_d407e3ee6c77faa4ed4ffe31fa434f326ff9ddbe
+6393ebbf745113e556705a606089382f1a0d4b93_d407e3ee6c77faa4ed4ffe31fa434f326ff9ddbe
 </td>
 </tr>
 </tbody>
@@ -282,11 +278,10 @@ c
 <div id="workflow" class="section level3">
 <h3 class="hasAnchor">
 <a href="#workflow" class="anchor"></a>Workflow</h3>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="no">df1</span>, <span class="no">df2</span>)
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="no">df1</span>, <span class="no">df2</span>)
 
 <span class="no">df</span> <span class="kw">&lt;-</span> <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">a</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="../reference/trackr_summarise.html">trackr_summarise</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span>())</pre></body></html></div>
-<pre><code>## Joining, by = "a"</code></pre>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
 <th style="text-align:left;">
@@ -308,7 +303,7 @@ a
 2
 </td>
 <td style="text-align:left;">
-fe87c353abe59056e058f47797c7f8a7e37fbed4_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32, 0d3e63948df3eaa2525656a1357e31cbfb614264_47ed5196677a528d0267158fa4aecf92372cb285
+e5a89a6a8e25959fd0b8ccbb2669ab9edd8b6749_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32, 6393ebbf745113e556705a606089382f1a0d4b93_47ed5196677a528d0267158fa4aecf92372cb285
 </td>
 </tr>
 <tr>
@@ -319,7 +314,7 @@ b
 2
 </td>
 <td style="text-align:left;">
-fe87c353abe59056e058f47797c7f8a7e37fbed4_d6543aeb67806714fa9e9567dc5c46b2106ae843, 0d3e63948df3eaa2525656a1357e31cbfb614264_b845cb31be54e58d8719cbb88ea27d51f1a2df1c
+e5a89a6a8e25959fd0b8ccbb2669ab9edd8b6749_d6543aeb67806714fa9e9567dc5c46b2106ae843, 6393ebbf745113e556705a606089382f1a0d4b93_b845cb31be54e58d8719cbb88ea27d51f1a2df1c
 </td>
 </tr>
 <tr>
@@ -330,13 +325,11 @@ c
 2
 </td>
 <td style="text-align:left;">
-fe87c353abe59056e058f47797c7f8a7e37fbed4_acecf5a5dfb445683737c2f7f135b18c5eaee1a7, 0d3e63948df3eaa2525656a1357e31cbfb614264_d407e3ee6c77faa4ed4ffe31fa434f326ff9ddbe
+e5a89a6a8e25959fd0b8ccbb2669ab9edd8b6749_acecf5a5dfb445683737c2f7f135b18c5eaee1a7, 6393ebbf745113e556705a606089382f1a0d4b93_d407e3ee6c77faa4ed4ffe31fa434f326ff9ddbe
 </td>
 </tr>
 </tbody>
-</table></details><div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'processing 1'</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written trackr file bc88a8209627a4aa22a7f285be3e904c9e0825f0.json"
-## [1] "Successfully written trackr data log bc88a8209627a4aa22a7f285be3e904c9e0825f0_dl.json"</code></pre>
+</table></details><div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'processing 1'</span>, <span class="kw">suppress_success</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
 <th style="text-align:left;">
@@ -358,7 +351,7 @@ a
 2
 </td>
 <td style="text-align:left;">
-bc88a8209627a4aa22a7f285be3e904c9e0825f0_9b298ab2c9539c0d7f187ce26315f459fa58e78e
+15baab341982e38ae474c641b4ee9823fae9132c_9b298ab2c9539c0d7f187ce26315f459fa58e78e
 </td>
 </tr>
 <tr>
@@ -369,7 +362,7 @@ b
 2
 </td>
 <td style="text-align:left;">
-bc88a8209627a4aa22a7f285be3e904c9e0825f0_d6543aeb67806714fa9e9567dc5c46b2106ae843
+15baab341982e38ae474c641b4ee9823fae9132c_d6543aeb67806714fa9e9567dc5c46b2106ae843
 </td>
 </tr>
 <tr>
@@ -380,16 +373,14 @@ c
 2
 </td>
 <td style="text-align:left;">
-bc88a8209627a4aa22a7f285be3e904c9e0825f0_c7a74dd8ad5c5743a5983d3102600cc7f9df9370
+15baab341982e38ae474c641b4ee9823fae9132c_c7a74dd8ad5c5743a5983d3102600cc7f9df9370
 </td>
 </tr>
 </tbody>
-</table></details><div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="no">df</span> <span class="kw">%&gt;%</span>
+</table></details><div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="no">df</span> <span class="kw">%&gt;%</span>
   <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="no">n</span> + <span class="fl">20</span>)
 
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'processing 1'</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written trackr file ba981c6f654e21b72eb66bc71ccfc767dc4692ed.json"
-## [1] "Successfully written trackr data log ba981c6f654e21b72eb66bc71ccfc767dc4692ed_dl.json"</code></pre>
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'processing 1'</span>, <span class="kw">suppress_success</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
 <th style="text-align:left;">
@@ -411,7 +402,7 @@ a
 22
 </td>
 <td style="text-align:left;">
-ba981c6f654e21b72eb66bc71ccfc767dc4692ed_68c5ca73812a80a8ef11cbd4150ca48d1f956ec1
+cdc5a435816d407f06caa3f6e53714f7b1008e16_68c5ca73812a80a8ef11cbd4150ca48d1f956ec1
 </td>
 </tr>
 <tr>
@@ -422,7 +413,7 @@ b
 22
 </td>
 <td style="text-align:left;">
-ba981c6f654e21b72eb66bc71ccfc767dc4692ed_15286b997ca4ef9b34614bc77265b1f529295a5e
+cdc5a435816d407f06caa3f6e53714f7b1008e16_15286b997ca4ef9b34614bc77265b1f529295a5e
 </td>
 </tr>
 <tr>
@@ -433,7 +424,7 @@ c
 22
 </td>
 <td style="text-align:left;">
-ba981c6f654e21b72eb66bc71ccfc767dc4692ed_6e894e5f35b10a1e3b36eec46f595b65f28c8905
+cdc5a435816d407f06caa3f6e53714f7b1008e16_6e894e5f35b10a1e3b36eec46f595b65f28c8905
 </td>
 </tr>
 </tbody>
@@ -442,21 +433,21 @@ ba981c6f654e21b72eb66bc71ccfc767dc4692ed_6e894e5f35b10a1e3b36eec46f595b65f28c890
 <div id="results" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results" class="anchor"></a>Results</h3>
-<p>Inspect the full processing chain of a single record with <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_lineage.html"><code><a href="../reference/trackr_lineage.html">trackr_lineage()</a></code></a> and <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_network.html"><code><a href="../reference/trackr_network.html">trackr_network()</a></code></a>. Note that this record has two “root” records (it is the child of two starting points in the processing chain).</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">target_id</span> <span class="kw">&lt;-</span> <span class="no">df</span>$<span class="no">trackr_id</span>[<span class="fl">1</span>]
+<p>Inspect the full processing chain of a single record with <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_lineage.html"><code><a href="../reference/trackr_lineage.html">trackr_lineage()</a></code></a> and <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_network.html"><code><a href="../reference/trackr_network.html">trackr_network()</a></code></a>. For more information, please see <a href="https://hamishgibbs.github.io/rtrackr/articles/getting_started.html">getting started</a>. Note that this record has two “root” records (it is the child of two starting points in the processing chain).</p>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">target_id</span> <span class="kw">&lt;-</span> <span class="no">df</span>$<span class="no">trackr_id</span>[<span class="fl">1</span>]
 <span class="fu"><a href="../reference/trackr_lineage.html">trackr_lineage</a></span>(<span class="no">target_id</span>, <span class="no">trackr_dir</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written ba981c6f654e21b72eb66bc71ccfc767dc4692ed_68c5ca73812a80a8ef11cbd4150ca48d1f956ec1_lineage.json"</code></pre>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">lineage_fn</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">trackr_dir</span>, <span class="st">'/'</span>, <span class="no">target_id</span>, <span class="st">'_lineage.json'</span>)
+<pre><code>## [1] "Successfully written cdc5a435816d407f06caa3f6e53714f7b1008e16_68c5ca73812a80a8ef11cbd4150ca48d1f956ec1_lineage.json"</code></pre>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">lineage_fn</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">trackr_dir</span>, <span class="st">'/'</span>, <span class="no">target_id</span>, <span class="st">'_lineage.json'</span>)
 
 <span class="fu"><a href="../reference/trackr_network.html">trackr_network</a></span>(<span class="no">lineage_fn</span>)</pre></body></html></div>
-<div id="htmlwidget-a09c712c90798e0021a1" style="width:700px;height:432.632880098888px;" class="forceNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a09c712c90798e0021a1">{"x":{"links":{"source":[1,2,2],"target":[2,3,0],"value":[1,1,1],"colour":["#666","#666","#666"]},"nodes":{"name":["0d3e63948df3eaa2525656a1357e31cbfb614264_47ed5196677a528d0267158fa4aecf92372cb285","ba981c6f654e21b72eb66bc71ccfc767dc4692ed_68c5ca73812a80a8ef11cbd4150ca48d1f956ec1","bc88a8209627a4aa22a7f285be3e904c9e0825f0_9b298ab2c9539c0d7f187ce26315f459fa58e78e","fe87c353abe59056e058f47797c7f8a7e37fbed4_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32"],"group":[1,1,1,1],"nodesize":[8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['#3182bd'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-30,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-82b2962157e2a108a915" style="width:700px;height:432.632880098888px;" class="forceNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-82b2962157e2a108a915">{"x":{"links":{"source":[2,0,0],"target":[0,3,1],"value":[1,1,1],"colour":["#666","#666","#666"]},"nodes":{"name":["15baab341982e38ae474c641b4ee9823fae9132c_9b298ab2c9539c0d7f187ce26315f459fa58e78e","6393ebbf745113e556705a606089382f1a0d4b93_47ed5196677a528d0267158fa4aecf92372cb285","cdc5a435816d407f06caa3f6e53714f7b1008e16_68c5ca73812a80a8ef11cbd4150ca48d1f956ec1","e5a89a6a8e25959fd0b8ccbb2669ab9edd8b6749_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32"],"group":[1,1,1,1],"nodesize":[8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['#3182bd'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-30,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="clean-up" class="section level3">
 <h3 class="hasAnchor">
 <a href="#clean-up" class="anchor"></a>Clean up</h3>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu"><a href="../reference/clean_trackr_dir.html">clean_trackr_dir</a></span>(<span class="no">trackr_dir</span>)</pre></body></html></div>
-<p><em>Article by Hamish Gibbs 2020-06-18 12:01:50. To report a problem with this package, please <a href="https://github.com/hamishgibbs/rtrackr/issues">create an issue</a> on <a href="https://github.com/hamishgibbs/rtrackr">GitHub</a>.</em></p>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="../reference/clean_trackr_dir.html">clean_trackr_dir</a></span>(<span class="no">trackr_dir</span>)</pre></body></html></div>
+<p><em>Article by Hamish Gibbs 2020-06-18 13:56:47. To report a problem with this package, please <a href="https://github.com/hamishgibbs/rtrackr/issues">create an issue</a> on <a href="https://github.com/hamishgibbs/rtrackr">GitHub</a>.</em></p>
 </div>
   </div>
 

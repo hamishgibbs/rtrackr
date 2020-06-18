@@ -97,7 +97,7 @@
 <div id="installation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h3>
-<p><code>rtrackr</code> is currently available through <a href="https://github.com/hamishgibbs/rtrackr">GitHub</a>. To install the development version use:</p>
+<p><code>rtrackr</code> is currently available through <a href="https://github.com/hamishgibbs/rtrackr">GitHub</a>. To install the development version, use:</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"hamishgibbs/rtrackr"</span>)</pre></body></html></div>
 </div>
 <div id="logging-a-new-dataset" class="section level3">
@@ -143,8 +143,8 @@ c
 </table></details><p><a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_new.html"><code><a href="../reference/trackr_new.html">trackr_new()</a></code></a> adds a <code>trackr_id</code> column to the dataframe, the starting point for all data logging with <code>rtrackr</code>. Be sure to specify where <code>rtrackr</code> log files should be stored with <code>trackr_dir =</code> (you will see an error if you do not).</p>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">trackr_dir</span> <span class="kw">&lt;-</span> <span class="st">'~/Documents/trackr_dir'</span>
 <span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_new.html">trackr_new</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written trackr file f3714eb295169ced4d0ef9dfcb744997cb31dab5.json"
-## [1] "Successfully written trackr data log f3714eb295169ced4d0ef9dfcb744997cb31dab5_dl.json"</code></pre>
+<pre><code>## [1] "Successfully written trackr file d6c4dcdb967f3ca13b585e36c8c3bb07c4ad76ed.json"
+## [1] "Successfully written trackr data log d6c4dcdb967f3ca13b585e36c8c3bb07c4ad76ed_dl.json"</code></pre>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
 <th style="text-align:left;">
@@ -166,7 +166,7 @@ a
 1
 </td>
 <td style="text-align:left;">
-f3714eb295169ced4d0ef9dfcb744997cb31dab5_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32
+d6c4dcdb967f3ca13b585e36c8c3bb07c4ad76ed_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32
 </td>
 </tr>
 <tr>
@@ -177,7 +177,7 @@ b
 2
 </td>
 <td style="text-align:left;">
-f3714eb295169ced4d0ef9dfcb744997cb31dab5_d6543aeb67806714fa9e9567dc5c46b2106ae843
+d6c4dcdb967f3ca13b585e36c8c3bb07c4ad76ed_d6543aeb67806714fa9e9567dc5c46b2106ae843
 </td>
 </tr>
 <tr>
@@ -188,7 +188,7 @@ c
 3
 </td>
 <td style="text-align:left;">
-f3714eb295169ced4d0ef9dfcb744997cb31dab5_acecf5a5dfb445683737c2f7f135b18c5eaee1a7
+d6c4dcdb967f3ca13b585e36c8c3bb07c4ad76ed_acecf5a5dfb445683737c2f7f135b18c5eaee1a7
 </td>
 </tr>
 </tbody>
@@ -198,7 +198,7 @@ f3714eb295169ced4d0ef9dfcb744997cb31dab5_acecf5a5dfb445683737c2f7f135b18c5eaee1a
 <h3 class="hasAnchor">
 <a href="#defining-timepoints" class="anchor"></a>Defining timepoints</h3>
 <p><code>rtrackr</code> is designed to record dataset changes throughout the processing chain, allowing for a full history of important changes to each record. a <code>timepoint</code> defines a certain time in the processing chain, and is similar to a <code>commit</code> in <code>git</code>. You can record a <code>timepoint</code> with <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_timepoint.html"><code><a href="../reference/trackr_timepoint.html">trackr_timepoint()</a></code></a></p>
-<p>First, we will make some change to the logged dataset.</p>
+<p>First, we will make a change to the logged dataset.</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">b</span> <span class="kw">=</span> <span class="no">b</span> + <span class="fl">1</span>)</pre></body></html></div>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
@@ -221,7 +221,7 @@ a
 2
 </td>
 <td style="text-align:left;">
-f3714eb295169ced4d0ef9dfcb744997cb31dab5_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32
+d6c4dcdb967f3ca13b585e36c8c3bb07c4ad76ed_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32
 </td>
 </tr>
 <tr>
@@ -232,7 +232,7 @@ b
 3
 </td>
 <td style="text-align:left;">
-f3714eb295169ced4d0ef9dfcb744997cb31dab5_d6543aeb67806714fa9e9567dc5c46b2106ae843
+d6c4dcdb967f3ca13b585e36c8c3bb07c4ad76ed_d6543aeb67806714fa9e9567dc5c46b2106ae843
 </td>
 </tr>
 <tr>
@@ -243,14 +243,14 @@ c
 4
 </td>
 <td style="text-align:left;">
-f3714eb295169ced4d0ef9dfcb744997cb31dab5_acecf5a5dfb445683737c2f7f135b18c5eaee1a7
+d6c4dcdb967f3ca13b585e36c8c3bb07c4ad76ed_acecf5a5dfb445683737c2f7f135b18c5eaee1a7
 </td>
 </tr>
 </tbody>
 </table></details><p>Then, we will log this change as a new <code>timepoint</code>.</p>
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'First processing step'</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written trackr file 8016e461f09b7c7febfcd5c4809f267a01c1687a.json"
-## [1] "Successfully written trackr data log 8016e461f09b7c7febfcd5c4809f267a01c1687a_dl.json"</code></pre>
+<pre><code>## [1] "Successfully written trackr file 39e4ad2dd13713434a0af661d92699924531f95b.json"
+## [1] "Successfully written trackr data log 39e4ad2dd13713434a0af661d92699924531f95b_dl.json"</code></pre>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
 <th style="text-align:left;">
@@ -272,7 +272,7 @@ a
 2
 </td>
 <td style="text-align:left;">
-8016e461f09b7c7febfcd5c4809f267a01c1687a_9b298ab2c9539c0d7f187ce26315f459fa58e78e
+39e4ad2dd13713434a0af661d92699924531f95b_9b298ab2c9539c0d7f187ce26315f459fa58e78e
 </td>
 </tr>
 <tr>
@@ -283,7 +283,7 @@ b
 3
 </td>
 <td style="text-align:left;">
-8016e461f09b7c7febfcd5c4809f267a01c1687a_0d62e87ad3877b0c51934dd0c38cba3467375b09
+39e4ad2dd13713434a0af661d92699924531f95b_0d62e87ad3877b0c51934dd0c38cba3467375b09
 </td>
 </tr>
 <tr>
@@ -294,40 +294,40 @@ c
 4
 </td>
 <td style="text-align:left;">
-8016e461f09b7c7febfcd5c4809f267a01c1687a_b1ba9407cf19da9a3625e46f5378484323799a05
+39e4ad2dd13713434a0af661d92699924531f95b_b1ba9407cf19da9a3625e46f5378484323799a05
 </td>
 </tr>
 </tbody>
-</table></details><p>You should see the same success messages as you did for <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_new.html"><code><a href="../reference/trackr_new.html">trackr_new()</a></code></a> above. Notice the argument <code>timepoint_message</code>, which gives an optional, plain text record of this timepoint, similar to a commit message in <code>git</code>.</p>
+</table></details><p>You should see the same success messages as you did for <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_new.html"><code><a href="../reference/trackr_new.html">trackr_new()</a></code></a>, above. Notice the argument <code>timepoint_message</code>, which gives an optional, plain text record of this timepoint, similar to a commit message in <code>git</code>. To suppress success messages, use <code>suppress_success = TRUE</code>, the default is <code>FALSE</code>.</p>
 <p>Congratulations! Using <code>rtrackr</code> should be as easy as tracking a new dataset and logging subsequent processing timepoints. For the special case of summarizing multiple records into one, see <a href="https://hamishgibbs.github.io/rtrackr/articles/summarising_data.html">Summarising data</a>.</p>
 <p><em>Please note: <code>rtrackr</code> uses the current UNIX timestamp (in seconds) to define a <code>trackr_id</code>. Logging multiple timepoints in the same second is not permitted, and <code>trackr_timepoint</code> will wait until the following second to write a new trackr log file. This means that repeated calls to <code>trackr_timepoint</code> may delay code execution. For more information, see <a href="https://hamishgibbs.github.io/rtrackr/articles/how_it_works.html">how it works</a>.</em></p>
 </div>
 <div id="querying-record-history" class="section level3">
 <h3 class="hasAnchor">
 <a href="#querying-record-history" class="anchor"></a>Querying record history</h3>
-<p>Now that we have logged a dataset and a processing timepoint, we can query the history of a record in our most recent version of the dataset. Use <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_lineage.html"><code><a href="../reference/trackr_lineage.html">trackr_lineage()</a></code></a> to get all parent records of a given trackr_id.</p>
+<p>Now that we have logged a dataset and a processing timepoint, we can query the history of a record in the most recent version of the dataset. Use <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_lineage.html"><code><a href="../reference/trackr_lineage.html">trackr_lineage()</a></code></a> to get all parent records of a given trackr_id.</p>
 <div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">target_id</span> <span class="kw">&lt;-</span> <span class="no">df</span>$<span class="no">trackr_id</span>[<span class="fl">1</span>]
 <span class="fu"><a href="../reference/trackr_lineage.html">trackr_lineage</a></span>(<span class="no">target_id</span>, <span class="no">trackr_dir</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written 8016e461f09b7c7febfcd5c4809f267a01c1687a_9b298ab2c9539c0d7f187ce26315f459fa58e78e_lineage.json"</code></pre>
+<pre><code>## [1] "Successfully written 39e4ad2dd13713434a0af661d92699924531f95b_9b298ab2c9539c0d7f187ce26315f459fa58e78e_lineage.json"</code></pre>
 <p>For a more intelligible way to represent the lineage of a trackr_id, use <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_network.html"><code><a href="../reference/trackr_network.html">trackr_network()</a></code></a> to create an interactive network of the dataset history.</p>
 <div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">lineage_fn</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">trackr_dir</span>, <span class="st">'/'</span>, <span class="no">target_id</span>, <span class="st">'_lineage.json'</span>)
 
 <span class="fu"><a href="../reference/trackr_network.html">trackr_network</a></span>(<span class="no">lineage_fn</span>)</pre></body></html></div>
-<div id="htmlwidget-392dae803b032ad44a29" style="width:700px;height:432.632880098888px;" class="forceNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-392dae803b032ad44a29">{"x":{"links":{"source":[0],"target":[1],"value":[1],"colour":["#666"]},"nodes":{"name":["8016e461f09b7c7febfcd5c4809f267a01c1687a_9b298ab2c9539c0d7f187ce26315f459fa58e78e","f3714eb295169ced4d0ef9dfcb744997cb31dab5_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32"],"group":[1,1],"nodesize":[8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['#3182bd'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-30,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-fc1fe9391972c1f7e472" style="width:700px;height:432.632880098888px;" class="forceNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fc1fe9391972c1f7e472">{"x":{"links":{"source":[0],"target":[1],"value":[1],"colour":["#666"]},"nodes":{"name":["39e4ad2dd13713434a0af661d92699924531f95b_9b298ab2c9539c0d7f187ce26315f459fa58e78e","d6c4dcdb967f3ca13b585e36c8c3bb07c4ad76ed_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32"],"group":[1,1],"nodesize":[8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['#3182bd'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-30,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
 </div>
-<div id="other-resources" class="section level3">
+<div id="clean-up" class="section level3">
 <h3 class="hasAnchor">
-<a href="#other-resources" class="anchor"></a>Other resources</h3>
+<a href="#clean-up" class="anchor"></a>Clean up</h3>
 <p>After creating, recording, and querying the history of changes to a dataset, use <a href="https://hamishgibbs.github.io/rtrackr/reference/clean_trackr_dir.html"><code><a href="../reference/clean_trackr_dir.html">clean_trackr_dir()</a></code></a> to remove all log files.</p>
 <div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="../reference/clean_trackr_dir.html">clean_trackr_dir</a></span>(<span class="no">trackr_dir</span>)</pre></body></html></div>
-<pre><code>## [1] "Removed: 8016e461f09b7c7febfcd5c4809f267a01c1687a_9b298ab2c9539c0d7f187ce26315f459fa58e78e_lineage.json"
-## [2] "Removed: 8016e461f09b7c7febfcd5c4809f267a01c1687a_dl.json"                                              
-## [3] "Removed: 8016e461f09b7c7febfcd5c4809f267a01c1687a.json"                                                 
-## [4] "Removed: f3714eb295169ced4d0ef9dfcb744997cb31dab5_dl.json"                                              
-## [5] "Removed: f3714eb295169ced4d0ef9dfcb744997cb31dab5.json"</code></pre>
-<p><strong>Warning:</strong> <code>clean_trackr_dir</code> is a simple wrapper function that will delete any <code>.json</code> files in the <code>trackr_dir</code>. Use caution when mixing trackr log files with other files. The best practice is to create a separate directory for all trackr log files.</p>
-<p><em>Article by Hamish Gibbs 2020-06-18 12:01:43. To report a problem with this package, please <a href="https://github.com/hamishgibbs/rtrackr/issues">create an issue</a> on <a href="https://github.com/hamishgibbs/rtrackr">GitHub</a>.</em></p>
+<pre><code>## [1] "Removed: 39e4ad2dd13713434a0af661d92699924531f95b_9b298ab2c9539c0d7f187ce26315f459fa58e78e_lineage.json"
+## [2] "Removed: 39e4ad2dd13713434a0af661d92699924531f95b_dl.json"                                              
+## [3] "Removed: 39e4ad2dd13713434a0af661d92699924531f95b.json"                                                 
+## [4] "Removed: d6c4dcdb967f3ca13b585e36c8c3bb07c4ad76ed_dl.json"                                              
+## [5] "Removed: d6c4dcdb967f3ca13b585e36c8c3bb07c4ad76ed.json"</code></pre>
+<p><strong>Warning:</strong> <code>clean_trackr_dir</code> is a simple wrapper function that will delete any <code>.json</code> files in the <code>trackr_dir</code>. Use caution when mixing trackr log files with other files. The recommended practice is to create a separate directory for all trackr log files.</p>
+<p><em>Article by Hamish Gibbs 2020-06-18 13:56:39. To report a problem with this package, please <a href="https://github.com/hamishgibbs/rtrackr/issues">create an issue</a> on <a href="https://github.com/hamishgibbs/rtrackr">GitHub</a>.</em></p>
 </div>
   </div>
 

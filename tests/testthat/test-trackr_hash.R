@@ -1,7 +1,7 @@
 testthat::test_that('trackr_hash works as expected', {
   source('test_data/test_df.R')
   
-  output <- trackr_hash(test_df1)
+  output <- trackr_hash(df1)
   
   testthat::expect_true('hash' %in% colnames(output))
   

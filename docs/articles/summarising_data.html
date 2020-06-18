@@ -98,19 +98,16 @@
 <h3 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h3>
 <p><code>rtrackr</code> provides data logging for every record in a dataset throughout the processing chain. In most cases, when records are altered or one record is divided to multiple records, <code>rtrackr</code> will simply assign a new trackr id and log changes when a record is updated.</p>
-<p>When data is summarised, on the other hand (multiple records become a single record), <code>rtrackr</code> needs to record the <code>trackr_ids</code> of all parent records.</p>
-<p><a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_summarise.html"><code><a href="../reference/trackr_summarise.html">trackr_summarise()</a></code></a> provides a convenient way to summarise data without losing information in the <code>trackr_id</code> column.</p>
+<p>When data is summarised, on the other hand (multiple records become a single record), <code>rtrackr</code> needs to record the <code>trackr_ids</code> of all parent records. <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_summarise.html"><code><a href="../reference/trackr_summarise.html">trackr_summarise()</a></code></a> provides a convenient way to summarise data without losing information in the <code>trackr_id</code> column.</p>
 <p><a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_summarise.html"><code><a href="../reference/trackr_summarise.html">trackr_summarise()</a></code></a> works by combining all parent ids into one row, separated by a “,”. The same operation would work for combining records manually outside of R.</p>
 </div>
 <div id="example-workflow" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example-workflow" class="anchor"></a>Example workflow</h3>
-<p>We will use a simple workflow To demonstrate the use of <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_summarise.html"><code><a href="../reference/trackr_summarise.html">trackr_summarise()</a></code></a> in a data processing chain. Following on from <a href="https://hamishgibbs.github.io/rtrackr/articles/getting_started.html">Getting started</a>, we will create a new dataset, log a new processing timepoint with <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_new.html"><code><a href="../reference/trackr_new.html">trackr_new()</a></code></a>.</p>
+<p>We will use a simple workflow To demonstrate the use of <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_summarise.html"><code><a href="../reference/trackr_summarise.html">trackr_summarise()</a></code></a> in a data processing chain. Continuing from <a href="https://hamishgibbs.github.io/rtrackr/articles/getting_started.html">getting started</a>, we will create a new dataset, and log a new processing timepoint with <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_new.html"><code><a href="../reference/trackr_new.html">trackr_new()</a></code></a>.</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="no">trackr_dir</span> <span class="kw">&lt;-</span> <span class="st">'~/Documents/trackr_dir'</span>
 <span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">a</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>), <span class="kw">b</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>))
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_new.html">trackr_new</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written trackr file e6a510b6a3637365592b3e45b56270db1c0bfa67.json"
-## [1] "Successfully written trackr data log e6a510b6a3637365592b3e45b56270db1c0bfa67_dl.json"</code></pre>
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_new.html">trackr_new</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">suppress_success</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
 <th style="text-align:left;">
@@ -132,7 +129,7 @@ a
 1
 </td>
 <td style="text-align:left;">
-e6a510b6a3637365592b3e45b56270db1c0bfa67_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32
+068aefd8cf96f37dfafff0651140720d65b556b5_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32
 </td>
 </tr>
 <tr>
@@ -143,7 +140,7 @@ b
 2
 </td>
 <td style="text-align:left;">
-e6a510b6a3637365592b3e45b56270db1c0bfa67_d6543aeb67806714fa9e9567dc5c46b2106ae843
+068aefd8cf96f37dfafff0651140720d65b556b5_d6543aeb67806714fa9e9567dc5c46b2106ae843
 </td>
 </tr>
 <tr>
@@ -154,15 +151,13 @@ c
 3
 </td>
 <td style="text-align:left;">
-e6a510b6a3637365592b3e45b56270db1c0bfa67_acecf5a5dfb445683737c2f7f135b18c5eaee1a7
+068aefd8cf96f37dfafff0651140720d65b556b5_acecf5a5dfb445683737c2f7f135b18c5eaee1a7
 </td>
 </tr>
 </tbody>
-</table></details><p>Now, we will bind the dataset to itself, and make some changes to one version.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="no">df</span>, <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">b</span> <span class="kw">=</span> <span class="no">b</span> + <span class="fl">1</span>))
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Merged dataframes'</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written trackr file 12e2e265fe63aa97b670760a47ca2111a703224f.json"
-## [1] "Successfully written trackr data log 12e2e265fe63aa97b670760a47ca2111a703224f_dl.json"</code></pre>
+</table></details><p>Now, we will bind the dataset to itself, and make a change to one version.</p>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="no">df</span>, <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">b</span> <span class="kw">=</span> <span class="no">b</span> + <span class="fl">1</span>))
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Merged dataframes'</span>, <span class="kw">suppress_success</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
 <th style="text-align:left;">
@@ -184,7 +179,7 @@ a
 1
 </td>
 <td style="text-align:left;">
-12e2e265fe63aa97b670760a47ca2111a703224f_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32
+4b266f2e0ca145c25a47cadf0bf84eacbc0902bd_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32
 </td>
 </tr>
 <tr>
@@ -195,7 +190,7 @@ b
 2
 </td>
 <td style="text-align:left;">
-12e2e265fe63aa97b670760a47ca2111a703224f_d6543aeb67806714fa9e9567dc5c46b2106ae843
+4b266f2e0ca145c25a47cadf0bf84eacbc0902bd_d6543aeb67806714fa9e9567dc5c46b2106ae843
 </td>
 </tr>
 <tr>
@@ -206,7 +201,7 @@ c
 3
 </td>
 <td style="text-align:left;">
-12e2e265fe63aa97b670760a47ca2111a703224f_acecf5a5dfb445683737c2f7f135b18c5eaee1a7
+4b266f2e0ca145c25a47cadf0bf84eacbc0902bd_acecf5a5dfb445683737c2f7f135b18c5eaee1a7
 </td>
 </tr>
 <tr>
@@ -217,7 +212,7 @@ a
 2
 </td>
 <td style="text-align:left;">
-12e2e265fe63aa97b670760a47ca2111a703224f_9b298ab2c9539c0d7f187ce26315f459fa58e78e
+4b266f2e0ca145c25a47cadf0bf84eacbc0902bd_9b298ab2c9539c0d7f187ce26315f459fa58e78e
 </td>
 </tr>
 <tr>
@@ -228,7 +223,7 @@ b
 3
 </td>
 <td style="text-align:left;">
-12e2e265fe63aa97b670760a47ca2111a703224f_0d62e87ad3877b0c51934dd0c38cba3467375b09
+4b266f2e0ca145c25a47cadf0bf84eacbc0902bd_0d62e87ad3877b0c51934dd0c38cba3467375b09
 </td>
 </tr>
 <tr>
@@ -239,15 +234,14 @@ c
 4
 </td>
 <td style="text-align:left;">
-12e2e265fe63aa97b670760a47ca2111a703224f_b1ba9407cf19da9a3625e46f5378484323799a05
+4b266f2e0ca145c25a47cadf0bf84eacbc0902bd_b1ba9407cf19da9a3625e46f5378484323799a05
 </td>
 </tr>
 </tbody>
 </table></details><p><code>trackr_summarise</code> is a simple wrapper around <a href="https://dplyr.tidyverse.org/reference/summarise.html"><code><a href="https://dplyr.tidyverse.org/reference/summarise.html">dplyr::summarise</a></code></a> and accepts the same arguments.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="no">df</span> <span class="kw">%&gt;%</span>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="no">df</span> <span class="kw">%&gt;%</span>
   <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">a</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="../reference/trackr_summarise.html">trackr_summarise</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span>())</pre></body></html></div>
-<pre><code>## Joining, by = "a"</code></pre>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
 <th style="text-align:left;">
@@ -269,7 +263,7 @@ a
 2
 </td>
 <td style="text-align:left;">
-12e2e265fe63aa97b670760a47ca2111a703224f_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32, 12e2e265fe63aa97b670760a47ca2111a703224f_9b298ab2c9539c0d7f187ce26315f459fa58e78e
+4b266f2e0ca145c25a47cadf0bf84eacbc0902bd_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32, 4b266f2e0ca145c25a47cadf0bf84eacbc0902bd_9b298ab2c9539c0d7f187ce26315f459fa58e78e
 </td>
 </tr>
 <tr>
@@ -280,7 +274,7 @@ b
 2
 </td>
 <td style="text-align:left;">
-12e2e265fe63aa97b670760a47ca2111a703224f_d6543aeb67806714fa9e9567dc5c46b2106ae843, 12e2e265fe63aa97b670760a47ca2111a703224f_0d62e87ad3877b0c51934dd0c38cba3467375b09
+4b266f2e0ca145c25a47cadf0bf84eacbc0902bd_d6543aeb67806714fa9e9567dc5c46b2106ae843, 4b266f2e0ca145c25a47cadf0bf84eacbc0902bd_0d62e87ad3877b0c51934dd0c38cba3467375b09
 </td>
 </tr>
 <tr>
@@ -291,14 +285,12 @@ c
 2
 </td>
 <td style="text-align:left;">
-12e2e265fe63aa97b670760a47ca2111a703224f_acecf5a5dfb445683737c2f7f135b18c5eaee1a7, 12e2e265fe63aa97b670760a47ca2111a703224f_b1ba9407cf19da9a3625e46f5378484323799a05
+4b266f2e0ca145c25a47cadf0bf84eacbc0902bd_acecf5a5dfb445683737c2f7f135b18c5eaee1a7, 4b266f2e0ca145c25a47cadf0bf84eacbc0902bd_b1ba9407cf19da9a3625e46f5378484323799a05
 </td>
 </tr>
 </tbody>
 </table></details><p>Now, we can log a new timepoint with <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_timepoint.html"><code><a href="../reference/trackr_timepoint.html">trackr_timepoint()</a></code></a>.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Summarised dataframes'</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written trackr file fa4da569877a4abaa31894bee66248c5b1e23300.json"
-## [1] "Successfully written trackr data log fa4da569877a4abaa31894bee66248c5b1e23300_dl.json"</code></pre>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Summarised dataframes'</span>, <span class="kw">suppress_success</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
 <th style="text-align:left;">
@@ -320,7 +312,7 @@ a
 2
 </td>
 <td style="text-align:left;">
-fa4da569877a4abaa31894bee66248c5b1e23300_9b298ab2c9539c0d7f187ce26315f459fa58e78e
+81964257fa30acac9d5f2967e38d8cbe23cd9348_9b298ab2c9539c0d7f187ce26315f459fa58e78e
 </td>
 </tr>
 <tr>
@@ -331,7 +323,7 @@ b
 2
 </td>
 <td style="text-align:left;">
-fa4da569877a4abaa31894bee66248c5b1e23300_d6543aeb67806714fa9e9567dc5c46b2106ae843
+81964257fa30acac9d5f2967e38d8cbe23cd9348_d6543aeb67806714fa9e9567dc5c46b2106ae843
 </td>
 </tr>
 <tr>
@@ -342,15 +334,13 @@ c
 2
 </td>
 <td style="text-align:left;">
-fa4da569877a4abaa31894bee66248c5b1e23300_c7a74dd8ad5c5743a5983d3102600cc7f9df9370
+81964257fa30acac9d5f2967e38d8cbe23cd9348_c7a74dd8ad5c5743a5983d3102600cc7f9df9370
 </td>
 </tr>
 </tbody>
 </table></details><p>We will make and log one more change, to better visualize the effect of the summarise operation.</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="no">n</span> + <span class="fl">100</span>)
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Added 100'</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written trackr file 86d71720bd9d6589c08cda9eff993d432c2e811c.json"
-## [1] "Successfully written trackr data log 86d71720bd9d6589c08cda9eff993d432c2e811c_dl.json"</code></pre>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="no">n</span> + <span class="fl">100</span>)
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Added 100'</span>, <span class="kw">suppress_success</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
 <th style="text-align:left;">
@@ -372,7 +362,7 @@ a
 102
 </td>
 <td style="text-align:left;">
-86d71720bd9d6589c08cda9eff993d432c2e811c_a6fdb93cf5f88eca9f0526de0e67d93bffad81f4
+04801972dd137fa166ee996e972d2b82b584d786_a6fdb93cf5f88eca9f0526de0e67d93bffad81f4
 </td>
 </tr>
 <tr>
@@ -383,7 +373,7 @@ b
 102
 </td>
 <td style="text-align:left;">
-86d71720bd9d6589c08cda9eff993d432c2e811c_2e04d93f061e33d2966c96a229cfe59825948396
+04801972dd137fa166ee996e972d2b82b584d786_2e04d93f061e33d2966c96a229cfe59825948396
 </td>
 </tr>
 <tr>
@@ -394,25 +384,25 @@ c
 102
 </td>
 <td style="text-align:left;">
-86d71720bd9d6589c08cda9eff993d432c2e811c_7bd3eee84fb112faf3c18e0765d496d4471b7432
+04801972dd137fa166ee996e972d2b82b584d786_7bd3eee84fb112faf3c18e0765d496d4471b7432
 </td>
 </tr>
 </tbody>
-</table></details><p>To visualize this operation on one record, we create a <code>trackr_lineage</code> and <code>trackr_network</code>. See <a href="https://hamishgibbs.github.io/rtrackr/articles/getting_started.html">Getting started</a> for more information.</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">target_id</span> <span class="kw">&lt;-</span> <span class="no">df</span>$<span class="no">trackr_id</span>[<span class="fl">1</span>]
+</table></details><p>To visualize this operation on one record, we create a <code>trackr_lineage</code> and <code>trackr_network</code>. See <a href="https://hamishgibbs.github.io/rtrackr/articles/getting_started.html">getting started</a> for more information.</p>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">target_id</span> <span class="kw">&lt;-</span> <span class="no">df</span>$<span class="no">trackr_id</span>[<span class="fl">1</span>]
 <span class="fu"><a href="../reference/trackr_lineage.html">trackr_lineage</a></span>(<span class="no">target_id</span>, <span class="no">trackr_dir</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written 86d71720bd9d6589c08cda9eff993d432c2e811c_a6fdb93cf5f88eca9f0526de0e67d93bffad81f4_lineage.json"</code></pre>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">lineage_fn</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">trackr_dir</span>, <span class="st">'/'</span>, <span class="no">target_id</span>, <span class="st">'_lineage.json'</span>)
+<pre><code>## [1] "Successfully written 04801972dd137fa166ee996e972d2b82b584d786_a6fdb93cf5f88eca9f0526de0e67d93bffad81f4_lineage.json"</code></pre>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">lineage_fn</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">trackr_dir</span>, <span class="st">'/'</span>, <span class="no">target_id</span>, <span class="st">'_lineage.json'</span>)
 
 <span class="fu"><a href="../reference/trackr_network.html">trackr_network</a></span>(<span class="no">lineage_fn</span>)</pre></body></html></div>
-<div id="htmlwidget-393e04867a17e403972d" style="width:700px;height:432.632880098888px;" class="forceNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-393e04867a17e403972d">{"x":{"links":{"source":[2,4,4,0,1],"target":[4,0,1,3,3],"value":[1,1,1,1,1],"colour":["#666","#666","#666","#666","#666"]},"nodes":{"name":["12e2e265fe63aa97b670760a47ca2111a703224f_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32","12e2e265fe63aa97b670760a47ca2111a703224f_9b298ab2c9539c0d7f187ce26315f459fa58e78e","86d71720bd9d6589c08cda9eff993d432c2e811c_a6fdb93cf5f88eca9f0526de0e67d93bffad81f4","e6a510b6a3637365592b3e45b56270db1c0bfa67_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32","fa4da569877a4abaa31894bee66248c5b1e23300_9b298ab2c9539c0d7f187ce26315f459fa58e78e"],"group":[1,1,1,1,1],"nodesize":[8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['#3182bd'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-30,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7b245e6053f0b099545b" style="width:700px;height:432.632880098888px;" class="forceNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7b245e6053f0b099545b">{"x":{"links":{"source":[0,4,4,2,3],"target":[4,2,3,1,1],"value":[1,1,1,1,1],"colour":["#666","#666","#666","#666","#666"]},"nodes":{"name":["04801972dd137fa166ee996e972d2b82b584d786_a6fdb93cf5f88eca9f0526de0e67d93bffad81f4","068aefd8cf96f37dfafff0651140720d65b556b5_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32","4b266f2e0ca145c25a47cadf0bf84eacbc0902bd_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32","4b266f2e0ca145c25a47cadf0bf84eacbc0902bd_9b298ab2c9539c0d7f187ce26315f459fa58e78e","81964257fa30acac9d5f2967e38d8cbe23cd9348_9b298ab2c9539c0d7f187ce26315f459fa58e78e"],"group":[1,1,1,1,1],"nodesize":[8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['#3182bd'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-30,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="clean-up" class="section level3">
 <h3 class="hasAnchor">
 <a href="#clean-up" class="anchor"></a>Clean up</h3>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fu"><a href="../reference/clean_trackr_dir.html">clean_trackr_dir</a></span>(<span class="no">trackr_dir</span>)</pre></body></html></div>
-<p><em>Article by Hamish Gibbs 2020-06-18 12:02:08. To report a problem with this package, please <a href="https://github.com/hamishgibbs/rtrackr/issues">create an issue</a> on <a href="https://github.com/hamishgibbs/rtrackr">GitHub</a>.</em></p>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="../reference/clean_trackr_dir.html">clean_trackr_dir</a></span>(<span class="no">trackr_dir</span>)</pre></body></html></div>
+<p><em>Article by Hamish Gibbs 2020-06-18 13:57:04. To report a problem with this package, please <a href="https://github.com/hamishgibbs/rtrackr/issues">create an issue</a> on <a href="https://github.com/hamishgibbs/rtrackr">GitHub</a>.</em></p>
 </div>
   </div>
 

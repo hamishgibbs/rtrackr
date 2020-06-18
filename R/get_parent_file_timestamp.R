@@ -5,4 +5,5 @@ get_parent_file_timestamp <- function(parent_file){
   tstamp <- lapply(tstamps, `[[`, 'timestamp') %>% unlist() %>% max()
   
   return(tstamp)
+  
 }

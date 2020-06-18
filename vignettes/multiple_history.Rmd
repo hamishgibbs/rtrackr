@@ -16,9 +16,9 @@ suppressPackageStartupMessages({
 ```
 
 ### Setting up
-Below is an example of a more complicated workflow, starting from a multiple input files, to be used as an example of a full `rtrackr` workflow.
+Below is an example of a more complicated workflow, starting from multiple input files, to be used as an example of a full `rtrackr` workflow.
 
-We will define and log simple dataframes for this example. For more information, please see [Getting started](https://hamishgibbs.github.io/rtrackr/articles/getting_started.html).
+We will define and log simple dataframes for this example. For more information, please see [getting started](https://hamishgibbs.github.io/rtrackr/articles/getting_started.html) and [summarising data](https://hamishgibbs.github.io/rtrackr/articles/summarising_data.html).
 
 ```{r}
 trackr_dir <- '~/Documents/Personal/trackr_dev/trackr_dir'
@@ -42,8 +42,8 @@ kable(df2) %>%
 </details>
 
 ```{r}
-df1 <- trackr_new(df1, trackr_dir = trackr_dir, timepoint_message = 'Start')
-df2 <- trackr_new(df2, trackr_dir = trackr_dir, timepoint_message = 'Start')
+df1 <- trackr_new(df1, trackr_dir = trackr_dir, timepoint_message = 'Start', suppress_success = TRUE)
+df2 <- trackr_new(df2, trackr_dir = trackr_dir, timepoint_message = 'Start', suppress_success = TRUE)
 ```
 <details><summary>Details 1</summary>
 **df1**
@@ -75,7 +75,7 @@ kable(df) %>%
 ```
 </details>
 ```{r}
-df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'processing 1')
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'processing 1', suppress_success = TRUE)
 ```
 <details><summary>Details</summary>
 ```{r, echo = F}
@@ -87,7 +87,7 @@ kable(df) %>%
 df <- df %>% 
   dplyr::mutate(n = n + 20)
 
-df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'processing 1')
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'processing 1', suppress_success = TRUE)
 ```
 <details><summary>Details</summary>
 ```{r, echo = F}
@@ -97,7 +97,7 @@ kable(df) %>%
 </details>
 
 ### Results
-Inspect the full processing chain of a single record with [`trackr_lineage()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_lineage.html) and [`trackr_network()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_network.html). Note that this record has two "root" records (it is the child of two starting points in the processing chain).
+Inspect the full processing chain of a single record with [`trackr_lineage()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_lineage.html) and [`trackr_network()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_network.html). For more information, please see [getting started](https://hamishgibbs.github.io/rtrackr/articles/getting_started.html). Note that this record has two "root" records (it is the child of two starting points in the processing chain).
 
 ```{r}
 target_id <- df$trackr_id[1]

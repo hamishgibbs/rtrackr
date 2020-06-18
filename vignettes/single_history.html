@@ -1559,21 +1559,75 @@ c
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">trackr_dir &lt;-<span class="st"> '/Users/hamishgibbs/Documents/Personal/trackr_dev/trackr_dir'</span></a>
+</details>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">trackr_dir &lt;-<span class="st"> '~/Documents/Personal/trackr_dev/trackr_dir'</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#setup a new trackr</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">df &lt;-<span class="st"> </span><span class="kw">trackr_new</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'Start'</span>, <span class="dt">log_data =</span> T)</a></code></pre></div>
-<pre><code>## [1] &quot;Successfully written trackr file 964a020ede8631bd7d7d937c9bdff25bfdf3862e.json&quot;
-## [1] &quot;Successfully written trackr data log 964a020ede8631bd7d7d937c9bdff25bfdf3862e_dl.json&quot;</code></pre>
+<a class="sourceLine" id="cb2-4" data-line-number="4">df &lt;-<span class="st"> </span><span class="kw">trackr_new</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'Start'</span>, <span class="dt">suppress_success =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="workflow" class="section level3">
 <h3>Workflow</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co">#make some change to the data </span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">b =</span> b <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co">#make some change to the data </span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">b =</span> b <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'Change point #1'</span>, <span class="dt">suppress_success =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<details>
+<summary>Details</summary>
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+a
+</th>
+<th style="text-align:right;">
+b
+</th>
+<th style="text-align:left;">
+trackr_id
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+e668d632a967057ecaaabd50e709d163cf68a505_9b298ab2c9539c0d7f187ce26315f459fa58e78e
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+e668d632a967057ecaaabd50e709d163cf68a505_0d62e87ad3877b0c51934dd0c38cba3467375b09
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+e668d632a967057ecaaabd50e709d163cf68a505_b1ba9407cf19da9a3625e46f5378484323799a05
+</td>
+</tr>
+</tbody>
+</table>
+</details>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co">#repeat for subsequent processing steps</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">b =</span> b <span class="op">+</span><span class="st"> </span><span class="dv">300</span>)</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'Change point #1'</span>, <span class="dt">log_data =</span> T)</a></code></pre></div>
-<pre><code>## [1] &quot;Successfully written trackr file 51a207efbfe428d93bc0749d9493745d08280376.json&quot;
-## [1] &quot;Successfully written trackr data log 51a207efbfe428d93bc0749d9493745d08280376_dl.json&quot;</code></pre>
+<a class="sourceLine" id="cb4-4" data-line-number="4">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'Change point #2'</span>, <span class="dt">suppress_success =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <details>
 <summary>Details</summary>
 <table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
@@ -1596,10 +1650,100 @@ trackr_id
 a
 </td>
 <td style="text-align:right;">
+302
+</td>
+<td style="text-align:left;">
+f915a6d77a56ead5589aba0213839aa14162c1d4_df6c36b931b3c85b98b33b3be98d70c6c3569d95
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:right;">
+303
+</td>
+<td style="text-align:left;">
+f915a6d77a56ead5589aba0213839aa14162c1d4_ad3a917f44d6a3f9fbc121c14cf631784c721fc4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:right;">
+304
+</td>
+<td style="text-align:left;">
+f915a6d77a56ead5589aba0213839aa14162c1d4_20e8c8352858485ba2abdc2a151f5cc2dbcf4503
+</td>
+</tr>
+</tbody>
+</table>
+</details>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co">#splitting a single record into multiples</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">df &lt;-<span class="st"> </span><span class="kw">rbind</span>(df, df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">b =</span> b <span class="dv">-300</span>))</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'Dividing rows'</span>, <span class="dt">suppress_success =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<details>
+<summary>Details</summary>
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+a
+</th>
+<th style="text-align:right;">
+b
+</th>
+<th style="text-align:left;">
+trackr_id
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+302
+</td>
+<td style="text-align:left;">
+538fc2c54d69f82ac3317a09ab4f5e730ff499d1_df6c36b931b3c85b98b33b3be98d70c6c3569d95
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:right;">
+303
+</td>
+<td style="text-align:left;">
+538fc2c54d69f82ac3317a09ab4f5e730ff499d1_ad3a917f44d6a3f9fbc121c14cf631784c721fc4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:right;">
+304
+</td>
+<td style="text-align:left;">
+538fc2c54d69f82ac3317a09ab4f5e730ff499d1_20e8c8352858485ba2abdc2a151f5cc2dbcf4503
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
 2
 </td>
 <td style="text-align:left;">
-51a207efbfe428d93bc0749d9493745d08280376_9b298ab2c9539c0d7f187ce26315f459fa58e78e
+538fc2c54d69f82ac3317a09ab4f5e730ff499d1_9b298ab2c9539c0d7f187ce26315f459fa58e78e
 </td>
 </tr>
 <tr>
@@ -1610,7 +1754,7 @@ b
 3
 </td>
 <td style="text-align:left;">
-51a207efbfe428d93bc0749d9493745d08280376_0d62e87ad3877b0c51934dd0c38cba3467375b09
+538fc2c54d69f82ac3317a09ab4f5e730ff499d1_0d62e87ad3877b0c51934dd0c38cba3467375b09
 </td>
 </tr>
 <tr>
@@ -1621,18 +1765,18 @@ c
 4
 </td>
 <td style="text-align:left;">
-51a207efbfe428d93bc0749d9493745d08280376_b1ba9407cf19da9a3625e46f5378484323799a05
+538fc2c54d69f82ac3317a09ab4f5e730ff499d1_b1ba9407cf19da9a3625e46f5378484323799a05
 </td>
 </tr>
 </tbody>
 </table>
 </details>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co">#repeat for subsequent processing steps</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">b =</span> b <span class="op">+</span><span class="st"> </span><span class="dv">300</span>)</a>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co">#summarising data</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(a)</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'Change point #2'</span>, <span class="dt">log_data =</span> T)</a></code></pre></div>
-<pre><code>## [1] &quot;Successfully written trackr file ffeb8db1691dc73b5e1c212b60ba8c37c5c2d3c1.json&quot;
-## [1] &quot;Successfully written trackr data log ffeb8db1691dc73b5e1c212b60ba8c37c5c2d3c1_dl.json&quot;</code></pre>
+<a class="sourceLine" id="cb6-4" data-line-number="4">df &lt;-<span class="st"> </span><span class="kw">trackr_summarise</span>(df, <span class="dt">n =</span> dplyr<span class="op">::</span><span class="kw">n</span>())</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'Summarising rows'</span>, <span class="dt">suppress_success =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <details>
 <summary>Details</summary>
 <table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
@@ -1642,7 +1786,7 @@ c
 a
 </th>
 <th style="text-align:right;">
-b
+n
 </th>
 <th style="text-align:left;">
 trackr_id
@@ -1650,98 +1794,6 @@ trackr_id
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-a
-</td>
-<td style="text-align:right;">
-302
-</td>
-<td style="text-align:left;">
-ffeb8db1691dc73b5e1c212b60ba8c37c5c2d3c1_df6c36b931b3c85b98b33b3be98d70c6c3569d95
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-b
-</td>
-<td style="text-align:right;">
-303
-</td>
-<td style="text-align:left;">
-ffeb8db1691dc73b5e1c212b60ba8c37c5c2d3c1_ad3a917f44d6a3f9fbc121c14cf631784c721fc4
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-c
-</td>
-<td style="text-align:right;">
-304
-</td>
-<td style="text-align:left;">
-ffeb8db1691dc73b5e1c212b60ba8c37c5c2d3c1_20e8c8352858485ba2abdc2a151f5cc2dbcf4503
-</td>
-</tr>
-</tbody>
-</table>
-</details>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co">#splitting a single record into multiples</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">df &lt;-<span class="st"> </span><span class="kw">rbind</span>(df, df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">b =</span> b <span class="dv">-300</span>))</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'Dividing rows'</span>, <span class="dt">log_data =</span> T)</a></code></pre></div>
-<pre><code>## [1] &quot;Successfully written trackr file 78d37b48ea08504c9752c8c96ca8dddb1714def2.json&quot;
-## [1] &quot;Successfully written trackr data log 78d37b48ea08504c9752c8c96ca8dddb1714def2_dl.json&quot;</code></pre>
-<details>
-<summary>Details</summary>
-<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-a
-</th>
-<th style="text-align:right;">
-b
-</th>
-<th style="text-align:left;">
-trackr_id
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-a
-</td>
-<td style="text-align:right;">
-302
-</td>
-<td style="text-align:left;">
-78d37b48ea08504c9752c8c96ca8dddb1714def2_df6c36b931b3c85b98b33b3be98d70c6c3569d95
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-b
-</td>
-<td style="text-align:right;">
-303
-</td>
-<td style="text-align:left;">
-78d37b48ea08504c9752c8c96ca8dddb1714def2_ad3a917f44d6a3f9fbc121c14cf631784c721fc4
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-c
-</td>
-<td style="text-align:right;">
-304
-</td>
-<td style="text-align:left;">
-78d37b48ea08504c9752c8c96ca8dddb1714def2_20e8c8352858485ba2abdc2a151f5cc2dbcf4503
-</td>
-</tr>
 <tr>
 <td style="text-align:left;">
 a
@@ -1750,7 +1802,7 @@ a
 2
 </td>
 <td style="text-align:left;">
-78d37b48ea08504c9752c8c96ca8dddb1714def2_9b298ab2c9539c0d7f187ce26315f459fa58e78e
+2fffa0ce264190c2566b39ab226c807c0043d0f4_9b298ab2c9539c0d7f187ce26315f459fa58e78e
 </td>
 </tr>
 <tr>
@@ -1758,10 +1810,10 @@ a
 b
 </td>
 <td style="text-align:right;">
-3
+2
 </td>
 <td style="text-align:left;">
-78d37b48ea08504c9752c8c96ca8dddb1714def2_0d62e87ad3877b0c51934dd0c38cba3467375b09
+2fffa0ce264190c2566b39ab226c807c0043d0f4_d6543aeb67806714fa9e9567dc5c46b2106ae843
 </td>
 </tr>
 <tr>
@@ -1769,454 +1821,385 @@ b
 c
 </td>
 <td style="text-align:right;">
-4
+2
 </td>
 <td style="text-align:left;">
-78d37b48ea08504c9752c8c96ca8dddb1714def2_b1ba9407cf19da9a3625e46f5378484323799a05
+2fffa0ce264190c2566b39ab226c807c0043d0f4_c7a74dd8ad5c5743a5983d3102600cc7f9df9370
 </td>
 </tr>
 </tbody>
 </table>
 </details>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co">#summarising data</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(a)</a>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">n =</span> n<span class="op">**</span><span class="kw">runif</span>(<span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'Further Processing'</span>, <span class="dt">suppress_success =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<details>
+<summary>Details</summary>
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+a
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:left;">
+trackr_id
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+1.627122
+</td>
+<td style="text-align:left;">
+59c55e9f88d5e0ed65e39e974645d85f5a15f0bd_159c05692416a1d920378a7b87000ff3bb06d9c5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:right;">
+1.721042
+</td>
+<td style="text-align:left;">
+59c55e9f88d5e0ed65e39e974645d85f5a15f0bd_98242e8432969266a754989e06b9a451acdbfe7b
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:right;">
+1.285212
+</td>
+<td style="text-align:left;">
+59c55e9f88d5e0ed65e39e974645d85f5a15f0bd_ba0096b8d8964536d87b51177528b083af9ae935
+</td>
+</tr>
+</tbody>
+</table>
+</details>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">rbind</span>(df, df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">n =</span> n <span class="dv">-60</span>), df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">n =</span> n <span class="op">*</span><span class="st"> </span><span class="dv">2</span>), df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">n =</span> n <span class="op">*</span><span class="st"> </span><span class="dv">56</span>))</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'Really messing with things'</span>, <span class="dt">suppress_success =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<details>
+<summary>Details</summary>
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+a
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:left;">
+trackr_id
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+1.627122
+</td>
+<td style="text-align:left;">
+0ff997cd38b69c24508689f7a42166f26a12bd4a_159c05692416a1d920378a7b87000ff3bb06d9c5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:right;">
+1.721042
+</td>
+<td style="text-align:left;">
+0ff997cd38b69c24508689f7a42166f26a12bd4a_98242e8432969266a754989e06b9a451acdbfe7b
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:right;">
+1.285212
+</td>
+<td style="text-align:left;">
+0ff997cd38b69c24508689f7a42166f26a12bd4a_ba0096b8d8964536d87b51177528b083af9ae935
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+-58.372878
+</td>
+<td style="text-align:left;">
+0ff997cd38b69c24508689f7a42166f26a12bd4a_87e3357516dfb941b275cd39e4c0d6b45b5014f8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:right;">
+-58.278958
+</td>
+<td style="text-align:left;">
+0ff997cd38b69c24508689f7a42166f26a12bd4a_1a0b48051ffec587be841af24b8a6eed12e200db
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:right;">
+-58.714788
+</td>
+<td style="text-align:left;">
+0ff997cd38b69c24508689f7a42166f26a12bd4a_8f7f96c68c2f2f59773c33c855fe2da623884c83
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+3.254243
+</td>
+<td style="text-align:left;">
+0ff997cd38b69c24508689f7a42166f26a12bd4a_b5365a1c97ab1c6c484326f44708187bf73aac9a
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:right;">
+3.442085
+</td>
+<td style="text-align:left;">
+0ff997cd38b69c24508689f7a42166f26a12bd4a_da21332faf1c8b2c830f0181c1c253e408fc961d
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:right;">
+2.570425
+</td>
+<td style="text-align:left;">
+0ff997cd38b69c24508689f7a42166f26a12bd4a_a0cd82f0b30c139e8d54660a0806700aea42ea8a
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+91.118811
+</td>
+<td style="text-align:left;">
+0ff997cd38b69c24508689f7a42166f26a12bd4a_ea50a46a4bd96847defa62269e83f2c68c401bdb
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:right;">
+96.378375
+</td>
+<td style="text-align:left;">
+0ff997cd38b69c24508689f7a42166f26a12bd4a_1a33630b0e5e24b46b8c6f0aa8d7043180f7626c
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:right;">
+71.971885
+</td>
+<td style="text-align:left;">
+0ff997cd38b69c24508689f7a42166f26a12bd4a_ae5fe3e911580de9230283a6099037dac8364906
+</td>
+</tr>
+</tbody>
+</table>
+</details>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">n =</span> n <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'added 1'</span>, <span class="dt">suppress_success =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<details>
+<summary>Details</summary>
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+a
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:left;">
+trackr_id
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+2.627122
+</td>
+<td style="text-align:left;">
+17dac3b3cd76c6e13b3e91870641cbd16495840c_f588460fc79c51b6717c7d4ce86a37f91f1ed0a9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:right;">
+2.721042
+</td>
+<td style="text-align:left;">
+17dac3b3cd76c6e13b3e91870641cbd16495840c_286cb74b5faf0b3dfb890ccb11d90d2585b10883
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:right;">
+2.285212
+</td>
+<td style="text-align:left;">
+17dac3b3cd76c6e13b3e91870641cbd16495840c_fb774737e9be014ad9e2762b40864b520395bd22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+-57.372878
+</td>
+<td style="text-align:left;">
+17dac3b3cd76c6e13b3e91870641cbd16495840c_ac35c0b03a5e24178c9d916a791575505344e6c8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:right;">
+-57.278958
+</td>
+<td style="text-align:left;">
+17dac3b3cd76c6e13b3e91870641cbd16495840c_4031b5c3938841dec7b991aa45e63c886a197e10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:right;">
+-57.714788
+</td>
+<td style="text-align:left;">
+17dac3b3cd76c6e13b3e91870641cbd16495840c_362922dd6cf24d1b529c71f3a040d9c42375602f
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+4.254243
+</td>
+<td style="text-align:left;">
+17dac3b3cd76c6e13b3e91870641cbd16495840c_488beb810427844a64707885af0a1db1d41bf7b2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:right;">
+4.442085
+</td>
+<td style="text-align:left;">
+17dac3b3cd76c6e13b3e91870641cbd16495840c_037d9c42b7e9d8d2855ac6637f7a56b376664a85
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:right;">
+3.570425
+</td>
+<td style="text-align:left;">
+17dac3b3cd76c6e13b3e91870641cbd16495840c_f254c14676f769daafbdb1bd03760c0c94ffeb6f
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+92.118811
+</td>
+<td style="text-align:left;">
+17dac3b3cd76c6e13b3e91870641cbd16495840c_877103ae8753c8879dcc28b7463d98fc6fe01fc5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:right;">
+97.378375
+</td>
+<td style="text-align:left;">
+17dac3b3cd76c6e13b3e91870641cbd16495840c_e3f2106341a4c03512b2e3cb6c9e705fc1c5daa2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:right;">
+72.971885
+</td>
+<td style="text-align:left;">
+17dac3b3cd76c6e13b3e91870641cbd16495840c_f59347a5082fa488e4be8eb1ecb83f9187cd8837
+</td>
+</tr>
+</tbody>
+</table>
+</details>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(a) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw">trackr_summarise</span>(<span class="dt">n =</span>  dplyr<span class="op">::</span><span class="kw">n</span>())</a>
 <a class="sourceLine" id="cb10-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">df &lt;-<span class="st"> </span><span class="kw">trackr_summarise</span>(df, <span class="dt">n =</span> dplyr<span class="op">::</span><span class="kw">n</span>())</a></code></pre></div>
-<pre><code>## Joining, by = &quot;a&quot;</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'Summarising rows'</span>, <span class="dt">log_data =</span> T)</a></code></pre></div>
-<pre><code>## [1] &quot;Successfully written trackr file 22207194bc55b4f13b6f3e3dfc23f7cfd9fef3df.json&quot;
-## [1] &quot;Successfully written trackr data log 22207194bc55b4f13b6f3e3dfc23f7cfd9fef3df_dl.json&quot;</code></pre>
-<details>
-<summary>Details</summary>
-<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-a
-</th>
-<th style="text-align:right;">
-n
-</th>
-<th style="text-align:left;">
-trackr_id
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-a
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-22207194bc55b4f13b6f3e3dfc23f7cfd9fef3df_9b298ab2c9539c0d7f187ce26315f459fa58e78e
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-b
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-22207194bc55b4f13b6f3e3dfc23f7cfd9fef3df_d6543aeb67806714fa9e9567dc5c46b2106ae843
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-c
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-22207194bc55b4f13b6f3e3dfc23f7cfd9fef3df_c7a74dd8ad5c5743a5983d3102600cc7f9df9370
-</td>
-</tr>
-</tbody>
-</table>
-</details>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">n =</span> n<span class="op">**</span><span class="kw">runif</span>(<span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'Further Processing'</span>, <span class="dt">log_data =</span> T)</a></code></pre></div>
-<pre><code>## [1] &quot;Successfully written trackr file caaf52c87c590eacd6c3a80aa8f017ea84ac676a.json&quot;
-## [1] &quot;Successfully written trackr data log caaf52c87c590eacd6c3a80aa8f017ea84ac676a_dl.json&quot;</code></pre>
-<details>
-<summary>Details</summary>
-<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-a
-</th>
-<th style="text-align:right;">
-n
-</th>
-<th style="text-align:left;">
-trackr_id
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-a
-</td>
-<td style="text-align:right;">
-1.364103
-</td>
-<td style="text-align:left;">
-caaf52c87c590eacd6c3a80aa8f017ea84ac676a_2581dc6e33511e8fa238012467ddc4cd6ad471c9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-b
-</td>
-<td style="text-align:right;">
-1.261893
-</td>
-<td style="text-align:left;">
-caaf52c87c590eacd6c3a80aa8f017ea84ac676a_b3fb96e1efafed3ab8e12635d5b1920d7a123f48
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-c
-</td>
-<td style="text-align:right;">
-1.002226
-</td>
-<td style="text-align:left;">
-caaf52c87c590eacd6c3a80aa8f017ea84ac676a_3406bd9360e87ddcc264277e746151c0b440b191
-</td>
-</tr>
-</tbody>
-</table>
-</details>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">rbind</span>(df, df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">n =</span> n <span class="dv">-60</span>), df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">n =</span> n <span class="op">*</span><span class="st"> </span><span class="dv">2</span>), df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">n =</span> n <span class="op">*</span><span class="st"> </span><span class="dv">56</span>))</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb16-3" data-line-number="3">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'Really messing with things'</span>, <span class="dt">log_data =</span> T)</a></code></pre></div>
-<pre><code>## [1] &quot;Successfully written trackr file 79c078e95ac660961c5590d993db1b94d701e628.json&quot;
-## [1] &quot;Successfully written trackr data log 79c078e95ac660961c5590d993db1b94d701e628_dl.json&quot;</code></pre>
-<details>
-<summary>Details</summary>
-<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-a
-</th>
-<th style="text-align:right;">
-n
-</th>
-<th style="text-align:left;">
-trackr_id
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-a
-</td>
-<td style="text-align:right;">
-1.364103
-</td>
-<td style="text-align:left;">
-79c078e95ac660961c5590d993db1b94d701e628_2581dc6e33511e8fa238012467ddc4cd6ad471c9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-b
-</td>
-<td style="text-align:right;">
-1.261893
-</td>
-<td style="text-align:left;">
-79c078e95ac660961c5590d993db1b94d701e628_b3fb96e1efafed3ab8e12635d5b1920d7a123f48
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-c
-</td>
-<td style="text-align:right;">
-1.002226
-</td>
-<td style="text-align:left;">
-79c078e95ac660961c5590d993db1b94d701e628_3406bd9360e87ddcc264277e746151c0b440b191
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-a
-</td>
-<td style="text-align:right;">
--58.635897
-</td>
-<td style="text-align:left;">
-79c078e95ac660961c5590d993db1b94d701e628_fdca76dfb489f25b5754fa589648de0eb158e4bd
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-b
-</td>
-<td style="text-align:right;">
--58.738107
-</td>
-<td style="text-align:left;">
-79c078e95ac660961c5590d993db1b94d701e628_5be291e9cbb4ca73624ea225e5d35e199b7d262b
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-c
-</td>
-<td style="text-align:right;">
--58.997774
-</td>
-<td style="text-align:left;">
-79c078e95ac660961c5590d993db1b94d701e628_2494a48eab10e2cd64cb473e8f42ea2017c5ed00
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-a
-</td>
-<td style="text-align:right;">
-2.728206
-</td>
-<td style="text-align:left;">
-79c078e95ac660961c5590d993db1b94d701e628_c75c92dc2dfb29e6ab0b117ef683d13ced2f2fd5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-b
-</td>
-<td style="text-align:right;">
-2.523786
-</td>
-<td style="text-align:left;">
-79c078e95ac660961c5590d993db1b94d701e628_0eb10a1820cf2181ff2bf04501994854c2295dfd
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-c
-</td>
-<td style="text-align:right;">
-2.004453
-</td>
-<td style="text-align:left;">
-79c078e95ac660961c5590d993db1b94d701e628_b522a2a0001e80ef31da235ab69b4c6c2921908a
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-a
-</td>
-<td style="text-align:right;">
-76.389760
-</td>
-<td style="text-align:left;">
-79c078e95ac660961c5590d993db1b94d701e628_43aa73c4aa7516008d3957ff91c8d4646ab2b45a
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-b
-</td>
-<td style="text-align:right;">
-70.666010
-</td>
-<td style="text-align:left;">
-79c078e95ac660961c5590d993db1b94d701e628_85c1a235084fc3785c93066c6c9cd217c766ae2f
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-c
-</td>
-<td style="text-align:right;">
-56.124669
-</td>
-<td style="text-align:left;">
-79c078e95ac660961c5590d993db1b94d701e628_b44d31a3eaf34a2b336b4dda9c0455fd3b3b0289
-</td>
-</tr>
-</tbody>
-</table>
-</details>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">n =</span> n <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'added 1'</span>, <span class="dt">log_data =</span> T)</a></code></pre></div>
-<pre><code>## [1] &quot;Successfully written trackr file 084018f3d9e5f34ec3861ba7659f11cf63cdb98a.json&quot;
-## [1] &quot;Successfully written trackr data log 084018f3d9e5f34ec3861ba7659f11cf63cdb98a_dl.json&quot;</code></pre>
-<details>
-<summary>Details</summary>
-<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-a
-</th>
-<th style="text-align:right;">
-n
-</th>
-<th style="text-align:left;">
-trackr_id
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-a
-</td>
-<td style="text-align:right;">
-2.364103
-</td>
-<td style="text-align:left;">
-084018f3d9e5f34ec3861ba7659f11cf63cdb98a_5d676946205d98c84ca2d1e420298984b45bef0e
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-b
-</td>
-<td style="text-align:right;">
-2.261893
-</td>
-<td style="text-align:left;">
-084018f3d9e5f34ec3861ba7659f11cf63cdb98a_a54a286fb09d8dafd08bff724a0ecc99c6f14c7b
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-c
-</td>
-<td style="text-align:right;">
-2.002226
-</td>
-<td style="text-align:left;">
-084018f3d9e5f34ec3861ba7659f11cf63cdb98a_eee6ab6717c5b9e5025011eb73efc75eed536290
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-a
-</td>
-<td style="text-align:right;">
--57.635897
-</td>
-<td style="text-align:left;">
-084018f3d9e5f34ec3861ba7659f11cf63cdb98a_c347632a211920b6cc9c403b2fe56c2a0b81e578
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-b
-</td>
-<td style="text-align:right;">
--57.738107
-</td>
-<td style="text-align:left;">
-084018f3d9e5f34ec3861ba7659f11cf63cdb98a_32cfd4b25fc8509599654fd73b4226019901d17b
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-c
-</td>
-<td style="text-align:right;">
--57.997774
-</td>
-<td style="text-align:left;">
-084018f3d9e5f34ec3861ba7659f11cf63cdb98a_bcfb90752e51d40812237a5ee823b7a7986dd680
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-a
-</td>
-<td style="text-align:right;">
-3.728206
-</td>
-<td style="text-align:left;">
-084018f3d9e5f34ec3861ba7659f11cf63cdb98a_a39c2eabc80fa38b4836a4f9e4d975778c436f32
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-b
-</td>
-<td style="text-align:right;">
-3.523786
-</td>
-<td style="text-align:left;">
-084018f3d9e5f34ec3861ba7659f11cf63cdb98a_17e86280d3b551503d990bb1aa2aaa12d9460233
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-c
-</td>
-<td style="text-align:right;">
-3.004453
-</td>
-<td style="text-align:left;">
-084018f3d9e5f34ec3861ba7659f11cf63cdb98a_103984f2d2984004894cff9a605dfedc066424a6
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-a
-</td>
-<td style="text-align:right;">
-77.389760
-</td>
-<td style="text-align:left;">
-084018f3d9e5f34ec3861ba7659f11cf63cdb98a_348c1a92974d5c1561ad56f6a94b383809932e28
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-b
-</td>
-<td style="text-align:right;">
-71.666010
-</td>
-<td style="text-align:left;">
-084018f3d9e5f34ec3861ba7659f11cf63cdb98a_6542a303ecc09fcc08c080f0abae0f4a458ede60
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-c
-</td>
-<td style="text-align:right;">
-57.124669
-</td>
-<td style="text-align:left;">
-084018f3d9e5f34ec3861ba7659f11cf63cdb98a_5dbe27727479c1059d61a990bc12afbfeac37775
-</td>
-</tr>
-</tbody>
-</table>
-</details>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(a) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="st">  </span><span class="kw">trackr_summarise</span>(<span class="dt">n =</span>  dplyr<span class="op">::</span><span class="kw">n</span>())</a></code></pre></div>
-<pre><code>## Joining, by = &quot;a&quot;</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'grouped'</span>, <span class="dt">log_data =</span> T)</a></code></pre></div>
-<pre><code>## [1] &quot;Successfully written trackr file cc919440fb7ca98c7426452a5b85c66a874c7357.json&quot;
-## [1] &quot;Successfully written trackr data log cc919440fb7ca98c7426452a5b85c66a874c7357_dl.json&quot;</code></pre>
+<a class="sourceLine" id="cb10-4" data-line-number="4">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'grouped'</span>, <span class="dt">suppress_success =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <details>
 <summary>Details</summary>
 <table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
@@ -2242,7 +2225,7 @@ a
 4
 </td>
 <td style="text-align:left;">
-cc919440fb7ca98c7426452a5b85c66a874c7357_47ed5196677a528d0267158fa4aecf92372cb285
+42436e5e4d88c370db71b120e8a67d79cb528c7b_47ed5196677a528d0267158fa4aecf92372cb285
 </td>
 </tr>
 <tr>
@@ -2253,7 +2236,7 @@ b
 4
 </td>
 <td style="text-align:left;">
-cc919440fb7ca98c7426452a5b85c66a874c7357_3edbbf5495c6c72354eb25125e5b718cf570d596
+42436e5e4d88c370db71b120e8a67d79cb528c7b_3edbbf5495c6c72354eb25125e5b718cf570d596
 </td>
 </tr>
 <tr>
@@ -2264,17 +2247,15 @@ c
 4
 </td>
 <td style="text-align:left;">
-cc919440fb7ca98c7426452a5b85c66a874c7357_b1ba9407cf19da9a3625e46f5378484323799a05
+42436e5e4d88c370db71b120e8a67d79cb528c7b_b1ba9407cf19da9a3625e46f5378484323799a05
 </td>
 </tr>
 </tbody>
 </table>
 </details>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">n =</span> n <span class="op">+</span><span class="st"> </span><span class="dv">2000</span>)</a>
-<a class="sourceLine" id="cb24-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb24-3" data-line-number="3">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'added 2000'</span>, <span class="dt">log_data =</span> T)</a></code></pre></div>
-<pre><code>## [1] &quot;Successfully written trackr file 32cafd9454870097ebcc77c73412ef63e2b89662.json&quot;
-## [1] &quot;Successfully written trackr data log 32cafd9454870097ebcc77c73412ef63e2b89662_dl.json&quot;</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">n =</span> n <span class="op">+</span><span class="st"> </span><span class="dv">2000</span>)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'added 2000'</span>, <span class="dt">suppress_success =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <details>
 <summary>Details</summary>
 <table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
@@ -2300,7 +2281,7 @@ a
 2004
 </td>
 <td style="text-align:left;">
-32cafd9454870097ebcc77c73412ef63e2b89662_2a8b275852b4085d374094c98a3f95bc0e22ec3b
+a9618e942b6eff3da8806105df9c18c8afddbd33_2a8b275852b4085d374094c98a3f95bc0e22ec3b
 </td>
 </tr>
 <tr>
@@ -2311,7 +2292,7 @@ b
 2004
 </td>
 <td style="text-align:left;">
-32cafd9454870097ebcc77c73412ef63e2b89662_8fe5b9603973e432094f4e7b81bd411b11d9107b
+a9618e942b6eff3da8806105df9c18c8afddbd33_8fe5b9603973e432094f4e7b81bd411b11d9107b
 </td>
 </tr>
 <tr>
@@ -2322,7 +2303,7 @@ c
 2004
 </td>
 <td style="text-align:left;">
-32cafd9454870097ebcc77c73412ef63e2b89662_3474d281b937403b9c2e9f283b09268bc6f2833a
+a9618e942b6eff3da8806105df9c18c8afddbd33_3474d281b937403b9c2e9f283b09268bc6f2833a
 </td>
 </tr>
 </tbody>
@@ -2332,106 +2313,19 @@ c
 <div id="results" class="section level3">
 <h3>Results</h3>
 <p>Inspect the full processing chain of a single record with <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_lineage.html"><code>trackr_lineage()</code></a> and <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_network.html"><code>trackr_network()</code></a>.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">target_id &lt;-<span class="st"> </span>df<span class="op">$</span>trackr_id[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="kw">trackr_lineage</span>(target_id, trackr_dir)</a></code></pre></div>
-<pre><code>## [1] &quot;Successfully written 32cafd9454870097ebcc77c73412ef63e2b89662_2a8b275852b4085d374094c98a3f95bc0e22ec3b_lineage.json&quot;</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">lineage_fn &lt;-<span class="st"> </span><span class="kw">paste0</span>(trackr_dir, <span class="st">'/'</span>, target_id, <span class="st">'_lineage.json'</span>)</a>
-<a class="sourceLine" id="cb28-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb28-3" data-line-number="3"><span class="kw">trackr_network</span>(lineage_fn)</a></code></pre></div>
-<div id="htmlwidget-89d00338eacf53848b04" style="width:288px;height:288px;" class="forceNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-89d00338eacf53848b04">{"x":{"links":{"source":[5,15,15,15,15,1,9,14,4,4,3,12,14,4,4,2,11,14,4,4,0,10,14,4,4,8,16,6,7,16,6],"target":[15,1,3,2,0,9,14,4,8,7,12,14,4,8,7,11,14,4,8,7,10,14,4,8,7,16,6,13,16,6,13],"value":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"colour":["#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["084018f3d9e5f34ec3861ba7659f11cf63cdb98a_348c1a92974d5c1561ad56f6a94b383809932e28","084018f3d9e5f34ec3861ba7659f11cf63cdb98a_5d676946205d98c84ca2d1e420298984b45bef0e","084018f3d9e5f34ec3861ba7659f11cf63cdb98a_a39c2eabc80fa38b4836a4f9e4d975778c436f32","084018f3d9e5f34ec3861ba7659f11cf63cdb98a_c347632a211920b6cc9c403b2fe56c2a0b81e578","22207194bc55b4f13b6f3e3dfc23f7cfd9fef3df_9b298ab2c9539c0d7f187ce26315f459fa58e78e","32cafd9454870097ebcc77c73412ef63e2b89662_2a8b275852b4085d374094c98a3f95bc0e22ec3b","51a207efbfe428d93bc0749d9493745d08280376_9b298ab2c9539c0d7f187ce26315f459fa58e78e","78d37b48ea08504c9752c8c96ca8dddb1714def2_9b298ab2c9539c0d7f187ce26315f459fa58e78e","78d37b48ea08504c9752c8c96ca8dddb1714def2_df6c36b931b3c85b98b33b3be98d70c6c3569d95","79c078e95ac660961c5590d993db1b94d701e628_2581dc6e33511e8fa238012467ddc4cd6ad471c9","79c078e95ac660961c5590d993db1b94d701e628_43aa73c4aa7516008d3957ff91c8d4646ab2b45a","79c078e95ac660961c5590d993db1b94d701e628_c75c92dc2dfb29e6ab0b117ef683d13ced2f2fd5","79c078e95ac660961c5590d993db1b94d701e628_fdca76dfb489f25b5754fa589648de0eb158e4bd","964a020ede8631bd7d7d937c9bdff25bfdf3862e_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32","caaf52c87c590eacd6c3a80aa8f017ea84ac676a_2581dc6e33511e8fa238012467ddc4cd6ad471c9","cc919440fb7ca98c7426452a5b85c66a874c7357_47ed5196677a528d0267158fa4aecf92372cb285","ffeb8db1691dc73b5e1c212b60ba8c37c5c2d3c1_df6c36b931b3c85b98b33b3be98d70c6c3569d95"],"group":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"nodesize":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['#3182bd'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-30,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">target_id &lt;-<span class="st"> </span>df<span class="op">$</span>trackr_id[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">trackr_lineage</span>(target_id, trackr_dir)</a></code></pre></div>
+<pre><code>## [1] &quot;Successfully written a9618e942b6eff3da8806105df9c18c8afddbd33_2a8b275852b4085d374094c98a3f95bc0e22ec3b_lineage.json&quot;</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">lineage_fn &lt;-<span class="st"> </span><span class="kw">paste0</span>(trackr_dir, <span class="st">'/'</span>, target_id, <span class="st">'_lineage.json'</span>)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="kw">trackr_network</span>(lineage_fn)</a></code></pre></div>
+<div id="htmlwidget-9ecfb26df4ffbb03251d" style="width:288px;height:288px;" class="forceNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9ecfb26df4ffbb03251d">{"x":{"links":{"source":[14,9,9,9,9,7,0,12,8,8,6,1,12,8,8,4,2,12,8,8,5,3,12,8,8,11,16,15,10,16,15],"target":[9,7,6,4,5,0,12,8,11,10,1,12,8,11,10,2,12,8,11,10,3,12,8,11,10,16,15,13,16,15,13],"value":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"colour":["#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["0ff997cd38b69c24508689f7a42166f26a12bd4a_159c05692416a1d920378a7b87000ff3bb06d9c5","0ff997cd38b69c24508689f7a42166f26a12bd4a_87e3357516dfb941b275cd39e4c0d6b45b5014f8","0ff997cd38b69c24508689f7a42166f26a12bd4a_b5365a1c97ab1c6c484326f44708187bf73aac9a","0ff997cd38b69c24508689f7a42166f26a12bd4a_ea50a46a4bd96847defa62269e83f2c68c401bdb","17dac3b3cd76c6e13b3e91870641cbd16495840c_488beb810427844a64707885af0a1db1d41bf7b2","17dac3b3cd76c6e13b3e91870641cbd16495840c_877103ae8753c8879dcc28b7463d98fc6fe01fc5","17dac3b3cd76c6e13b3e91870641cbd16495840c_ac35c0b03a5e24178c9d916a791575505344e6c8","17dac3b3cd76c6e13b3e91870641cbd16495840c_f588460fc79c51b6717c7d4ce86a37f91f1ed0a9","2fffa0ce264190c2566b39ab226c807c0043d0f4_9b298ab2c9539c0d7f187ce26315f459fa58e78e","42436e5e4d88c370db71b120e8a67d79cb528c7b_47ed5196677a528d0267158fa4aecf92372cb285","538fc2c54d69f82ac3317a09ab4f5e730ff499d1_9b298ab2c9539c0d7f187ce26315f459fa58e78e","538fc2c54d69f82ac3317a09ab4f5e730ff499d1_df6c36b931b3c85b98b33b3be98d70c6c3569d95","59c55e9f88d5e0ed65e39e974645d85f5a15f0bd_159c05692416a1d920378a7b87000ff3bb06d9c5","61360088fb78d13540f87a91252fba7142b1523b_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32","a9618e942b6eff3da8806105df9c18c8afddbd33_2a8b275852b4085d374094c98a3f95bc0e22ec3b","e668d632a967057ecaaabd50e709d163cf68a505_9b298ab2c9539c0d7f187ce26315f459fa58e78e","f915a6d77a56ead5589aba0213839aa14162c1d4_df6c36b931b3c85b98b33b3be98d70c6c3569d95"],"group":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"nodesize":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['#3182bd'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-30,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="clean-up" class="section level3">
 <h3>Clean up</h3>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">clean_trackr_dir</span>(trackr_dir)</a></code></pre></div>
-<pre><code>##  [1] &quot;Removed: 000089894bb1284d6d391408cb1973c0f78c5d9b_dl.json&quot;                                              
-##  [2] &quot;Removed: 000089894bb1284d6d391408cb1973c0f78c5d9b.json&quot;                                                 
-##  [3] &quot;Removed: 084018f3d9e5f34ec3861ba7659f11cf63cdb98a_dl.json&quot;                                              
-##  [4] &quot;Removed: 084018f3d9e5f34ec3861ba7659f11cf63cdb98a.json&quot;                                                 
-##  [5] &quot;Removed: 22207194bc55b4f13b6f3e3dfc23f7cfd9fef3df_dl.json&quot;                                              
-##  [6] &quot;Removed: 22207194bc55b4f13b6f3e3dfc23f7cfd9fef3df.json&quot;                                                 
-##  [7] &quot;Removed: 244a6639851cd650449449bafcc55d2b5bfc9cf5_dl.json&quot;                                              
-##  [8] &quot;Removed: 244a6639851cd650449449bafcc55d2b5bfc9cf5.json&quot;                                                 
-##  [9] &quot;Removed: 2aead90699f10c99c106b7527d70a335c28b9333_dl.json&quot;                                              
-## [10] &quot;Removed: 2aead90699f10c99c106b7527d70a335c28b9333.json&quot;                                                 
-## [11] &quot;Removed: 32cafd9454870097ebcc77c73412ef63e2b89662_2a8b275852b4085d374094c98a3f95bc0e22ec3b_lineage.json&quot;
-## [12] &quot;Removed: 32cafd9454870097ebcc77c73412ef63e2b89662_dl.json&quot;                                              
-## [13] &quot;Removed: 32cafd9454870097ebcc77c73412ef63e2b89662.json&quot;                                                 
-## [14] &quot;Removed: 3916a88ff0c45f2179153d283fcf42952748aa88_dl.json&quot;                                              
-## [15] &quot;Removed: 3916a88ff0c45f2179153d283fcf42952748aa88.json&quot;                                                 
-## [16] &quot;Removed: 4505e5c39460316034da47afb8719dc9219a6a55_dl.json&quot;                                              
-## [17] &quot;Removed: 4505e5c39460316034da47afb8719dc9219a6a55.json&quot;                                                 
-## [18] &quot;Removed: 4808048baae7d7030dc8d06f7c04a8964801c63b_dl.json&quot;                                              
-## [19] &quot;Removed: 4808048baae7d7030dc8d06f7c04a8964801c63b.json&quot;                                                 
-## [20] &quot;Removed: 51a207efbfe428d93bc0749d9493745d08280376_dl.json&quot;                                              
-## [21] &quot;Removed: 51a207efbfe428d93bc0749d9493745d08280376.json&quot;                                                 
-## [22] &quot;Removed: 52e6d81dab50cd142d7734ae7490114943645c6f_dl.json&quot;                                              
-## [23] &quot;Removed: 52e6d81dab50cd142d7734ae7490114943645c6f.json&quot;                                                 
-## [24] &quot;Removed: 6157f2f3e5f3e83eaf4381c03ff7c13824077900_dl.json&quot;                                              
-## [25] &quot;Removed: 6157f2f3e5f3e83eaf4381c03ff7c13824077900.json&quot;                                                 
-## [26] &quot;Removed: 61ecdbee9b8471b76172157e15246d747d6706a9_dl.json&quot;                                              
-## [27] &quot;Removed: 61ecdbee9b8471b76172157e15246d747d6706a9.json&quot;                                                 
-## [28] &quot;Removed: 63438b80d6716763f49118f6325a6a7c103f6ee2_dl.json&quot;                                              
-## [29] &quot;Removed: 63438b80d6716763f49118f6325a6a7c103f6ee2.json&quot;                                                 
-## [30] &quot;Removed: 65fcda9cf18fab060d6c90ebd66d0de30b879649_dl.json&quot;                                              
-## [31] &quot;Removed: 65fcda9cf18fab060d6c90ebd66d0de30b879649.json&quot;                                                 
-## [32] &quot;Removed: 6811f35a757732b13887a341c025b14b9fc571b3_dl.json&quot;                                              
-## [33] &quot;Removed: 6811f35a757732b13887a341c025b14b9fc571b3.json&quot;                                                 
-## [34] &quot;Removed: 6d9ac823a08ac4097526535680baf4b4c956c528_dl.json&quot;                                              
-## [35] &quot;Removed: 6d9ac823a08ac4097526535680baf4b4c956c528.json&quot;                                                 
-## [36] &quot;Removed: 700e448a6a96259b643b26e384e17b9b63967c81_dl.json&quot;                                              
-## [37] &quot;Removed: 700e448a6a96259b643b26e384e17b9b63967c81.json&quot;                                                 
-## [38] &quot;Removed: 71038e67f5f512043daff7541e2feff56f4b92e6_dl.json&quot;                                              
-## [39] &quot;Removed: 71038e67f5f512043daff7541e2feff56f4b92e6.json&quot;                                                 
-## [40] &quot;Removed: 73ea296842d323850be5bcffc7688199241917f4_dl.json&quot;                                              
-## [41] &quot;Removed: 73ea296842d323850be5bcffc7688199241917f4.json&quot;                                                 
-## [42] &quot;Removed: 76ccbcb063cddc52f01d8792d2380476ff7105ad_dl.json&quot;                                              
-## [43] &quot;Removed: 76ccbcb063cddc52f01d8792d2380476ff7105ad.json&quot;                                                 
-## [44] &quot;Removed: 78a44f85ace6a3d405407159cbca6f230b57182b_dl.json&quot;                                              
-## [45] &quot;Removed: 78a44f85ace6a3d405407159cbca6f230b57182b.json&quot;                                                 
-## [46] &quot;Removed: 78d37b48ea08504c9752c8c96ca8dddb1714def2_dl.json&quot;                                              
-## [47] &quot;Removed: 78d37b48ea08504c9752c8c96ca8dddb1714def2.json&quot;                                                 
-## [48] &quot;Removed: 79c078e95ac660961c5590d993db1b94d701e628_dl.json&quot;                                              
-## [49] &quot;Removed: 79c078e95ac660961c5590d993db1b94d701e628.json&quot;                                                 
-## [50] &quot;Removed: 83c299863288fac831b249279825797ba2b5812b_dl.json&quot;                                              
-## [51] &quot;Removed: 83c299863288fac831b249279825797ba2b5812b.json&quot;                                                 
-## [52] &quot;Removed: 90663ccde6d747a3f2690c5bd028e305f9cd8120_dl.json&quot;                                              
-## [53] &quot;Removed: 90663ccde6d747a3f2690c5bd028e305f9cd8120.json&quot;                                                 
-## [54] &quot;Removed: 964a020ede8631bd7d7d937c9bdff25bfdf3862e_dl.json&quot;                                              
-## [55] &quot;Removed: 964a020ede8631bd7d7d937c9bdff25bfdf3862e.json&quot;                                                 
-## [56] &quot;Removed: 9b4c765b89bb035dbf5a029bc85c7b5cc8611531_dl.json&quot;                                              
-## [57] &quot;Removed: 9b4c765b89bb035dbf5a029bc85c7b5cc8611531.json&quot;                                                 
-## [58] &quot;Removed: 9eb5ea194b3d4ce771596b3ce30066dc78da0c42_dl.json&quot;                                              
-## [59] &quot;Removed: 9eb5ea194b3d4ce771596b3ce30066dc78da0c42.json&quot;                                                 
-## [60] &quot;Removed: a0c6b1ed5441505a0e11e5ef5bc05adbb5e672f2_dl.json&quot;                                              
-## [61] &quot;Removed: a0c6b1ed5441505a0e11e5ef5bc05adbb5e672f2.json&quot;                                                 
-## [62] &quot;Removed: adc19609aadc132edcd1307e1216da1407058118_dl.json&quot;                                              
-## [63] &quot;Removed: adc19609aadc132edcd1307e1216da1407058118.json&quot;                                                 
-## [64] &quot;Removed: b194cb2672fe8e4720868401b0b546ee2dd21884_dl.json&quot;                                              
-## [65] &quot;Removed: b194cb2672fe8e4720868401b0b546ee2dd21884.json&quot;                                                 
-## [66] &quot;Removed: caaf52c87c590eacd6c3a80aa8f017ea84ac676a_dl.json&quot;                                              
-## [67] &quot;Removed: caaf52c87c590eacd6c3a80aa8f017ea84ac676a.json&quot;                                                 
-## [68] &quot;Removed: cb28809571a05c87d9a0d397dd5262f977aba57c_dl.json&quot;                                              
-## [69] &quot;Removed: cb28809571a05c87d9a0d397dd5262f977aba57c.json&quot;                                                 
-## [70] &quot;Removed: cc919440fb7ca98c7426452a5b85c66a874c7357_dl.json&quot;                                              
-## [71] &quot;Removed: cc919440fb7ca98c7426452a5b85c66a874c7357.json&quot;                                                 
-## [72] &quot;Removed: d39b6abf6e742d11c13b2a86508c51c9f39a98b6_dl.json&quot;                                              
-## [73] &quot;Removed: d39b6abf6e742d11c13b2a86508c51c9f39a98b6.json&quot;                                                 
-## [74] &quot;Removed: d481ccfab9267df9b7acf0a3129625859a26a750_68c5ca73812a80a8ef11cbd4150ca48d1f956ec1_lineage.json&quot;
-## [75] &quot;Removed: d481ccfab9267df9b7acf0a3129625859a26a750_dl.json&quot;                                              
-## [76] &quot;Removed: d481ccfab9267df9b7acf0a3129625859a26a750.json&quot;                                                 
-## [77] &quot;Removed: d54a7a0cb7ce383f4c6f08f58c1a26ad545c4af9_dl.json&quot;                                              
-## [78] &quot;Removed: d54a7a0cb7ce383f4c6f08f58c1a26ad545c4af9.json&quot;                                                 
-## [79] &quot;Removed: ec932240608eaefcf752646e0e1baa9a5b7912fc_2a8b275852b4085d374094c98a3f95bc0e22ec3b_lineage.json&quot;
-## [80] &quot;Removed: ec932240608eaefcf752646e0e1baa9a5b7912fc_dl.json&quot;                                              
-## [81] &quot;Removed: ec932240608eaefcf752646e0e1baa9a5b7912fc.json&quot;                                                 
-## [82] &quot;Removed: f3c4aea33e69f13af5679b66fc4e7e6e1f2aff08_dl.json&quot;                                              
-## [83] &quot;Removed: f3c4aea33e69f13af5679b66fc4e7e6e1f2aff08.json&quot;                                                 
-## [84] &quot;Removed: fcdaa8fca2e3806e86573e6867f0cdd38dfd79ff_2a8b275852b4085d374094c98a3f95bc0e22ec3b_lineage.json&quot;
-## [85] &quot;Removed: fcdaa8fca2e3806e86573e6867f0cdd38dfd79ff_dl.json&quot;                                              
-## [86] &quot;Removed: fcdaa8fca2e3806e86573e6867f0cdd38dfd79ff.json&quot;                                                 
-## [87] &quot;Removed: ffeb8db1691dc73b5e1c212b60ba8c37c5c2d3c1_dl.json&quot;                                              
-## [88] &quot;Removed: ffeb8db1691dc73b5e1c212b60ba8c37c5c2d3c1.json&quot;</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">clean_trackr_dir</span>(trackr_dir)</a></code></pre></div>
+<p><em>Article by Hamish Gibbs 2020-06-18 13:29:23. To report a problem with this package, please <a href="https://github.com/hamishgibbs/rtrackr/issues">create an issue</a> on <a href="https://github.com/hamishgibbs/rtrackr">GitHub</a>.</em></p>
 </div>
 
 

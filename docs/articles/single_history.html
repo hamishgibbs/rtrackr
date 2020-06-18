@@ -98,7 +98,7 @@
 <h3 class="hasAnchor">
 <a href="#setting-up" class="anchor"></a>Setting up</h3>
 <p>Below is an example of a more complicated workflow, starting from a simple input file, to be used as an example of a full <code>rtrackr</code> workflow.</p>
-<p>We will define and log a simple dataframe for this example. For more information, please see <a href="https://hamishgibbs.github.io/rtrackr/articles/getting_started.html">Getting started</a>.</p>
+<p>We will define and log a simple dataframe for this example. For more information, please see <a href="https://hamishgibbs.github.io/rtrackr/articles/getting_started.html">getting started</a> and <a href="https://hamishgibbs.github.io/rtrackr/articles/summarising_data.html">summarising data</a>.</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">a</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>), <span class="kw">b</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>))</pre></body></html></div>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
@@ -138,19 +138,15 @@ c
 </table></details><div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">trackr_dir</span> <span class="kw">&lt;-</span> <span class="st">'~/Documents/Personal/trackr_dev/trackr_dir'</span>
 
 <span class="co">#setup a new trackr</span>
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_new.html">trackr_new</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Start'</span>, <span class="kw">log_data</span> <span class="kw">=</span> <span class="no">T</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written trackr file 7834337cead04131c959f42ee53b3f2e5422e178.json"
-## [1] "Successfully written trackr data log 7834337cead04131c959f42ee53b3f2e5422e178_dl.json"</code></pre>
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_new.html">trackr_new</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Start'</span>, <span class="kw">suppress_success</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 </div>
 <div id="workflow" class="section level3">
 <h3 class="hasAnchor">
 <a href="#workflow" class="anchor"></a>Workflow</h3>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co">#make some change to the data </span>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co">#make some change to the data </span>
 <span class="no">df</span> <span class="kw">&lt;-</span> <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">b</span> <span class="kw">=</span> <span class="no">b</span> + <span class="fl">1</span>)
 
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Change point #1'</span>, <span class="kw">log_data</span> <span class="kw">=</span> <span class="no">T</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written trackr file 3e9baf5b6c3bb5bade4ce2cf2ecfe68601c94550.json"
-## [1] "Successfully written trackr data log 3e9baf5b6c3bb5bade4ce2cf2ecfe68601c94550_dl.json"</code></pre>
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Change point #1'</span>, <span class="kw">suppress_success</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
 <th style="text-align:left;">
@@ -172,7 +168,7 @@ a
 2
 </td>
 <td style="text-align:left;">
-3e9baf5b6c3bb5bade4ce2cf2ecfe68601c94550_9b298ab2c9539c0d7f187ce26315f459fa58e78e
+271caa6912dae1c5d1f3bf96da255d296f8d78c7_9b298ab2c9539c0d7f187ce26315f459fa58e78e
 </td>
 </tr>
 <tr>
@@ -183,7 +179,7 @@ b
 3
 </td>
 <td style="text-align:left;">
-3e9baf5b6c3bb5bade4ce2cf2ecfe68601c94550_0d62e87ad3877b0c51934dd0c38cba3467375b09
+271caa6912dae1c5d1f3bf96da255d296f8d78c7_0d62e87ad3877b0c51934dd0c38cba3467375b09
 </td>
 </tr>
 <tr>
@@ -194,16 +190,14 @@ c
 4
 </td>
 <td style="text-align:left;">
-3e9baf5b6c3bb5bade4ce2cf2ecfe68601c94550_b1ba9407cf19da9a3625e46f5378484323799a05
+271caa6912dae1c5d1f3bf96da255d296f8d78c7_b1ba9407cf19da9a3625e46f5378484323799a05
 </td>
 </tr>
 </tbody>
-</table></details><div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co">#repeat for subsequent processing steps</span>
+</table></details><div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co">#repeat for subsequent processing steps</span>
 <span class="no">df</span> <span class="kw">&lt;-</span> <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">b</span> <span class="kw">=</span> <span class="no">b</span> + <span class="fl">300</span>)
 
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Change point #2'</span>, <span class="kw">log_data</span> <span class="kw">=</span> <span class="no">T</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written trackr file c10dd7f08636a58d60939bb779db91eb9df353ff.json"
-## [1] "Successfully written trackr data log c10dd7f08636a58d60939bb779db91eb9df353ff_dl.json"</code></pre>
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Change point #2'</span>, <span class="kw">suppress_success</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
 <th style="text-align:left;">
@@ -225,7 +219,7 @@ a
 302
 </td>
 <td style="text-align:left;">
-c10dd7f08636a58d60939bb779db91eb9df353ff_df6c36b931b3c85b98b33b3be98d70c6c3569d95
+053b05a40427682d3b4c4866b1c08777bdbd3894_df6c36b931b3c85b98b33b3be98d70c6c3569d95
 </td>
 </tr>
 <tr>
@@ -236,7 +230,7 @@ b
 303
 </td>
 <td style="text-align:left;">
-c10dd7f08636a58d60939bb779db91eb9df353ff_ad3a917f44d6a3f9fbc121c14cf631784c721fc4
+053b05a40427682d3b4c4866b1c08777bdbd3894_ad3a917f44d6a3f9fbc121c14cf631784c721fc4
 </td>
 </tr>
 <tr>
@@ -247,16 +241,14 @@ c
 304
 </td>
 <td style="text-align:left;">
-c10dd7f08636a58d60939bb779db91eb9df353ff_20e8c8352858485ba2abdc2a151f5cc2dbcf4503
+053b05a40427682d3b4c4866b1c08777bdbd3894_20e8c8352858485ba2abdc2a151f5cc2dbcf4503
 </td>
 </tr>
 </tbody>
-</table></details><div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="co">#splitting a single record into multiples</span>
+</table></details><div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co">#splitting a single record into multiples</span>
 <span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="no">df</span>, <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">b</span> <span class="kw">=</span> <span class="no">b</span> -<span class="fl">300</span>))
 
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Dividing rows'</span>, <span class="kw">log_data</span> <span class="kw">=</span> <span class="no">T</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written trackr file f0b5059268b2a9e5f36e81df47ee9ae1195daf59.json"
-## [1] "Successfully written trackr data log f0b5059268b2a9e5f36e81df47ee9ae1195daf59_dl.json"</code></pre>
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Dividing rows'</span>, <span class="kw">suppress_success</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
 <th style="text-align:left;">
@@ -278,7 +270,7 @@ a
 302
 </td>
 <td style="text-align:left;">
-f0b5059268b2a9e5f36e81df47ee9ae1195daf59_df6c36b931b3c85b98b33b3be98d70c6c3569d95
+a999c7921db0fd81979e24832685bfdb58600881_df6c36b931b3c85b98b33b3be98d70c6c3569d95
 </td>
 </tr>
 <tr>
@@ -289,7 +281,7 @@ b
 303
 </td>
 <td style="text-align:left;">
-f0b5059268b2a9e5f36e81df47ee9ae1195daf59_ad3a917f44d6a3f9fbc121c14cf631784c721fc4
+a999c7921db0fd81979e24832685bfdb58600881_ad3a917f44d6a3f9fbc121c14cf631784c721fc4
 </td>
 </tr>
 <tr>
@@ -300,7 +292,7 @@ c
 304
 </td>
 <td style="text-align:left;">
-f0b5059268b2a9e5f36e81df47ee9ae1195daf59_20e8c8352858485ba2abdc2a151f5cc2dbcf4503
+a999c7921db0fd81979e24832685bfdb58600881_20e8c8352858485ba2abdc2a151f5cc2dbcf4503
 </td>
 </tr>
 <tr>
@@ -311,7 +303,7 @@ a
 2
 </td>
 <td style="text-align:left;">
-f0b5059268b2a9e5f36e81df47ee9ae1195daf59_9b298ab2c9539c0d7f187ce26315f459fa58e78e
+a999c7921db0fd81979e24832685bfdb58600881_9b298ab2c9539c0d7f187ce26315f459fa58e78e
 </td>
 </tr>
 <tr>
@@ -322,7 +314,7 @@ b
 3
 </td>
 <td style="text-align:left;">
-f0b5059268b2a9e5f36e81df47ee9ae1195daf59_0d62e87ad3877b0c51934dd0c38cba3467375b09
+a999c7921db0fd81979e24832685bfdb58600881_0d62e87ad3877b0c51934dd0c38cba3467375b09
 </td>
 </tr>
 <tr>
@@ -333,18 +325,16 @@ c
 4
 </td>
 <td style="text-align:left;">
-f0b5059268b2a9e5f36e81df47ee9ae1195daf59_b1ba9407cf19da9a3625e46f5378484323799a05
+a999c7921db0fd81979e24832685bfdb58600881_b1ba9407cf19da9a3625e46f5378484323799a05
 </td>
 </tr>
 </tbody>
-</table></details><div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co">#summarising data</span>
+</table></details><div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co">#summarising data</span>
 <span class="no">df</span> <span class="kw">&lt;-</span> <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">a</span>)
 
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_summarise.html">trackr_summarise</a></span>(<span class="no">df</span>, <span class="kw">n</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span>())</pre></body></html></div>
-<pre><code>## Joining, by = "a"</code></pre>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Summarising rows'</span>, <span class="kw">log_data</span> <span class="kw">=</span> <span class="no">T</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written trackr file 81df9ebaa813b055a532db97113a53b32d1532f2.json"
-## [1] "Successfully written trackr data log 81df9ebaa813b055a532db97113a53b32d1532f2_dl.json"</code></pre>
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_summarise.html">trackr_summarise</a></span>(<span class="no">df</span>, <span class="kw">n</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span>())
+
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Summarising rows'</span>, <span class="kw">suppress_success</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
 <th style="text-align:left;">
@@ -366,7 +356,7 @@ a
 2
 </td>
 <td style="text-align:left;">
-81df9ebaa813b055a532db97113a53b32d1532f2_9b298ab2c9539c0d7f187ce26315f459fa58e78e
+5e66d56751e72214077cb7d713d6796a449f0f04_9b298ab2c9539c0d7f187ce26315f459fa58e78e
 </td>
 </tr>
 <tr>
@@ -377,7 +367,7 @@ b
 2
 </td>
 <td style="text-align:left;">
-81df9ebaa813b055a532db97113a53b32d1532f2_d6543aeb67806714fa9e9567dc5c46b2106ae843
+5e66d56751e72214077cb7d713d6796a449f0f04_d6543aeb67806714fa9e9567dc5c46b2106ae843
 </td>
 </tr>
 <tr>
@@ -388,15 +378,13 @@ c
 2
 </td>
 <td style="text-align:left;">
-81df9ebaa813b055a532db97113a53b32d1532f2_c7a74dd8ad5c5743a5983d3102600cc7f9df9370
+5e66d56751e72214077cb7d713d6796a449f0f04_c7a74dd8ad5c5743a5983d3102600cc7f9df9370
 </td>
 </tr>
 </tbody>
-</table></details><div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="no">n</span>**<span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="fl">3</span>))
+</table></details><div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="no">n</span>**<span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="fl">3</span>))
 
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Further Processing'</span>, <span class="kw">log_data</span> <span class="kw">=</span> <span class="no">T</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written trackr file 7f71ddb87d405c68098314c1ef06362d1f991aef.json"
-## [1] "Successfully written trackr data log 7f71ddb87d405c68098314c1ef06362d1f991aef_dl.json"</code></pre>
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Further Processing'</span>, <span class="kw">suppress_success</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
 <th style="text-align:left;">
@@ -415,10 +403,10 @@ trackr_id
 a
 </td>
 <td style="text-align:right;">
-1.557909
+1.602771
 </td>
 <td style="text-align:left;">
-7f71ddb87d405c68098314c1ef06362d1f991aef_0f5c1ed711b013e1925a79a14cd7c2f5c45c861b
+c9e9c6159c3d9b5a6deab1372ed89aeacbda9d5f_d4ff7eb7b779e2003467bac9da39060357509697
 </td>
 </tr>
 <tr>
@@ -426,10 +414,10 @@ a
 b
 </td>
 <td style="text-align:right;">
-1.130378
+1.147434
 </td>
 <td style="text-align:left;">
-7f71ddb87d405c68098314c1ef06362d1f991aef_cac4738658ccc058f39a433df6dd2ff992e9c548
+c9e9c6159c3d9b5a6deab1372ed89aeacbda9d5f_c92f6d16b026aaa30c2bc6c4bec0c5f5ba4fde04
 </td>
 </tr>
 <tr>
@@ -437,18 +425,16 @@ b
 c
 </td>
 <td style="text-align:right;">
-1.743051
+1.367795
 </td>
 <td style="text-align:left;">
-7f71ddb87d405c68098314c1ef06362d1f991aef_88cf27c03cb220b1d764b577ca03ef5ec0027f3e
+c9e9c6159c3d9b5a6deab1372ed89aeacbda9d5f_253687b18aa63e007d0a115b3239a115b50c3c29
 </td>
 </tr>
 </tbody>
-</table></details><div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="no">df</span>, <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="no">n</span> -<span class="fl">60</span>), <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="no">n</span> * <span class="fl">2</span>), <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="no">n</span> * <span class="fl">56</span>))
+</table></details><div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="no">df</span>, <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="no">n</span> -<span class="fl">60</span>), <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="no">n</span> * <span class="fl">2</span>), <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="no">n</span> * <span class="fl">56</span>))
 
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Really messing with things'</span>, <span class="kw">log_data</span> <span class="kw">=</span> <span class="no">T</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written trackr file c48022b8f70780123e03acbc5f169f0fa127f401.json"
-## [1] "Successfully written trackr data log c48022b8f70780123e03acbc5f169f0fa127f401_dl.json"</code></pre>
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'Really messing with things'</span>, <span class="kw">suppress_success</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
 <th style="text-align:left;">
@@ -467,10 +453,10 @@ trackr_id
 a
 </td>
 <td style="text-align:right;">
-1.557909
+1.602771
 </td>
 <td style="text-align:left;">
-c48022b8f70780123e03acbc5f169f0fa127f401_0f5c1ed711b013e1925a79a14cd7c2f5c45c861b
+b29d520c94d063742f98507895273688a28eda15_d4ff7eb7b779e2003467bac9da39060357509697
 </td>
 </tr>
 <tr>
@@ -478,10 +464,10 @@ c48022b8f70780123e03acbc5f169f0fa127f401_0f5c1ed711b013e1925a79a14cd7c2f5c45c861
 b
 </td>
 <td style="text-align:right;">
-1.130378
+1.147434
 </td>
 <td style="text-align:left;">
-c48022b8f70780123e03acbc5f169f0fa127f401_cac4738658ccc058f39a433df6dd2ff992e9c548
+b29d520c94d063742f98507895273688a28eda15_c92f6d16b026aaa30c2bc6c4bec0c5f5ba4fde04
 </td>
 </tr>
 <tr>
@@ -489,10 +475,10 @@ c48022b8f70780123e03acbc5f169f0fa127f401_cac4738658ccc058f39a433df6dd2ff992e9c54
 c
 </td>
 <td style="text-align:right;">
-1.743051
+1.367795
 </td>
 <td style="text-align:left;">
-c48022b8f70780123e03acbc5f169f0fa127f401_88cf27c03cb220b1d764b577ca03ef5ec0027f3e
+b29d520c94d063742f98507895273688a28eda15_253687b18aa63e007d0a115b3239a115b50c3c29
 </td>
 </tr>
 <tr>
@@ -500,10 +486,10 @@ c48022b8f70780123e03acbc5f169f0fa127f401_88cf27c03cb220b1d764b577ca03ef5ec0027f3
 a
 </td>
 <td style="text-align:right;">
--58.442091
+-58.397229
 </td>
 <td style="text-align:left;">
-c48022b8f70780123e03acbc5f169f0fa127f401_20d8b573f607a33a3929b1d3f65428d782c20f49
+b29d520c94d063742f98507895273688a28eda15_7ce4bcfdf60b2b6dc88b3d27e851528cf359fbc8
 </td>
 </tr>
 <tr>
@@ -511,10 +497,10 @@ c48022b8f70780123e03acbc5f169f0fa127f401_20d8b573f607a33a3929b1d3f65428d782c20f4
 b
 </td>
 <td style="text-align:right;">
--58.869622
+-58.852566
 </td>
 <td style="text-align:left;">
-c48022b8f70780123e03acbc5f169f0fa127f401_5b7d24fc1df83601703abc0cccbdfeab105ac8f1
+b29d520c94d063742f98507895273688a28eda15_509f296d9f7a7c0454dfe81eea30436f1ea3ef88
 </td>
 </tr>
 <tr>
@@ -522,10 +508,10 @@ c48022b8f70780123e03acbc5f169f0fa127f401_5b7d24fc1df83601703abc0cccbdfeab105ac8f
 c
 </td>
 <td style="text-align:right;">
--58.256949
+-58.632205
 </td>
 <td style="text-align:left;">
-c48022b8f70780123e03acbc5f169f0fa127f401_61df9dcd8ef5655a8e079f2c8db9f44932c6fc05
+b29d520c94d063742f98507895273688a28eda15_fe9fd8193ba20318270b63a94aa92cbb26955d72
 </td>
 </tr>
 <tr>
@@ -533,10 +519,10 @@ c48022b8f70780123e03acbc5f169f0fa127f401_61df9dcd8ef5655a8e079f2c8db9f44932c6fc0
 a
 </td>
 <td style="text-align:right;">
-3.115817
+3.205542
 </td>
 <td style="text-align:left;">
-c48022b8f70780123e03acbc5f169f0fa127f401_2464016d7be7c5ccec2f0fa4a8a77cf76cfe45b1
+b29d520c94d063742f98507895273688a28eda15_5196b4232e6fa310f85ee137c4b13e3fd650436b
 </td>
 </tr>
 <tr>
@@ -544,10 +530,10 @@ c48022b8f70780123e03acbc5f169f0fa127f401_2464016d7be7c5ccec2f0fa4a8a77cf76cfe45b
 b
 </td>
 <td style="text-align:right;">
-2.260757
+2.294868
 </td>
 <td style="text-align:left;">
-c48022b8f70780123e03acbc5f169f0fa127f401_228638db2ff1e1ff899734e3d96fafc9ff8d6b5e
+b29d520c94d063742f98507895273688a28eda15_5320bf1b9e09a511c9acd439ba6894a03e526b35
 </td>
 </tr>
 <tr>
@@ -555,10 +541,10 @@ c48022b8f70780123e03acbc5f169f0fa127f401_228638db2ff1e1ff899734e3d96fafc9ff8d6b5
 c
 </td>
 <td style="text-align:right;">
-3.486102
+2.735589
 </td>
 <td style="text-align:left;">
-c48022b8f70780123e03acbc5f169f0fa127f401_dda9dc8fb0b6545b99ccec6c8d2a6924c2682bbb
+b29d520c94d063742f98507895273688a28eda15_d1d816558505a73ed1ba51c44d5aaca0b35f243e
 </td>
 </tr>
 <tr>
@@ -566,10 +552,10 @@ c48022b8f70780123e03acbc5f169f0fa127f401_dda9dc8fb0b6545b99ccec6c8d2a6924c2682bb
 a
 </td>
 <td style="text-align:right;">
-87.242889
+89.755174
 </td>
 <td style="text-align:left;">
-c48022b8f70780123e03acbc5f169f0fa127f401_67cf8f99b3aff0a0b6652d9db42f6ffaa296ee97
+b29d520c94d063742f98507895273688a28eda15_6577c2c25441c2ea26cccfb6064f4ed910b26af9
 </td>
 </tr>
 <tr>
@@ -577,10 +563,10 @@ c48022b8f70780123e03acbc5f169f0fa127f401_67cf8f99b3aff0a0b6652d9db42f6ffaa296ee9
 b
 </td>
 <td style="text-align:right;">
-63.301194
+64.256290
 </td>
 <td style="text-align:left;">
-c48022b8f70780123e03acbc5f169f0fa127f401_fde0f12f06e8eee7f553654079554003a074d1e5
+b29d520c94d063742f98507895273688a28eda15_2dc69a65c3b69c6106ac34e51ec40908865c2ed4
 </td>
 </tr>
 <tr>
@@ -588,18 +574,16 @@ c48022b8f70780123e03acbc5f169f0fa127f401_fde0f12f06e8eee7f553654079554003a074d1e
 c
 </td>
 <td style="text-align:right;">
-97.610854
+76.596504
 </td>
 <td style="text-align:left;">
-c48022b8f70780123e03acbc5f169f0fa127f401_8d098ae78f8defae6a896c97883f92a46dc8932a
+b29d520c94d063742f98507895273688a28eda15_50d1281d15cc3c253f83b7a26d51543516e22c66
 </td>
 </tr>
 </tbody>
-</table></details><div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="no">n</span> + <span class="fl">1</span>)
+</table></details><div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="no">n</span> + <span class="fl">1</span>)
 
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'added 1'</span>, <span class="kw">log_data</span> <span class="kw">=</span> <span class="no">T</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written trackr file e490b5f45a766ae646631b4001fba85180ca8d2e.json"
-## [1] "Successfully written trackr data log e490b5f45a766ae646631b4001fba85180ca8d2e_dl.json"</code></pre>
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'added 1'</span>, <span class="kw">suppress_success</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
 <th style="text-align:left;">
@@ -618,10 +602,10 @@ trackr_id
 a
 </td>
 <td style="text-align:right;">
-2.557909
+2.602771
 </td>
 <td style="text-align:left;">
-e490b5f45a766ae646631b4001fba85180ca8d2e_811548e588d1f3d35177a72687e60907904989b2
+7cc1fa91fedc5ffafd77975e54713851b554eae5_d29df2922937031589e8cabec8c28ba8e2bdba37
 </td>
 </tr>
 <tr>
@@ -629,10 +613,10 @@ e490b5f45a766ae646631b4001fba85180ca8d2e_811548e588d1f3d35177a72687e60907904989b
 b
 </td>
 <td style="text-align:right;">
-2.130378
+2.147434
 </td>
 <td style="text-align:left;">
-e490b5f45a766ae646631b4001fba85180ca8d2e_9bdfb8dbcfb9a0a3bd400f21693ec249fe354e5c
+7cc1fa91fedc5ffafd77975e54713851b554eae5_1f8b6ee4b9b9a4b345bee8fd269a59e48fe559c8
 </td>
 </tr>
 <tr>
@@ -640,10 +624,10 @@ e490b5f45a766ae646631b4001fba85180ca8d2e_9bdfb8dbcfb9a0a3bd400f21693ec249fe354e5
 c
 </td>
 <td style="text-align:right;">
-2.743051
+2.367795
 </td>
 <td style="text-align:left;">
-e490b5f45a766ae646631b4001fba85180ca8d2e_081826269a23ff3a49e13cb32b87a6d0e4f16615
+7cc1fa91fedc5ffafd77975e54713851b554eae5_9f1cafddc19bfe967dd98439035c8d928323ab30
 </td>
 </tr>
 <tr>
@@ -651,10 +635,10 @@ e490b5f45a766ae646631b4001fba85180ca8d2e_081826269a23ff3a49e13cb32b87a6d0e4f1661
 a
 </td>
 <td style="text-align:right;">
--57.442091
+-57.397229
 </td>
 <td style="text-align:left;">
-e490b5f45a766ae646631b4001fba85180ca8d2e_3a7a2dc20a85bdb773a4f09db7fbe7373777e7d5
+7cc1fa91fedc5ffafd77975e54713851b554eae5_0c1614a48dd9360426c50c6b9b10d54f665414d2
 </td>
 </tr>
 <tr>
@@ -662,10 +646,10 @@ e490b5f45a766ae646631b4001fba85180ca8d2e_3a7a2dc20a85bdb773a4f09db7fbe7373777e7d
 b
 </td>
 <td style="text-align:right;">
--57.869622
+-57.852566
 </td>
 <td style="text-align:left;">
-e490b5f45a766ae646631b4001fba85180ca8d2e_0d8a6f68158a7bad1dff84d2440dc70368955fe1
+7cc1fa91fedc5ffafd77975e54713851b554eae5_47775787162fa8b24457a94c06bdcb4e15c1407d
 </td>
 </tr>
 <tr>
@@ -673,10 +657,10 @@ e490b5f45a766ae646631b4001fba85180ca8d2e_0d8a6f68158a7bad1dff84d2440dc70368955fe
 c
 </td>
 <td style="text-align:right;">
--57.256949
+-57.632205
 </td>
 <td style="text-align:left;">
-e490b5f45a766ae646631b4001fba85180ca8d2e_80265f3b1d1135d54003baa6b9536d1f14541433
+7cc1fa91fedc5ffafd77975e54713851b554eae5_b08ffb6992a640638d61789796fa51fe188ae894
 </td>
 </tr>
 <tr>
@@ -684,10 +668,10 @@ e490b5f45a766ae646631b4001fba85180ca8d2e_80265f3b1d1135d54003baa6b9536d1f1454143
 a
 </td>
 <td style="text-align:right;">
-4.115818
+4.205542
 </td>
 <td style="text-align:left;">
-e490b5f45a766ae646631b4001fba85180ca8d2e_6e30062ed4f108b27702cea8c76bb253ffa2edcc
+7cc1fa91fedc5ffafd77975e54713851b554eae5_da5d714ab979fedc9273b47305f38d65b1894acb
 </td>
 </tr>
 <tr>
@@ -695,10 +679,10 @@ e490b5f45a766ae646631b4001fba85180ca8d2e_6e30062ed4f108b27702cea8c76bb253ffa2edc
 b
 </td>
 <td style="text-align:right;">
-3.260757
+3.294868
 </td>
 <td style="text-align:left;">
-e490b5f45a766ae646631b4001fba85180ca8d2e_39df8de4f1b5d2332296f763299cd8f679522948
+7cc1fa91fedc5ffafd77975e54713851b554eae5_04fa64f4fb5fbe64dfaf4a89b55a87adb302289a
 </td>
 </tr>
 <tr>
@@ -706,10 +690,10 @@ e490b5f45a766ae646631b4001fba85180ca8d2e_39df8de4f1b5d2332296f763299cd8f67952294
 c
 </td>
 <td style="text-align:right;">
-4.486102
+3.735589
 </td>
 <td style="text-align:left;">
-e490b5f45a766ae646631b4001fba85180ca8d2e_7e7d7cafe39c78faa52f55b21412033f191c3f36
+7cc1fa91fedc5ffafd77975e54713851b554eae5_647c54c55a339290fd0dc046a92faaeddf115149
 </td>
 </tr>
 <tr>
@@ -717,10 +701,10 @@ e490b5f45a766ae646631b4001fba85180ca8d2e_7e7d7cafe39c78faa52f55b21412033f191c3f3
 a
 </td>
 <td style="text-align:right;">
-88.242889
+90.755174
 </td>
 <td style="text-align:left;">
-e490b5f45a766ae646631b4001fba85180ca8d2e_dfd8261a85f9e9b943326c92f7a5665f5d49acb5
+7cc1fa91fedc5ffafd77975e54713851b554eae5_2a3481fba08105aad0964739e8e76e32b98df998
 </td>
 </tr>
 <tr>
@@ -728,10 +712,10 @@ e490b5f45a766ae646631b4001fba85180ca8d2e_dfd8261a85f9e9b943326c92f7a5665f5d49acb
 b
 </td>
 <td style="text-align:right;">
-64.301194
+65.256290
 </td>
 <td style="text-align:left;">
-e490b5f45a766ae646631b4001fba85180ca8d2e_58e1aaba3e8a1d9e5f5fd4d60289c72bb8b46975
+7cc1fa91fedc5ffafd77975e54713851b554eae5_2c4a0a90db104bf4e6b7c8fe68531a9e6e0fc410
 </td>
 </tr>
 <tr>
@@ -739,19 +723,17 @@ e490b5f45a766ae646631b4001fba85180ca8d2e_58e1aaba3e8a1d9e5f5fd4d60289c72bb8b4697
 c
 </td>
 <td style="text-align:right;">
-98.610854
+77.596504
 </td>
 <td style="text-align:left;">
-e490b5f45a766ae646631b4001fba85180ca8d2e_53b4f5bf0337f13475b4761bd3af1b296a138772
+7cc1fa91fedc5ffafd77975e54713851b554eae5_66163b1ba4676906f7371c6ff77a4d4971051c11
 </td>
 </tr>
 </tbody>
-</table></details><div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">a</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/trackr_summarise.html">trackr_summarise</a></span>(<span class="kw">n</span> <span class="kw">=</span>  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span>())</pre></body></html></div>
-<pre><code>## Joining, by = "a"</code></pre>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'grouped'</span>, <span class="kw">log_data</span> <span class="kw">=</span> <span class="no">T</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written trackr file dc00a5b1833af611da924c399d2ba523f59a425f.json"
-## [1] "Successfully written trackr data log dc00a5b1833af611da924c399d2ba523f59a425f_dl.json"</code></pre>
+</table></details><div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">a</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="../reference/trackr_summarise.html">trackr_summarise</a></span>(<span class="kw">n</span> <span class="kw">=</span>  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span>())
+
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'grouped'</span>, <span class="kw">suppress_success</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
 <th style="text-align:left;">
@@ -773,7 +755,7 @@ a
 4
 </td>
 <td style="text-align:left;">
-dc00a5b1833af611da924c399d2ba523f59a425f_47ed5196677a528d0267158fa4aecf92372cb285
+2efb9d011f38cbbee0478ce646349acefc5008e0_47ed5196677a528d0267158fa4aecf92372cb285
 </td>
 </tr>
 <tr>
@@ -784,7 +766,7 @@ b
 4
 </td>
 <td style="text-align:left;">
-dc00a5b1833af611da924c399d2ba523f59a425f_3edbbf5495c6c72354eb25125e5b718cf570d596
+2efb9d011f38cbbee0478ce646349acefc5008e0_3edbbf5495c6c72354eb25125e5b718cf570d596
 </td>
 </tr>
 <tr>
@@ -795,15 +777,13 @@ c
 4
 </td>
 <td style="text-align:left;">
-dc00a5b1833af611da924c399d2ba523f59a425f_b1ba9407cf19da9a3625e46f5378484323799a05
+2efb9d011f38cbbee0478ce646349acefc5008e0_b1ba9407cf19da9a3625e46f5378484323799a05
 </td>
 </tr>
 </tbody>
-</table></details><div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="no">n</span> + <span class="fl">2000</span>)
+</table></details><div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="no">df</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="no">n</span> + <span class="fl">2000</span>)
 
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'added 2000'</span>, <span class="kw">log_data</span> <span class="kw">=</span> <span class="no">T</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written trackr file 2ff4bb8a56094a2129ba0c55e08aab1130222a99.json"
-## [1] "Successfully written trackr data log 2ff4bb8a56094a2129ba0c55e08aab1130222a99_dl.json"</code></pre>
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trackr_timepoint.html">trackr_timepoint</a></span>(<span class="no">df</span>, <span class="kw">trackr_dir</span> <span class="kw">=</span> <span class="no">trackr_dir</span>, <span class="kw">timepoint_message</span> <span class="kw">=</span> <span class="st">'added 2000'</span>, <span class="kw">suppress_success</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <details><summary>Details</summary><table class="table table table-striped table-hover table-condensed">
 <thead><tr>
 <th style="text-align:left;">
@@ -825,7 +805,7 @@ a
 2004
 </td>
 <td style="text-align:left;">
-2ff4bb8a56094a2129ba0c55e08aab1130222a99_2a8b275852b4085d374094c98a3f95bc0e22ec3b
+9925a2937a1b913052f93c26217cc60ff198eee6_2a8b275852b4085d374094c98a3f95bc0e22ec3b
 </td>
 </tr>
 <tr>
@@ -836,7 +816,7 @@ b
 2004
 </td>
 <td style="text-align:left;">
-2ff4bb8a56094a2129ba0c55e08aab1130222a99_8fe5b9603973e432094f4e7b81bd411b11d9107b
+9925a2937a1b913052f93c26217cc60ff198eee6_8fe5b9603973e432094f4e7b81bd411b11d9107b
 </td>
 </tr>
 <tr>
@@ -847,7 +827,7 @@ c
 2004
 </td>
 <td style="text-align:left;">
-2ff4bb8a56094a2129ba0c55e08aab1130222a99_3474d281b937403b9c2e9f283b09268bc6f2833a
+9925a2937a1b913052f93c26217cc60ff198eee6_3474d281b937403b9c2e9f283b09268bc6f2833a
 </td>
 </tr>
 </tbody>
@@ -856,21 +836,21 @@ c
 <div id="results" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results" class="anchor"></a>Results</h3>
-<p>Inspect the full processing chain of a single record with <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_lineage.html"><code><a href="../reference/trackr_lineage.html">trackr_lineage()</a></code></a> and <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_network.html"><code><a href="../reference/trackr_network.html">trackr_network()</a></code></a>.</p>
-<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="no">target_id</span> <span class="kw">&lt;-</span> <span class="no">df</span>$<span class="no">trackr_id</span>[<span class="fl">1</span>]
+<p>Inspect the full processing chain of a single record with <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_lineage.html"><code><a href="../reference/trackr_lineage.html">trackr_lineage()</a></code></a> and <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_network.html"><code><a href="../reference/trackr_network.html">trackr_network()</a></code></a>. For more information, please see <a href="https://hamishgibbs.github.io/rtrackr/articles/getting_started.html">getting started</a>.</p>
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">target_id</span> <span class="kw">&lt;-</span> <span class="no">df</span>$<span class="no">trackr_id</span>[<span class="fl">1</span>]
 <span class="fu"><a href="../reference/trackr_lineage.html">trackr_lineage</a></span>(<span class="no">target_id</span>, <span class="no">trackr_dir</span>)</pre></body></html></div>
-<pre><code>## [1] "Successfully written 2ff4bb8a56094a2129ba0c55e08aab1130222a99_2a8b275852b4085d374094c98a3f95bc0e22ec3b_lineage.json"</code></pre>
-<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="no">lineage_fn</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">trackr_dir</span>, <span class="st">'/'</span>, <span class="no">target_id</span>, <span class="st">'_lineage.json'</span>)
+<pre><code>## [1] "Successfully written 9925a2937a1b913052f93c26217cc60ff198eee6_2a8b275852b4085d374094c98a3f95bc0e22ec3b_lineage.json"</code></pre>
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">lineage_fn</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">trackr_dir</span>, <span class="st">'/'</span>, <span class="no">target_id</span>, <span class="st">'_lineage.json'</span>)
 
 <span class="fu"><a href="../reference/trackr_network.html">trackr_network</a></span>(<span class="no">lineage_fn</span>)</pre></body></html></div>
-<div id="htmlwidget-355203bf26ea62a6d785" style="width:700px;height:432.632880098888px;" class="forceNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-355203bf26ea62a6d785">{"x":{"links":{"source":[0,10,10,10,10,13,6,3,4,4,11,7,3,4,4,12,8,3,4,4,14,9,3,4,4,16,5,1,15,5,1],"target":[10,13,11,12,14,6,3,4,16,15,7,3,4,16,15,8,3,4,16,15,9,3,4,16,15,5,1,2,5,1,2],"value":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"colour":["#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["2ff4bb8a56094a2129ba0c55e08aab1130222a99_2a8b275852b4085d374094c98a3f95bc0e22ec3b","3e9baf5b6c3bb5bade4ce2cf2ecfe68601c94550_9b298ab2c9539c0d7f187ce26315f459fa58e78e","7834337cead04131c959f42ee53b3f2e5422e178_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32","7f71ddb87d405c68098314c1ef06362d1f991aef_0f5c1ed711b013e1925a79a14cd7c2f5c45c861b","81df9ebaa813b055a532db97113a53b32d1532f2_9b298ab2c9539c0d7f187ce26315f459fa58e78e","c10dd7f08636a58d60939bb779db91eb9df353ff_df6c36b931b3c85b98b33b3be98d70c6c3569d95","c48022b8f70780123e03acbc5f169f0fa127f401_0f5c1ed711b013e1925a79a14cd7c2f5c45c861b","c48022b8f70780123e03acbc5f169f0fa127f401_20d8b573f607a33a3929b1d3f65428d782c20f49","c48022b8f70780123e03acbc5f169f0fa127f401_2464016d7be7c5ccec2f0fa4a8a77cf76cfe45b1","c48022b8f70780123e03acbc5f169f0fa127f401_67cf8f99b3aff0a0b6652d9db42f6ffaa296ee97","dc00a5b1833af611da924c399d2ba523f59a425f_47ed5196677a528d0267158fa4aecf92372cb285","e490b5f45a766ae646631b4001fba85180ca8d2e_3a7a2dc20a85bdb773a4f09db7fbe7373777e7d5","e490b5f45a766ae646631b4001fba85180ca8d2e_6e30062ed4f108b27702cea8c76bb253ffa2edcc","e490b5f45a766ae646631b4001fba85180ca8d2e_811548e588d1f3d35177a72687e60907904989b2","e490b5f45a766ae646631b4001fba85180ca8d2e_dfd8261a85f9e9b943326c92f7a5665f5d49acb5","f0b5059268b2a9e5f36e81df47ee9ae1195daf59_9b298ab2c9539c0d7f187ce26315f459fa58e78e","f0b5059268b2a9e5f36e81df47ee9ae1195daf59_df6c36b931b3c85b98b33b3be98d70c6c3569d95"],"group":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"nodesize":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['#3182bd'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-30,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-099a666f25578cefa055" style="width:700px;height:432.632880098888px;" class="forceNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-099a666f25578cefa055">{"x":{"links":{"source":[9,2,2,2,2,7,15,16,4,4,5,14,16,4,4,8,12,16,4,4,6,13,16,4,4,11,0,1,10,0,1],"target":[2,7,5,8,6,15,16,4,11,10,14,16,4,11,10,12,16,4,11,10,13,16,4,11,10,0,1,3,0,1,3],"value":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"colour":["#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["053b05a40427682d3b4c4866b1c08777bdbd3894_df6c36b931b3c85b98b33b3be98d70c6c3569d95","271caa6912dae1c5d1f3bf96da255d296f8d78c7_9b298ab2c9539c0d7f187ce26315f459fa58e78e","2efb9d011f38cbbee0478ce646349acefc5008e0_47ed5196677a528d0267158fa4aecf92372cb285","40d78fd4c4fff0c7a5b6c355912ff8c18b80854b_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32","5e66d56751e72214077cb7d713d6796a449f0f04_9b298ab2c9539c0d7f187ce26315f459fa58e78e","7cc1fa91fedc5ffafd77975e54713851b554eae5_0c1614a48dd9360426c50c6b9b10d54f665414d2","7cc1fa91fedc5ffafd77975e54713851b554eae5_2a3481fba08105aad0964739e8e76e32b98df998","7cc1fa91fedc5ffafd77975e54713851b554eae5_d29df2922937031589e8cabec8c28ba8e2bdba37","7cc1fa91fedc5ffafd77975e54713851b554eae5_da5d714ab979fedc9273b47305f38d65b1894acb","9925a2937a1b913052f93c26217cc60ff198eee6_2a8b275852b4085d374094c98a3f95bc0e22ec3b","a999c7921db0fd81979e24832685bfdb58600881_9b298ab2c9539c0d7f187ce26315f459fa58e78e","a999c7921db0fd81979e24832685bfdb58600881_df6c36b931b3c85b98b33b3be98d70c6c3569d95","b29d520c94d063742f98507895273688a28eda15_5196b4232e6fa310f85ee137c4b13e3fd650436b","b29d520c94d063742f98507895273688a28eda15_6577c2c25441c2ea26cccfb6064f4ed910b26af9","b29d520c94d063742f98507895273688a28eda15_7ce4bcfdf60b2b6dc88b3d27e851528cf359fbc8","b29d520c94d063742f98507895273688a28eda15_d4ff7eb7b779e2003467bac9da39060357509697","c9e9c6159c3d9b5a6deab1372ed89aeacbda9d5f_d4ff7eb7b779e2003467bac9da39060357509697"],"group":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"nodesize":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['#3182bd'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-30,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="clean-up" class="section level3">
 <h3 class="hasAnchor">
 <a href="#clean-up" class="anchor"></a>Clean up</h3>
-<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="fu"><a href="../reference/clean_trackr_dir.html">clean_trackr_dir</a></span>(<span class="no">trackr_dir</span>)</pre></body></html></div>
-<p><em>Article by Hamish Gibbs 2020-06-18 12:02:02. To report a problem with this package, please <a href="https://github.com/hamishgibbs/rtrackr/issues">create an issue</a> on <a href="https://github.com/hamishgibbs/rtrackr">GitHub</a>.</em></p>
+<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu"><a href="../reference/clean_trackr_dir.html">clean_trackr_dir</a></span>(<span class="no">trackr_dir</span>)</pre></body></html></div>
+<p><em>Article by Hamish Gibbs 2020-06-18 13:56:58. To report a problem with this package, please <a href="https://github.com/hamishgibbs/rtrackr/issues">create an issue</a> on <a href="https://github.com/hamishgibbs/rtrackr">GitHub</a>.</em></p>
 </div>
   </div>
 

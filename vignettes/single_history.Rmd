@@ -18,7 +18,7 @@ suppressPackageStartupMessages({
 ### Setting up
 Below is an example of a more complicated workflow, starting from a simple input file, to be used as an example of a full `rtrackr` workflow.
 
-We will define and log a simple dataframe for this example. For more information, please see [Getting started](https://hamishgibbs.github.io/rtrackr/articles/getting_started.html).
+We will define and log a simple dataframe for this example. For more information, please see [getting started](https://hamishgibbs.github.io/rtrackr/articles/getting_started.html) and [summarising data](https://hamishgibbs.github.io/rtrackr/articles/summarising_data.html).
 
 ```{r}
 df <- data.frame(a = c('a', 'b', 'c'), b = c(1, 2, 3))
@@ -33,7 +33,7 @@ kable(df) %>%
 trackr_dir <- '~/Documents/Personal/trackr_dev/trackr_dir'
 
 #setup a new trackr
-df <- trackr_new(df, trackr_dir = trackr_dir, timepoint_message = 'Start', log_data = T)
+df <- trackr_new(df, trackr_dir = trackr_dir, timepoint_message = 'Start', suppress_success = TRUE)
 
 ```
 
@@ -43,7 +43,7 @@ df <- trackr_new(df, trackr_dir = trackr_dir, timepoint_message = 'Start', log_d
 #make some change to the data 
 df <- df %>% dplyr::mutate(b = b + 1)
 
-df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Change point #1', log_data = T)
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Change point #1', suppress_success = TRUE)
 ```
 <details><summary>Details</summary>
 ```{r, echo = F}
@@ -56,7 +56,7 @@ kable(df) %>%
 #repeat for subsequent processing steps
 df <- df %>% dplyr::mutate(b = b + 300)
 
-df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Change point #2', log_data = T)
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Change point #2', suppress_success = TRUE)
 ```
 <details><summary>Details</summary>
 ```{r, echo = F}
@@ -68,7 +68,7 @@ kable(df) %>%
 #splitting a single record into multiples
 df <- rbind(df, df %>% dplyr::mutate(b = b -300))
 
-df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Dividing rows', log_data = T)
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Dividing rows', suppress_success = TRUE)
 ```
 <details><summary>Details</summary>
 ```{r, echo = F}
@@ -82,7 +82,7 @@ df <- df %>% dplyr::group_by(a)
 
 df <- trackr_summarise(df, n = dplyr::n())
 
-df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Summarising rows', log_data = T)
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Summarising rows', suppress_success = TRUE)
 ```
 <details><summary>Details</summary>
 ```{r, echo = F}
@@ -93,7 +93,7 @@ kable(df) %>%
 ```{r}
 df <- df %>% dplyr::mutate(n = n**runif(3))
 
-df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Further Processing', log_data = T)
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Further Processing', suppress_success = TRUE)
 ```
 <details><summary>Details</summary>
 ```{r, echo = F}
@@ -104,7 +104,7 @@ kable(df) %>%
 ```{r}
 df <- rbind(df, df %>% dplyr::mutate(n = n -60), df %>% dplyr::mutate(n = n * 2), df %>% dplyr::mutate(n = n * 56))
 
-df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Really messing with things', log_data = T)
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Really messing with things', suppress_success = TRUE)
 ```
 <details><summary>Details</summary>
 ```{r, echo = F}
@@ -115,7 +115,7 @@ kable(df) %>%
 ```{r}
 df <- df %>% dplyr::mutate(n = n + 1)
 
-df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'added 1', log_data = T)
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'added 1', suppress_success = TRUE)
 ```
 <details><summary>Details</summary>
 ```{r, echo = F}
@@ -127,7 +127,7 @@ kable(df) %>%
 df <- df %>% dplyr::group_by(a) %>% 
   trackr_summarise(n =  dplyr::n())
 
-df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'grouped', log_data = T)
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'grouped', suppress_success = TRUE)
 ```
 <details><summary>Details</summary>
 ```{r, echo = F}
@@ -138,7 +138,7 @@ kable(df) %>%
 ```{r}
 df <- df %>% dplyr::mutate(n = n + 2000)
 
-df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'added 2000', log_data = T)
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'added 2000', suppress_success = TRUE)
 ```
 <details><summary>Details</summary>
 ```{r, echo = F}
@@ -148,7 +148,7 @@ kable(df) %>%
 </details>
 
 ### Results
-Inspect the full processing chain of a single record with [`trackr_lineage()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_lineage.html) and [`trackr_network()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_network.html).
+Inspect the full processing chain of a single record with [`trackr_lineage()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_lineage.html) and [`trackr_network()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_network.html). For more information, please see [getting started](https://hamishgibbs.github.io/rtrackr/articles/getting_started.html).
 
 ```{r}
 target_id <- df$trackr_id[1]

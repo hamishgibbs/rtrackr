@@ -9,7 +9,7 @@ testthat::teardown({
 testthat::test_that('trackr_summarise works as expected', {
   source('test_data/test_df.R')
   
-  test_df <- rbind(test_df1, test_df1 %>% dplyr::mutate(b = b + 1))
+  test_df <- rbind(df1, df1 %>% dplyr::mutate(b = b + 1))
   
   test_df <- trackr_new(test_df, 'test_trackr_dir')
   

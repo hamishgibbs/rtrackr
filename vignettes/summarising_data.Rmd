@@ -20,20 +20,18 @@ suppressPackageStartupMessages({
 
 `rtrackr` provides data logging for every record in a dataset throughout the processing chain. In most cases, when records are altered or one record is divided to multiple records, `rtrackr` will simply assign a new trackr id and log changes when a record is updated. 
 
-When data is summarised, on the other hand (multiple records become a single record), `rtrackr` needs to record the `trackr_ids` of all parent records. 
-
-[`trackr_summarise()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_summarise.html) provides a convenient way to summarise data without losing information in the `trackr_id` column.
+When data is summarised, on the other hand (multiple records become a single record), `rtrackr` needs to record the `trackr_ids` of all parent records. [`trackr_summarise()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_summarise.html) provides a convenient way to summarise data without losing information in the `trackr_id` column.
 
 [`trackr_summarise()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_summarise.html) works by combining all parent ids into one row, separated by a ", ". The same operation would work for combining records manually outside of R. 
 
 ### Example workflow
 
-We will use a simple workflow To demonstrate the use of [`trackr_summarise()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_summarise.html) in a data processing chain. Following on from [Getting started](https://hamishgibbs.github.io/rtrackr/articles/getting_started.html), we will create a new dataset, log a new processing timepoint with [`trackr_new()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_new.html).
+We will use a simple workflow To demonstrate the use of [`trackr_summarise()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_summarise.html) in a data processing chain. Continuing from [getting started](https://hamishgibbs.github.io/rtrackr/articles/getting_started.html), we will create a new dataset, and log a new processing timepoint with [`trackr_new()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_new.html).
 
 ```{r}
 trackr_dir <- '~/Documents/trackr_dir'
 df <- data.frame(a = c('a', 'b', 'c'), b = c(1, 2, 3))
-df <- trackr_new(df, trackr_dir = trackr_dir)
+df <- trackr_new(df, trackr_dir = trackr_dir, suppress_success = TRUE)
 ```
 <details><summary>Details</summary>
 ```{r, echo = F}
@@ -42,11 +40,11 @@ kable(df) %>%
 ```
 </details>
 
-Now, we will bind the dataset to itself, and make some changes to one version. 
+Now, we will bind the dataset to itself, and make a change to one version. 
 
 ```{r}
 df <- rbind(df, df %>% dplyr::mutate(b = b + 1))
-df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Merged dataframes')
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Merged dataframes', suppress_success = TRUE)
 ```
 <details><summary>Details</summary>
 ```{r, echo = F}
@@ -73,7 +71,7 @@ kable(df) %>%
 Now, we can log a new timepoint with [`trackr_timepoint()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_timepoint.html).
 
 ```{r}
-df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Summarised dataframes')
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Summarised dataframes', suppress_success = TRUE)
 ```
 <details><summary>Details</summary>
 ```{r, echo = F}
@@ -86,7 +84,7 @@ We will make and log one more change, to better visualize the effect of the summ
 
 ```{r}
 df <- df %>% dplyr::mutate(n = n + 100)
-df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Added 100')
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Added 100', suppress_success = TRUE)
 ```
 <details><summary>Details</summary>
 ```{r, echo = F}
@@ -95,7 +93,7 @@ kable(df) %>%
 ```
 </details>
 
-To visualize this operation on one record, we create a `trackr_lineage` and `trackr_network`. See [Getting started](https://hamishgibbs.github.io/rtrackr/articles/getting_started.html) for more information. 
+To visualize this operation on one record, we create a `trackr_lineage` and `trackr_network`. See [getting started](https://hamishgibbs.github.io/rtrackr/articles/getting_started.html) for more information. 
 
 ```{r}
 target_id <- df$trackr_id[1]

@@ -1604,12 +1604,8 @@ c
 </tbody>
 </table>
 </details>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">df1 &lt;-<span class="st"> </span><span class="kw">trackr_new</span>(df1, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'Start'</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;Successfully written trackr file c281d809d03b48eb7fbdf776737ffd259a005405.json&quot;
-## [1] &quot;Successfully written trackr data log c281d809d03b48eb7fbdf776737ffd259a005405_dl.json&quot;</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">df2 &lt;-<span class="st"> </span><span class="kw">trackr_new</span>(df2, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'Start'</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;Successfully written trackr file 812f5f5db7d5d6d08d04bcfa065c77a24c2e9f5e.json&quot;
-## [1] &quot;Successfully written trackr data log 812f5f5db7d5d6d08d04bcfa065c77a24c2e9f5e_dl.json&quot;</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">df1 &lt;-<span class="st"> </span><span class="kw">trackr_new</span>(df1, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'Start'</span>, <span class="dt">suppress_success =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">df2 &lt;-<span class="st"> </span><span class="kw">trackr_new</span>(df2, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'Start'</span>, <span class="dt">suppress_success =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <details>
 <summary>Details 1</summary> <strong>df1</strong>
 <table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
@@ -1635,7 +1631,7 @@ a
 1
 </td>
 <td style="text-align:left;">
-c281d809d03b48eb7fbdf776737ffd259a005405_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32
+4b613eabc13947c9ea0cbd1b4ddf09a1466002a5_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32
 </td>
 </tr>
 <tr>
@@ -1646,7 +1642,7 @@ b
 2
 </td>
 <td style="text-align:left;">
-c281d809d03b48eb7fbdf776737ffd259a005405_d6543aeb67806714fa9e9567dc5c46b2106ae843
+4b613eabc13947c9ea0cbd1b4ddf09a1466002a5_d6543aeb67806714fa9e9567dc5c46b2106ae843
 </td>
 </tr>
 <tr>
@@ -1657,7 +1653,7 @@ c
 3
 </td>
 <td style="text-align:left;">
-c281d809d03b48eb7fbdf776737ffd259a005405_acecf5a5dfb445683737c2f7f135b18c5eaee1a7
+4b613eabc13947c9ea0cbd1b4ddf09a1466002a5_acecf5a5dfb445683737c2f7f135b18c5eaee1a7
 </td>
 </tr>
 </tbody>
@@ -1688,7 +1684,7 @@ a
 4
 </td>
 <td style="text-align:left;">
-812f5f5db7d5d6d08d04bcfa065c77a24c2e9f5e_47ed5196677a528d0267158fa4aecf92372cb285
+70156392eb5a6170a6ef1966b271653c2856565c_47ed5196677a528d0267158fa4aecf92372cb285
 </td>
 </tr>
 <tr>
@@ -1699,7 +1695,7 @@ b
 5
 </td>
 <td style="text-align:left;">
-812f5f5db7d5d6d08d04bcfa065c77a24c2e9f5e_b845cb31be54e58d8719cbb88ea27d51f1a2df1c
+70156392eb5a6170a6ef1966b271653c2856565c_b845cb31be54e58d8719cbb88ea27d51f1a2df1c
 </td>
 </tr>
 <tr>
@@ -1710,7 +1706,7 @@ c
 6
 </td>
 <td style="text-align:left;">
-812f5f5db7d5d6d08d04bcfa065c77a24c2e9f5e_d407e3ee6c77faa4ed4ffe31fa434f326ff9ddbe
+70156392eb5a6170a6ef1966b271653c2856565c_d407e3ee6c77faa4ed4ffe31fa434f326ff9ddbe
 </td>
 </tr>
 </tbody>
@@ -1719,11 +1715,10 @@ c
 </div>
 <div id="workflow" class="section level3">
 <h3>Workflow</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">rbind</span>(df1, df2)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(a) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="st">  </span><span class="kw">trackr_summarise</span>(<span class="dt">n =</span> dplyr<span class="op">::</span><span class="kw">n</span>())</a></code></pre></div>
-<pre><code>## Joining, by = &quot;a&quot;</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">rbind</span>(df1, df2)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(a) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">  </span><span class="kw">trackr_summarise</span>(<span class="dt">n =</span> dplyr<span class="op">::</span><span class="kw">n</span>())</a></code></pre></div>
 <details>
 <summary>Details</summary>
 <table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
@@ -1749,7 +1744,7 @@ a
 2
 </td>
 <td style="text-align:left;">
-c281d809d03b48eb7fbdf776737ffd259a005405_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32, 812f5f5db7d5d6d08d04bcfa065c77a24c2e9f5e_47ed5196677a528d0267158fa4aecf92372cb285
+4b613eabc13947c9ea0cbd1b4ddf09a1466002a5_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32, 70156392eb5a6170a6ef1966b271653c2856565c_47ed5196677a528d0267158fa4aecf92372cb285
 </td>
 </tr>
 <tr>
@@ -1760,7 +1755,7 @@ b
 2
 </td>
 <td style="text-align:left;">
-c281d809d03b48eb7fbdf776737ffd259a005405_d6543aeb67806714fa9e9567dc5c46b2106ae843, 812f5f5db7d5d6d08d04bcfa065c77a24c2e9f5e_b845cb31be54e58d8719cbb88ea27d51f1a2df1c
+4b613eabc13947c9ea0cbd1b4ddf09a1466002a5_d6543aeb67806714fa9e9567dc5c46b2106ae843, 70156392eb5a6170a6ef1966b271653c2856565c_b845cb31be54e58d8719cbb88ea27d51f1a2df1c
 </td>
 </tr>
 <tr>
@@ -1771,15 +1766,13 @@ c
 2
 </td>
 <td style="text-align:left;">
-c281d809d03b48eb7fbdf776737ffd259a005405_acecf5a5dfb445683737c2f7f135b18c5eaee1a7, 812f5f5db7d5d6d08d04bcfa065c77a24c2e9f5e_d407e3ee6c77faa4ed4ffe31fa434f326ff9ddbe
+4b613eabc13947c9ea0cbd1b4ddf09a1466002a5_acecf5a5dfb445683737c2f7f135b18c5eaee1a7, 70156392eb5a6170a6ef1966b271653c2856565c_d407e3ee6c77faa4ed4ffe31fa434f326ff9ddbe
 </td>
 </tr>
 </tbody>
 </table>
 </details>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'processing 1'</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;Successfully written trackr file 502faf05e91cc209b7c73337466ec2e8e452de31.json&quot;
-## [1] &quot;Successfully written trackr data log 502faf05e91cc209b7c73337466ec2e8e452de31_dl.json&quot;</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'processing 1'</span>, <span class="dt">suppress_success =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <details>
 <summary>Details</summary>
 <table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
@@ -1805,7 +1798,7 @@ a
 2
 </td>
 <td style="text-align:left;">
-502faf05e91cc209b7c73337466ec2e8e452de31_9b298ab2c9539c0d7f187ce26315f459fa58e78e
+8cfa46fedcd885c7dc5f0e4df5e5410e4cc5bd2e_9b298ab2c9539c0d7f187ce26315f459fa58e78e
 </td>
 </tr>
 <tr>
@@ -1816,7 +1809,7 @@ b
 2
 </td>
 <td style="text-align:left;">
-502faf05e91cc209b7c73337466ec2e8e452de31_d6543aeb67806714fa9e9567dc5c46b2106ae843
+8cfa46fedcd885c7dc5f0e4df5e5410e4cc5bd2e_d6543aeb67806714fa9e9567dc5c46b2106ae843
 </td>
 </tr>
 <tr>
@@ -1827,18 +1820,16 @@ c
 2
 </td>
 <td style="text-align:left;">
-502faf05e91cc209b7c73337466ec2e8e452de31_c7a74dd8ad5c5743a5983d3102600cc7f9df9370
+8cfa46fedcd885c7dc5f0e4df5e5410e4cc5bd2e_c7a74dd8ad5c5743a5983d3102600cc7f9df9370
 </td>
 </tr>
 </tbody>
 </table>
 </details>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">n =</span> n <span class="op">+</span><span class="st"> </span><span class="dv">20</span>)</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'processing 1'</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;Successfully written trackr file e9d9c2e502f36ef659e17c82536e68876930efed.json&quot;
-## [1] &quot;Successfully written trackr data log e9d9c2e502f36ef659e17c82536e68876930efed_dl.json&quot;</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">n =</span> n <span class="op">+</span><span class="st"> </span><span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">df &lt;-<span class="st"> </span><span class="kw">trackr_timepoint</span>(df, <span class="dt">trackr_dir =</span> trackr_dir, <span class="dt">timepoint_message =</span> <span class="st">'processing 1'</span>, <span class="dt">suppress_success =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <details>
 <summary>Details</summary>
 <table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
@@ -1864,7 +1855,7 @@ a
 22
 </td>
 <td style="text-align:left;">
-e9d9c2e502f36ef659e17c82536e68876930efed_68c5ca73812a80a8ef11cbd4150ca48d1f956ec1
+19408b369826e30d1bdf40ff21a02357fad19bbf_68c5ca73812a80a8ef11cbd4150ca48d1f956ec1
 </td>
 </tr>
 <tr>
@@ -1875,7 +1866,7 @@ b
 22
 </td>
 <td style="text-align:left;">
-e9d9c2e502f36ef659e17c82536e68876930efed_15286b997ca4ef9b34614bc77265b1f529295a5e
+19408b369826e30d1bdf40ff21a02357fad19bbf_15286b997ca4ef9b34614bc77265b1f529295a5e
 </td>
 </tr>
 <tr>
@@ -1886,7 +1877,7 @@ c
 22
 </td>
 <td style="text-align:left;">
-e9d9c2e502f36ef659e17c82536e68876930efed_6e894e5f35b10a1e3b36eec46f595b65f28c8905
+19408b369826e30d1bdf40ff21a02357fad19bbf_6e894e5f35b10a1e3b36eec46f595b65f28c8905
 </td>
 </tr>
 </tbody>
@@ -1896,18 +1887,19 @@ e9d9c2e502f36ef659e17c82536e68876930efed_6e894e5f35b10a1e3b36eec46f595b65f28c890
 <div id="results" class="section level3">
 <h3>Results</h3>
 <p>Inspect the full processing chain of a single record with <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_lineage.html"><code>trackr_lineage()</code></a> and <a href="https://hamishgibbs.github.io/rtrackr/reference/trackr_network.html"><code>trackr_network()</code></a>. Note that this record has two “root” records (it is the child of two starting points in the processing chain).</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">target_id &lt;-<span class="st"> </span>df<span class="op">$</span>trackr_id[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">trackr_lineage</span>(target_id, trackr_dir)</a></code></pre></div>
-<pre><code>## [1] &quot;Successfully written e9d9c2e502f36ef659e17c82536e68876930efed_68c5ca73812a80a8ef11cbd4150ca48d1f956ec1_lineage.json&quot;</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">lineage_fn &lt;-<span class="st"> </span><span class="kw">paste0</span>(trackr_dir, <span class="st">'/'</span>, target_id, <span class="st">'_lineage.json'</span>)</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="kw">trackr_network</span>(lineage_fn)</a></code></pre></div>
-<div id="htmlwidget-d303e608e96e99922db4" style="width:288px;height:288px;" class="forceNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d303e608e96e99922db4">{"x":{"links":{"source":[3,0,0],"target":[0,2,1],"value":[1,1,1],"colour":["#666","#666","#666"]},"nodes":{"name":["502faf05e91cc209b7c73337466ec2e8e452de31_9b298ab2c9539c0d7f187ce26315f459fa58e78e","812f5f5db7d5d6d08d04bcfa065c77a24c2e9f5e_47ed5196677a528d0267158fa4aecf92372cb285","c281d809d03b48eb7fbdf776737ffd259a005405_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32","e9d9c2e502f36ef659e17c82536e68876930efed_68c5ca73812a80a8ef11cbd4150ca48d1f956ec1"],"group":[1,1,1,1],"nodesize":[8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['#3182bd'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-30,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">target_id &lt;-<span class="st"> </span>df<span class="op">$</span>trackr_id[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">trackr_lineage</span>(target_id, trackr_dir)</a></code></pre></div>
+<pre><code>## [1] &quot;Successfully written 19408b369826e30d1bdf40ff21a02357fad19bbf_68c5ca73812a80a8ef11cbd4150ca48d1f956ec1_lineage.json&quot;</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">lineage_fn &lt;-<span class="st"> </span><span class="kw">paste0</span>(trackr_dir, <span class="st">'/'</span>, target_id, <span class="st">'_lineage.json'</span>)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">trackr_network</span>(lineage_fn)</a></code></pre></div>
+<div id="htmlwidget-abb4d608feca8e93c1f6" style="width:288px;height:288px;" class="forceNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-abb4d608feca8e93c1f6">{"x":{"links":{"source":[0,3,3],"target":[3,1,2],"value":[1,1,1],"colour":["#666","#666","#666"]},"nodes":{"name":["19408b369826e30d1bdf40ff21a02357fad19bbf_68c5ca73812a80a8ef11cbd4150ca48d1f956ec1","4b613eabc13947c9ea0cbd1b4ddf09a1466002a5_4751028c3d830cf93f7d1e64d5e4d58c9d01ee32","70156392eb5a6170a6ef1966b271653c2856565c_47ed5196677a528d0267158fa4aecf92372cb285","8cfa46fedcd885c7dc5f0e4df5e5410e4cc5bd2e_9b298ab2c9539c0d7f187ce26315f459fa58e78e"],"group":[1,1,1,1],"nodesize":[8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['#3182bd'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-30,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="clean-up" class="section level3">
 <h3>Clean up</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">clean_trackr_dir</span>(trackr_dir)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">clean_trackr_dir</span>(trackr_dir)</a></code></pre></div>
+<p><em>Article by Hamish Gibbs 2020-06-18 13:27:23. To report a problem with this package, please <a href="https://github.com/hamishgibbs/rtrackr/issues">create an issue</a> on <a href="https://github.com/hamishgibbs/rtrackr">GitHub</a>.</em></p>
 </div>
 
 

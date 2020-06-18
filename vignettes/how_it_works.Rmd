@@ -50,7 +50,7 @@ digest::sha1(row)
 ```
 </details>
 
-The file hash of this dataframe at UNIX time `1592300508` would therefore be `digest::sha1("1592300508a1")`, or `566f5d1c67d708801092ded906f6180d5ae40c0a`.
+The file hash of this dataframe at UNIX time `1592300508` would therefore be `digest::sha1("15923005084751028c3d830cf93f7d1e64d5e4d58c9d01ee32")`, or `566f5d1c67d708801092ded906f6180d5ae40c0a`.
 
 <details><summary>Details</summary>
 Using the same row hash as above:
@@ -61,7 +61,7 @@ file_hash <- digest::sha1(c('1592300508', digest::sha1(row)))
 
 </details>
 
-For a dataframe with two rows, `a = "a"`, `b = 1` and `a = "b"`, `b = 2`, recorded at UNIX time `1592300508`, the file hash would be `digest::sha1("1592300508a1b2")`, or `8101ce0e209af8bd1d636729a6b77ff7bb124957`.
+For a dataframe with two rows, `a = "a"`, `b = 1` and `a = "b"`, `b = 2`, recorded at UNIX time `1592300508`, the file hash would be `digest::sha1("15923005084751028c3d830cf93f7d1e64d5e4d58c9d01ee32d6543aeb67806714fa9e9567dc5c46b2106ae843")`, or `60a98eebfddc76740acc443d9687f56b37a47893`.
 
 <details><summary>Details</summary>
 
@@ -75,11 +75,11 @@ digest::sha1(c('1592300508', digest::sha1('a1'), digest::sha1('b2')))
 
 For more information on getting started with`rtrackr` please see [Getting started](https://hamishgibbs.github.io/rtrackr/articles/getting_started.html).
 
-[`trackr_new()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_new.html) and [`trackr_timepoint()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_timepoint.html) both provide the option to write a data log along with a standard trackr log file with the argument `log_data = TRUE`. This is recommended, as it provides a full hisotry of all timepoints in a data processing chain, but may not be practical for repeatedly logging very large datasets. 
+[`trackr_new()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_new.html) and [`trackr_timepoint()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_timepoint.html) both provide the option to write a data log along with a standard trackr log file with the argument `log_data = TRUE`. This is recommended, as it provides a full history of all timepoints in a data processing chain, but may not be practical for repeatedly logging very large datasets. 
 
 Any data logs that have been saved using `log_data = TRUE` can be validated by re-computing the file hash of the logged data using the timestamp stored in the corresponding trackr log file. `rtrackr` provides the [`validate_data_log()`](https://hamishgibbs.github.io/rtrackr/reference/validate_data_log.html) function to validate a trackr data log automatically.
 
 ### Other considerations
-A primary motivation for the development of this package is the case of data files that are processed in R and shared with users who further alter the data manually (for human data cleaning, manual updates, or record validation). It is important to consider the effect of manual record processing on data logged by `rtrackr`. When sharing data logged in `rtrackr` outside of R, please consider the special case of [Summarising data](https://hamishgibbs.github.io/rtrackr/articles/summarising_data.html).
+A primary motivation for the development of this package is the use case of data files that are processed in R and shared with users who further alter the data manually (for human data cleaning, manual updates, or record validation). It is important to consider the effect of manual record processing on data logged by `rtrackr`. When sharing data logged in `rtrackr` outside of R, please consider the special case of [summarising data](https://hamishgibbs.github.io/rtrackr/articles/summarising_data.html).
 
 *Article by Hamish Gibbs `r Sys.time()`. To report a problem with this package, please [create an issue](https://github.com/hamishgibbs/rtrackr/issues) on [GitHub](https://github.com/hamishgibbs/rtrackr).*
