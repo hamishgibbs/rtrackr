@@ -1,0 +1,167 @@
+---
+title: "Single history workflow"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteIndexEntry{Single history workflow}
+  %\usepackage[UTF-8]{rtrackr}
+---
+
+```{r echo=F, results="hide"}
+suppressPackageStartupMessages({
+  library(kableExtra)
+  library(rtrackr)
+  library(networkD3)
+})
+```
+
+### Setting up
+Below is an example of a more complicated workflow, starting from a simple input file, to be used as an example of a full `rtrackr` workflow.
+
+We will define and log a simple dataframe for this example. For more information, please see [Getting started](https://hamishgibbs.github.io/rtrackr/articles/getting_started.html).
+
+```{r}
+df <- data.frame(a = c('a', 'b', 'c'), b = c(1, 2, 3))
+```
+<details><summary>Details</summary>
+```{r, echo = F}
+kable(df) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+</details>
+```{r}
+trackr_dir <- '~/Documents/Personal/trackr_dev/trackr_dir'
+
+#setup a new trackr
+df <- trackr_new(df, trackr_dir = trackr_dir, timepoint_message = 'Start', log_data = T)
+
+```
+
+### Workflow
+
+```{r}
+#make some change to the data 
+df <- df %>% dplyr::mutate(b = b + 1)
+
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Change point #1', log_data = T)
+```
+<details><summary>Details</summary>
+```{r, echo = F}
+kable(df) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+</details>
+```{r}
+
+#repeat for subsequent processing steps
+df <- df %>% dplyr::mutate(b = b + 300)
+
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Change point #2', log_data = T)
+```
+<details><summary>Details</summary>
+```{r, echo = F}
+kable(df) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+</details>
+```{r}
+#splitting a single record into multiples
+df <- rbind(df, df %>% dplyr::mutate(b = b -300))
+
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Dividing rows', log_data = T)
+```
+<details><summary>Details</summary>
+```{r, echo = F}
+kable(df) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+</details>
+```{r}
+#summarising data
+df <- df %>% dplyr::group_by(a)
+
+df <- trackr_summarise(df, n = dplyr::n())
+
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Summarising rows', log_data = T)
+```
+<details><summary>Details</summary>
+```{r, echo = F}
+kable(df) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+</details>
+```{r}
+df <- df %>% dplyr::mutate(n = n**runif(3))
+
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Further Processing', log_data = T)
+```
+<details><summary>Details</summary>
+```{r, echo = F}
+kable(df) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+</details>
+```{r}
+df <- rbind(df, df %>% dplyr::mutate(n = n -60), df %>% dplyr::mutate(n = n * 2), df %>% dplyr::mutate(n = n * 56))
+
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'Really messing with things', log_data = T)
+```
+<details><summary>Details</summary>
+```{r, echo = F}
+kable(df) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+</details>
+```{r}
+df <- df %>% dplyr::mutate(n = n + 1)
+
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'added 1', log_data = T)
+```
+<details><summary>Details</summary>
+```{r, echo = F}
+kable(df) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+</details>
+```{r}
+df <- df %>% dplyr::group_by(a) %>% 
+  trackr_summarise(n =  dplyr::n())
+
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'grouped', log_data = T)
+```
+<details><summary>Details</summary>
+```{r, echo = F}
+kable(df) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+</details>
+```{r}
+df <- df %>% dplyr::mutate(n = n + 2000)
+
+df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'added 2000', log_data = T)
+```
+<details><summary>Details</summary>
+```{r, echo = F}
+kable(df) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+</details>
+
+### Results
+Inspect the full processing chain of a single record with [`trackr_lineage()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_lineage.html) and [`trackr_network()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_network.html).
+
+```{r}
+target_id <- df$trackr_id[1]
+trackr_lineage(target_id, trackr_dir)
+
+lineage_fn <- paste0(trackr_dir, '/', target_id, '_lineage.json')
+
+trackr_network(lineage_fn)
+```
+
+### Clean up
+```{r results="hide"}
+clean_trackr_dir(trackr_dir)
+```
+
+*Article by Hamish Gibbs `r Sys.time()`. To report a problem with this package, please create an [issue](https://github.com/hamishgibbs/rtrackr/issues).*

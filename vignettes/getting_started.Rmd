@@ -10,7 +10,6 @@ vignette: >
 ```{r echo=F, results="hide"}
 suppressPackageStartupMessages({
   library(kableExtra)
-  #devtools::install("~/Documents/Personal/rtrackr")
   library(rtrackr)
   library(networkD3)
 })
@@ -31,10 +30,12 @@ Dataset tracking starts with the [`trackr_new()`](https://hamishgibbs.github.io/
 ```{r}
 df <- data.frame(a = c('a', 'b', 'c'), b = c(1, 2, 3))
 ```
+<details><summary>Details</summary>
 ```{r, echo = F}
 kable(df) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
+</details>
 
 [`trackr_new()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_new.html) adds a `trackr_id` column to the dataframe, the starting point for all data logging with `rtrackr`. Be sure to specify where `rtrackr` log files should be stored with `trackr_dir = ` (you will see an error if you do not). 
 
@@ -45,10 +46,12 @@ kable(df) %>%
 trackr_dir <- '~/Documents/trackr_dir'
 df <- trackr_new(df, trackr_dir = trackr_dir)
 ```
+<details><summary>Details</summary>
 ```{r, echo = F}
 kable(df) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
+</details>
 
 You should see an output similar to what is printed above "Successfully written ...". These messages tell us that the dataset has been successfully logged and that two log files have been written. One file (the trackr file) records the lineage of each row in the dataset. The other file (with the suffix "_dl") is the data log - a record of the dataset at this point in time. 
 
@@ -61,20 +64,24 @@ First, we will make some change to the logged dataset.
 ```{r}
 df <- df %>% dplyr::mutate(b = b + 1)
 ```
+<details><summary>Details</summary>
 ```{r, echo = F}
 kable(df) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
+</details>
 
 Then, we will log this change as a new `timepoint`.
 
 ```{r}
 df <- trackr_timepoint(df, trackr_dir = trackr_dir, timepoint_message = 'First processing step')
 ```
+<details><summary>Details</summary>
 ```{r, echo = F}
 kable(df) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
+</details>
 
 You should see the same success messages as you did for [`trackr_new()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_new.html) above. Notice the argument `timepoint_message`, which gives an optional, plain text record of this timepoint, similar to a commit message in `git`.
 
@@ -109,4 +116,4 @@ clean_trackr_dir(trackr_dir)
 
 **Warning:** `clean_trackr_dir` is a simple wrapper function that will delete any `.json` files in the `trackr_dir`. Use caution when mixing trackr log files with other files. The best practice is to create a separate directory for all trackr log files. 
 
-*Article by Hamish Gibbs `r Sys.time()`.*
+*Article by Hamish Gibbs `r Sys.time()`. To report a problem with this package, please create an [issue](https://github.com/hamishgibbs/rtrackr/issues).*

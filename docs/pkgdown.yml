@@ -4,6 +4,8 @@ pkgdown_sha: ~
 articles:
   getting_started: getting_started.html
   how_it_works: how_it_works.html
+  multiple_history: multiple_history.html
+  single_history: single_history.html
   summarising_data: summarising_data.html
-last_built: 2020-06-17T20:34Z
+last_built: 2020-06-18T10:57Z
 

@@ -7,38 +7,79 @@ vignette: >
   %\usepackage[UTF-8]{rtrackr}
 ---
 
+```{r echo=F, results="hide"}
+suppressPackageStartupMessages({
+  library(kableExtra)
+  library(rtrackr)
+  library(networkD3)
+  library(digest)
+})
+```
+
 ### Overview
-`rtrackr` provides a way to track changes to individual records during program execution in R. `rtrackr` relies on the `trackr_new()` and `trackr_timepoint()` functions to initiate dataset tracking and log important points in the data processing chain. The package was developed primarily for datasets with large quantities of textual data, and for datasets that are being shared between different users, some of whom may make unpredictable changes to a dataset.
+`rtrackr` provides a way to track changes to individual records during program execution in R. `rtrackr` relies on the `trackr_new()` and `trackr_timepoint()` functions to initiate dataset tracking and log important points in the data processing chain.
 
 **Please Note:** 
 
-`rtrackr` relies on the `trackr_id` column to identify a record and its lineage. If this column is deleted or altered - it is not possible to continue tracking records using `rtrackr`. For more details on the special case of summarising data with `rtrackr` see [Summarising data](https://hamishgibbs.github.io/rtrackr/articles/summarising_data.html).
+*`rtrackr` relies on the `trackr_id` column to identify a record and its lineage. If this column is deleted or altered - it is not possible to continue tracking records using `rtrackr`. For more details on the special case of summarising data with `rtrackr` see [Summarising data](https://hamishgibbs.github.io/rtrackr/articles/summarising_data.html).*
 
-`rtrackr` relies on the `sha1` hash function exported from `digest::sha1`. `sha1` has been chosen because of the relatively short hashes that it produces, reducing the file size of log files. Using `sha1` increases the (unlikely) probability of a hash collision. Please see more information on the `sha1` hash function [here](https://en.wikipedia.org/wiki/SHA-1).
+*`rtrackr` relies on the `sha1` hash function exported from `digest::sha1`. `sha1` has been chosen because of the relatively short hashes that it produces, reducing the file size of log files. Using `sha1` increases the (unlikely) probability of a hash collision. Please see more information on the `sha1` hash function [here](https://en.wikipedia.org/wiki/SHA-1).*
 
 ### The trackr_id column
 
-The `trackr_id` column is an id field that uniquely identifies each record in a dataset. It is not possible to log a processing step with `trackr_timepoint()` if there are identical records in a dataset. The `trackr_id` field has two components, separated by an underscore `"_"`.
+The `trackr_id` column is an id field that uniquely identifies each record in a dataset. Each `trackr_id` has two components, separated by an underscore `"_"`.
 
-The first component of a `trackr_id` is the hash of a the parent log file, used to identify the log file where a parent's record is stored. The parent file hash is defined as the hash of the timepoint timestamp (a UNIX timestamp) + collapsed row hashes (see below).
+The first component of a `trackr_id` is the hash of a the parent log file, used to identify the log file where a record's parent record is stored. The parent file hash is defined as the hash of the timepoint timestamp (a UNIX timestamp) + collapsed row hashes (see below).
 
 The second component of a trackr_id is the row hash of each individual record. The row hash is the hash of a string made up of all values in a row, separated by an empty string `""`. Considering a dataframe of one row with values `a = "a"` and `b = 1`, the row hash would be computed as `digest::sha1("a1")`, or `4751028c3d830cf93f7d1e64d5e4d58c9d01ee32`. 
 
+<details><summary>Details</summary>
+Defining the example dataset:
+```{r}
+df <- data.frame(a = 'a', b = 1)
+```
+```{r, echo = F}
+kable(df) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+
+An example row hash for the first (and only) row of the dataframe:
+```{r}
+row <- 'a1'
+digest::sha1(row)
+```
+</details>
+
 The file hash of this dataframe at UNIX time `1592300508` would therefore be `digest::sha1("1592300508a1")`, or `566f5d1c67d708801092ded906f6180d5ae40c0a`.
 
-For a datafram with two rows, `a = "a"`, `b = 1` and `a = "b"`, `b = 2`, recorded at UNIX time `1592300508`, the file hash would be `digest::sha1("1592300508a1b2")`, or `8101ce0e209af8bd1d636729a6b77ff7bb124957`.
+<details><summary>Details</summary>
+Using the same row hash as above:
+
+```{r}
+file_hash <- digest::sha1(c('1592300508', digest::sha1(row)))
+```
+
+</details>
+
+For a dataframe with two rows, `a = "a"`, `b = 1` and `a = "b"`, `b = 2`, recorded at UNIX time `1592300508`, the file hash would be `digest::sha1("1592300508a1b2")`, or `8101ce0e209af8bd1d636729a6b77ff7bb124957`.
+
+<details><summary>Details</summary>
+
+```{r}
+digest::sha1(c('1592300508', digest::sha1('a1'), digest::sha1('b2')))
+```
+
+</details>
 
 ### Validating a trackr data log
 
-`trackr_new()` and `trackr_timepoint()` both provide the option to write a data log along with a standard trackr log file with the argument `log_data = TRUE`. This is recommended, as it provides a full hisotry of all timepoints in a data processing history, but may not be practical for very large datasets. 
+For more information on getting started with`rtrackr` please see [Getting started](https://hamishgibbs.github.io/rtrackr/articles/getting_started.html).
 
-Any data logs that have been saved using `log_data = TRUE` can be validated by re-computing the file hash of the logged data using the timestamp stored in the corresponding trackr log file. `rtrackr` provides the `validate_data_log()` function to validate a trackr data log automatically.
+[`trackr_new()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_new.html) and [`trackr_timepoint()`](https://hamishgibbs.github.io/rtrackr/reference/trackr_timepoint.html) both provide the option to write a data log along with a standard trackr log file with the argument `log_data = TRUE`. This is recommended, as it provides a full hisotry of all timepoints in a data processing chain, but may not be practical for repeatedly logging very large datasets. 
+
+Any data logs that have been saved using `log_data = TRUE` can be validated by re-computing the file hash of the logged data using the timestamp stored in the corresponding trackr log file. `rtrackr` provides the [`validate_data_log()`](https://hamishgibbs.github.io/rtrackr/reference/validate_data_log.html) function to validate a trackr data log automatically.
 
 ### Other considerations
-A primary motivation for the development of this package is the case of data files that are processed in R and shared with users who further alter the data manually (for human data cleaning, manual updates, or record validation). It is important to consider the effect of manual record processing on log data produced by `rtrackr`. 
+A primary motivation for the development of this package is the case of data files that are processed in R and shared with users who further alter the data manually (for human data cleaning, manual updates, or record validation). It is important to consider the effect of manual record processing on data logged by `rtrackr`. When sharing data logged in `rtrackr` outside of R, please consider the special case of [Summarising data](https://hamishgibbs.github.io/rtrackr/articles/summarising_data.html).
 
-There are two primary cases of manual data alteration that are important to `rtrackr`. The first case is the duplication of records (one record becoming >1 record), with some change to one or all of the duplicated records. `rtrackr` can handle this case without any further consideration. When logging a new timepoint, the duplicated records with be recorded with new row hashes, but identical parent records in the preceding log file. 
-
-The second case is summarising data (combining >1 record into a single record), which risks losing information added to a data file by `rtrackr`. To retain a full data history - the `trackr_id`s of all summarised records must be stored in the trackr_id column (separated by ", "). This is the same operation performed automatically by `trackr_summarise()`. If multiple records are combined into one but only one trackr_id is retained, some components of the data processing history will be lost. Others, like the identfication of a root record with `trackr_root()` will work as expected. 
-
-*Article by Hamish Gibbs `r Sys.time()`.*
+*Article by Hamish Gibbs `r Sys.time()`. To report a problem with this package, please create an [issue](https://github.com/hamishgibbs/rtrackr/issues).*
