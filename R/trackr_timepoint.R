@@ -6,6 +6,7 @@
 #' @param trackr_dir A string, path to store trackr log files.
 #' @param timepoint_message A string (optional), a message to identify the timepoint - similar to a git commit message.
 #' @param log_data A boolean (optional), output a full dataset log with each trackr file. Default is "TRUE"
+#' @param suppress_success A boolean (optional), suppress success messages. Default is "FALSE".
 #' 
 #' @importFrom dplyr mutate rename pull distinct
 #' @importFrom tidyr separate_rows
@@ -14,7 +15,7 @@
 #' @return A data.frame with an updated trackr_id column. Trackr log and data log files are written into the trackr_dir.
 #' @export
 
-trackr_timepoint <- function(dataframe, trackr_dir = NULL, timepoint_message = NULL, log_data = TRUE){
+trackr_timepoint <- function(dataframe, trackr_dir = NULL, timepoint_message = NULL, log_data = TRUE, suppress_success = FALSE){
   
   if (is.null(trackr_dir)){stop('No trackr_dir specified. Please specify where to store trackr log files.')}
   
@@ -56,14 +57,14 @@ trackr_timepoint <- function(dataframe, trackr_dir = NULL, timepoint_message = N
     stop('Parent trackr file not found in trackr_dir. Exiting.')
   }
   
-  tstamp <- as.numeric(Sys.time())
+  tstamp <- as.integer(as.numeric(Sys.time()))
   
   file_hash <- get_file_hash(dataframe, tstamp)
   
-  write_timepoint_trackr_file(hash_string, input_dataframe, parent_file_hash, file_hash, trackr_dir, timepoint_message, tstamp)
+  write_timepoint_trackr_file(hash_string, input_dataframe, parent_file_hash, file_hash, trackr_dir, timepoint_message, tstamp, suppress_success)
   
   if(log_data){
-    write_data_log(dataframe, trackr_dir, file_hash)
+    write_data_log(dataframe, trackr_dir, file_hash, suppress_success)
   }
   
   #trackr_id is file_hash + '_' + record_hash - need to retain unaltered version of records that have not changed and rbind changed records to it. 

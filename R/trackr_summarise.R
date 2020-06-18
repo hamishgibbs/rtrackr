@@ -15,15 +15,18 @@ trackr_summarise <- function(dataframe, ...){
   
   if (!is.data.frame(dataframe)) stop("dataframe must be a data.frame")
   
-  if (is.null(dplyr::groups(dataframe))){stop("dataframe must be grouped")}
+  dataframe_groups <- dplyr::groups(dataframe)
+  
+  if (is.null(dataframe_groups)){stop("dataframe must be grouped")}
   
   group_id_assigned <- dataframe %>% dplyr::summarise(trackr_id = paste(trackr_id, collapse = ', '))
   
   dataframe <- dataframe %>% dplyr::summarise(...)
   
   #After summarising, reattach collapsed trackr_ids
+  
   dataframe <- dataframe %>% 
-    dplyr::left_join(group_id_assigned, by = lapply(dplyr::groups(dataframe), deparse) %>% unlist())
+    dplyr::left_join(group_id_assigned, by = c(lapply(dataframe_groups, deparse) %>% unlist()))
   
   return(dataframe)
   

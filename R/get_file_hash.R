@@ -15,7 +15,7 @@ get_file_hash <- function(dataframe, tstamp){
   
   file_hash <- digest::sha1(paste0(tstamp, paste0(hash_ref$hash, collapse = '')))
   
-  if(length(file_hash) > 1){stop('more that one file hash returned')}
+  if(length(file_hash) > 1){stop('more than one file hash returned')}
   
   return(file_hash)
   

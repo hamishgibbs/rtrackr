@@ -1,5 +1,4 @@
-testthat::test_that('new_trackr works as expected', {
-  
+testthat::test_that('trackr_timepoint works as expected', {
   #trackr_dir is null
   testthat::expect_error(new_trackr(1))
   
@@ -16,6 +15,10 @@ testthat::test_that('new_trackr works as expected', {
   
   testthat::expect_error(new_trackr(error_df, trackr_dir = 'a'))
   
+  #column named trackr_old_hash
+  df <- data.frame(a = c('a', 'b', 'c'), b = c(1, 2, 3)) %>% 
+    mutate(trackr_old_hash = 1)
+  
+  testthat::expect_error(trackr_timepoint(df, trackr_dir = 'a'))
+  
 })
-
-

@@ -116,4 +116,4 @@ clean_trackr_dir(trackr_dir)
 
 **Warning:** `clean_trackr_dir` is a simple wrapper function that will delete any `.json` files in the `trackr_dir`. Use caution when mixing trackr log files with other files. The best practice is to create a separate directory for all trackr log files. 
 
-*Article by Hamish Gibbs `r Sys.time()`. To report a problem with this package, please create an [issue](https://github.com/hamishgibbs/rtrackr/issues).*
+*Article by Hamish Gibbs `r Sys.time()`. To report a problem with this package, please [create an issue](https://github.com/hamishgibbs/rtrackr/issues) on [GitHub](https://github.com/hamishgibbs/rtrackr).*

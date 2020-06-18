@@ -82,4 +82,4 @@ Any data logs that have been saved using `log_data = TRUE` can be validated by r
 ### Other considerations
 A primary motivation for the development of this package is the case of data files that are processed in R and shared with users who further alter the data manually (for human data cleaning, manual updates, or record validation). It is important to consider the effect of manual record processing on data logged by `rtrackr`. When sharing data logged in `rtrackr` outside of R, please consider the special case of [Summarising data](https://hamishgibbs.github.io/rtrackr/articles/summarising_data.html).
 
-*Article by Hamish Gibbs `r Sys.time()`. To report a problem with this package, please create an [issue](https://github.com/hamishgibbs/rtrackr/issues).*
+*Article by Hamish Gibbs `r Sys.time()`. To report a problem with this package, please [create an issue](https://github.com/hamishgibbs/rtrackr/issues) on [GitHub](https://github.com/hamishgibbs/rtrackr).*

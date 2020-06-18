@@ -19,16 +19,11 @@ validate_data_log <- function(log_file){
   
   log_hash <- substr(tail(stringr::str_split(log_file, '/')[[1]], 1), 1, 40)
   
-  logged_data <- jsonlite::fromJSON(log_file) %>% dplyr::as_tibble()
+  log_tstamp <- get_parent_file_timestamp(gsub('_dl.json', '.json', log_file))
   
-  hash_string <- trackr_hash(logged_data %>% dplyr::rename(trackr_old_hash = trackr_id))
+  logged_data <- jsonlite::fromJSON(log_file)
   
-  print(hash_string)
-  
-  file_hash <- get_file_hash(hash_string)
-  
-  print(log_hash)
-  print(file_hash)
+  file_hash <- get_file_hash(logged_data, log_tstamp)
   
   return(log_hash == file_hash)
   

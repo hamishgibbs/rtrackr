@@ -8,7 +8,8 @@ trackr_timepoint(
   dataframe,
   trackr_dir = NULL,
   timepoint_message = NULL,
-  log_data = TRUE
+  log_data = TRUE,
+  suppress_success = FALSE
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ trackr_timepoint(
 \item{timepoint_message}{A string (optional), a message to identify the timepoint - similar to a git commit message.}
 
 \item{log_data}{A boolean (optional), output a full dataset log with each trackr file. Default is "TRUE"}
+
+\item{suppress_success}{A boolean (optional), suppress success messages. Default is "FALSE".}
 }
 \value{
 A data.frame with an updated trackr_id column. Trackr log and data log files are written into the trackr_dir.

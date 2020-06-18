@@ -164,4 +164,4 @@ trackr_network(lineage_fn)
 clean_trackr_dir(trackr_dir)
 ```
 
-*Article by Hamish Gibbs `r Sys.time()`. To report a problem with this package, please create an [issue](https://github.com/hamishgibbs/rtrackr/issues).*
+*Article by Hamish Gibbs `r Sys.time()`. To report a problem with this package, please [create an issue](https://github.com/hamishgibbs/rtrackr/issues) on [GitHub](https://github.com/hamishgibbs/rtrackr).*
