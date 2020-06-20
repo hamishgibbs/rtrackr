@@ -5,7 +5,7 @@
  [![Documentation](https://img.shields.io/badge/Package-documentation-lightgrey.svg?style=flat)](https://hamishgibbs.github.io/rtrackr/)
 <!-- badges: end -->
 
-End-to-end data change tracking for R.
+Individual data change tracking for R.
 
 Generate a full history of dataset changes for individual records in a dataset.
 
